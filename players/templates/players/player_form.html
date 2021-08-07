@@ -168,10 +168,9 @@
         <br>
         <div class="container">
             <div class="form-group col-md-2 imgUp">
-                <div class="imagePreview"></div>
+                <div class="imagePreview" style="background-image: url('{{ request.session.data.image }}')"></div>
                 <label class="btn btn-primary">
                     Upload<input type="file" class="uploadFile img"
-                                 value="{{ request.session.data.image }}"
                                  name="image"
                                  style="width: 0;height: 0;overflow: hidden;">
                 </label>

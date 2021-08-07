@@ -1,7 +1,9 @@
 from django.db import models
 
-
 # Create your models here.
+from web_application.settings import MEDIA_ROOT
+
+
 class Player(models.Model):
     name = models.CharField(max_length=255)  # name
     first_name = models.CharField(max_length=255)  # first name
@@ -12,4 +14,5 @@ class Player(models.Model):
     date_of_birth = models.DateField  # Date of birth.
     phone_number = models.IntegerField  # phone number
     email_address = models.EmailField  # email address.
-    image = models.ImageField(null=True, upload_to='images/', default='images/no_image.png', blank=True)
+    image = models.FileField(null=True, upload_to=MEDIA_ROOT + 'images', default=MEDIA_ROOT + 'images/no_image.png',
+                             blank=True)
