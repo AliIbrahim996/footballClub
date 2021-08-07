@@ -1,5 +1,52 @@
-{%  extends "players/base.html" %}
+{% extends "players/base.html" %}
 
 {% block content %}
-    <p> a form to implement CRUD for a player</p>
+
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <!--name -->
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group col-md-6">
+                <!-- first name -->
+                <label for="first_name">Vorname</label>
+                <input type="text" class="form-control" id="first_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <!--Street, house number -->
+            <label for="address">Straße/Hausnummer</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+        </div>
+        <div class="form-group">
+            <!--Date of birth. -->
+            <label for="date_of_birth">Geburtstag</label>
+            <input type="date" class="form-control" id="date_of_birth">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <!--city -->
+                <label for="city">Stadt</label>
+                <input type="text" class="form-control" id="city">
+            </div>
+              <div class="form-group col-md-2">
+                <!-- phone number -->
+                <label for="phone_number">Telefonnummer</label>
+                <input type="tel" class="form-control" id="phone_number">
+            </div>
+            <div class="form-group col-md-4">
+                <!-- Society -->
+                <label for="society">Verein</label>
+                <input type="text" id="society" class="form-control">
+            </div>
+            <div class="form-group col-md-2">
+                <!-- Post code -->
+                <label for="post_code">Postleitzahl</label>
+                <input type="text" class="form-control" id="post_code">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Schaffen</button>
+    </form>
 {% endblock content %}
