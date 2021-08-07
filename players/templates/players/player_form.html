@@ -1,50 +1,55 @@
 {% extends "players/base.html" %}
-
 {% block content %}
-
-    <form>
+    <form method="post" action="{% url 'add' %}">
+        {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-md-6">
                 <!--name -->
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name">
+                <input type="text" name="name" class="form-control" id="name">
             </div>
             <div class="form-group col-md-6">
                 <!-- first name -->
                 <label for="first_name">Vorname</label>
-                <input type="text" class="form-control" id="first_name">
+                <input type="text" name="first_name" class="form-control" id="first_name">
             </div>
         </div>
         <div class="form-group">
             <!--Street, house number -->
             <label for="address">Straße/Hausnummer</label>
-            <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+            <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
+        </div>
+
+        <div class="form-group">
+            <!--email -->
+            <label for="email">Emailadresse</label>
+            <input type="email" name="email" class="form-control" id="email">
         </div>
         <div class="form-group">
             <!--Date of birth. -->
             <label for="date_of_birth">Geburtstag</label>
-            <input type="date" class="form-control" id="date_of_birth">
+            <input type="date" name="date_of_birth" class="form-control" id="date_of_birth">
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <!--city -->
                 <label for="city">Stadt</label>
-                <input type="text" class="form-control" id="city">
+                <input type="text" name="city" class="form-control" id="city">
             </div>
             <div class="form-group col-md-2">
                 <!-- phone number -->
                 <label for="phone_number">Telefonnummer</label>
-                <input type="tel" class="form-control" id="phone_number">
+                <input type="tel" name="phone_number" class="form-control" id="phone_number">
             </div>
             <div class="form-group col-md-4">
                 <!-- Society -->
                 <label for="society">Verein</label>
-                <input type="text" id="society" class="form-control">
+                <input type="text" name="society" id="society" class="form-control">
             </div>
             <div class="form-group col-md-2">
                 <!-- Post code -->
                 <label for="post_code">Postleitzahl</label>
-                <input type="text" class="form-control" id="post_code">
+                <input type="text" name="post_code" class="form-control" id="post_code">
             </div>
         </div>
         <br>
@@ -54,7 +59,7 @@
                 <div class="imagePreview"></div>
                 <label class="btn btn-primary">
                     Upload<input type="file" class="uploadFile img" value="Upload Photo"
-                                 style="width: 0;height: 0;overflow: hidden;">
+                                 name="image" style="width: 0;height: 0;overflow: hidden;">
                 </label>
             </div>
         </div><!-- container -->
