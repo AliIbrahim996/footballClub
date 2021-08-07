@@ -21,20 +21,25 @@ def player_delete(request):
 
 def add_player(request):
     if request.method == 'POST':
-        form = PlayerValidator(request.POST, request.FILES)
+        form = PlayerValidator(request.POST)
         if form.is_valid():
             player = Player()
             player.name = request.POST.get('name')
-            player.vorname = request.POST.get('first_name')
-            player.Straße_Hausnummer = request.POST.get('address')
-            player.geburtstag = request.POST.get('date_of_birth')
-            player.stadt = request.POST.get('city')
-            player.telefonnummer = request.POST.get('phone_number')
-            player.verein = request.POST.get('society')
-            player.postleitzahl = request.POST.get('post_code')
-            player.email_adresse = request.POST.get('email')
-            player.foto = request.POST.get('image')
+            player.first_name = request.POST.get('first_name')
+            player.address = request.POST.get('address')
+            player.date_of_birth = request.POST.get('date_of_birth')
+            player.city = request.POST.get('city')
+            player.phone_number = request.POST.get('phone_number')
+            player.society = request.POST.get('society')
+            player.post_code = request.POST.get('post_code')
+            player.email_address = request.POST.get('email_address')
+            player.image = request.POST.get('image')
             player.save()
             return redirect('players')
         else:
-            print("values invalid")
+            print("Invalid inputs")
+            print(request.POST)
+            request.session['form_errors'] = form.errors
+            request.session['data'] = request.POST
+            print(form.errors)
+            return redirect(player_form)

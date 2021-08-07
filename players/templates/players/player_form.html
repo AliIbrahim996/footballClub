@@ -1,69 +1,184 @@
 {% extends "players/base.html" %}
 {% block content %}
-    <form method="post" action="{% url 'add' %}">
+    <form method="post" action="{% url 'add' %}" autocomplete="off">
         {% csrf_token %}
         <div class="form-row">
             <div class="form-group col-md-6">
                 <!--name -->
-                <label for="name">Name</label>
-                <input type="text" name="name" class="form-control" id="name">
+
+                <label for="name">Name
+                    {% if request.session.form_errors.name %}
+                        <div id="alert" class="alert alert-danger" role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.name }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="text" name="name" class="form-control" id="name" value="{{ request.session.data.name }}">
             </div>
             <div class="form-group col-md-6">
                 <!-- first name -->
-                <label for="first_name">Vorname</label>
-                <input type="text" name="first_name" class="form-control" id="first_name">
+                <label for="first_name">Vorname
+                    {% if request.session.form_errors.first_name %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.first_name }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="text" name="first_name" class="form-control" id="first_name"
+                       value="{{ request.session.data.first_name }}">
             </div>
-        </div>
-        <div class="form-group">
-            <!--Street, house number -->
-            <label for="address">Straße/Hausnummer</label>
-            <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
-        </div>
-
-        <div class="form-group">
-            <!--email -->
-            <label for="email">Emailadresse</label>
-            <input type="email" name="email" class="form-control" id="email">
-        </div>
-        <div class="form-group">
-            <!--Date of birth. -->
-            <label for="date_of_birth">Geburtstag</label>
-            <input type="date" name="date_of_birth" class="form-control" id="date_of_birth">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
+                <!--Street, house number -->
+                <label for="address">Straße/Hausnummer
+                    {% if request.session.form_errors.address %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.address }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
+            </div>
+            <div class="form-group col-md-6">
+                <!--email -->
+                <label for="email_address">Emailadresse
+                    {% if request.session.form_errors.email %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.email }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="email" value="{{ request.session.data.email_address }}" name=" email_address"
+                       class="form-control" id="email_address">
+            </div>
+            <div class="form- col-md-12">
+                <!--Date of birth. -->
+                <label for="date_of_birth">Geburtstag
+                    {% if request.session.form_errors.date_of_birth %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.date_of_birth }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="date" name="date_of_birth" value="{{ request.session.data.date_of_birth }}" class="
+                       form-control" id="date_of_birth">
+            </div><!-- form-group -->
+            <br>
+            <div class="form-group col-md-6">
                 <!--city -->
-                <label for="city">Stadt</label>
-                <input type="text" name="city" class="form-control" id="city">
+                <label for="city">Stadt
+                    {% if request.session.form_errors.city %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.city }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="text" value="{{ request.session.data.city }}" name="city" class="form-control" id="city">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-6">
                 <!-- phone number -->
-                <label for="phone_number">Telefonnummer</label>
-                <input type="tel" name="phone_number" class="form-control" id="phone_number">
+                <label for="phone_number">Telefonnummer
+                    {% if request.session.form_errors.phone_number %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.phone_number }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="tel" value="{{ request.session.data.phone_number }}" name=" phone_number"
+                       class="form-control" id="phone_number">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
                 <!-- Society -->
-                <label for="society">Verein</label>
-                <input type="text" name="society" id="society" class="form-control">
+                <label for="society">Verein
+                    {% if request.session.form_errors.society %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.society }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="text" value="{{ request.session.data.society }}" name="society" id="society"
+                       class="form-control">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-6">
                 <!-- Post code -->
-                <label for="post_code">Postleitzahl</label>
-                <input type="text" name="post_code" class="form-control" id="post_code">
+                <label for="post_code">Postleitzahl
+                    {% if request.session.form_errors.post_code %}
+                        <div id="alert" class="alert alert-danger " role="alert">
+                            <p class="font-italic">{{ request.session.form_errors.post_code }}</p>
+                            <script type="text/javascript">
+                                setTimeout(function () {
+                                    // Closing the alert
+                                    $('#alert').alert('close');
+                                }, 5000);
+                            </script>
+                        </div>
+                    {% endif %}
+                </label>
+                <input type="text" value="{{ request.session.data.post_code }}" name="post_code" class="form-control"
+                       id="post_code">
             </div>
         </div>
         <br>
         <div class="container">
             <div class="form-group col-md-2 imgUp">
-
                 <div class="imagePreview"></div>
                 <label class="btn btn-primary">
-                    Upload<input type="file" class="uploadFile img" value="Upload Photo"
-                                 name="image" style="width: 0;height: 0;overflow: hidden;">
+                    Upload<input type="file" class="uploadFile img"
+                                 value="{{ request.session.data.image }}"
+                                 name="image"
+                                 style="width: 0;height: 0;overflow: hidden;">
                 </label>
             </div>
         </div><!-- container -->
         <br>
         <button type="submit" class="btn btn-success">Schaffen</button>
     </form>
+
 {% endblock content %}

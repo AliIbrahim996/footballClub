@@ -4,12 +4,12 @@ from django.db import models
 # Create your models here.
 class Player(models.Model):
     name = models.CharField(max_length=255)  # name
-    vorname = models.CharField(max_length=255)  # first name
-    Straße_Hausnummer = models.CharField(max_length=255)  # Street, house number
-    postleitzahl = models.CharField(max_length=255)  # Post code
-    stadt = models.CharField(max_length=255)  # city
-    verein = models.CharField(max_length=255)  # Society
-    geburtstag = models.DateField  # Date of birth.
-    telefonnummer = models.IntegerField  # phone number
-    email_adresse = models.EmailField  # email address.
-    foto = models.ImageField(null=True, upload_to='images/', default='images/no_image.png', blank=True)
+    first_name = models.CharField(max_length=255)  # first name
+    address = models.CharField(max_length=255)  # Street, house number
+    post_code = models.CharField(max_length=255)  # Post code
+    city = models.CharField(max_length=255)  # city
+    society = models.CharField(max_length=255)  # Society
+    date_of_birth = models.DateField  # Date of birth.
+    phone_number = models.IntegerField  # phone number
+    email_address = models.EmailField  # email address.
+    image = models.ImageField(null=True, upload_to='images/', default='images/no_image.png', blank=True)
