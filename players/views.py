@@ -1,18 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.template.context_processors import request
-
-from .models import Player
 from django.shortcuts import redirect
 from .forms import PlayerValidator
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
 
 def player_form(request):
-    return render(request, "players/player_form.html")
+    player = PlayerValidator()
+    return render(request, "players/player_form.html", {'form': player})
 
 
 def player_list(request):
