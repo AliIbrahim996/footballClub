@@ -21,3 +21,27 @@ body {
 .imgUp {
     margin-bottom: 15px;
 }
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #176ea9;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}

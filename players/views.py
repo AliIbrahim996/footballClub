@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from .forms import PlayerValidator
+from .models import Player
 
 
 # Create your views here.
@@ -12,7 +13,8 @@ def player_form(request):
 
 
 def player_list(request):
-    return render(request, "players/player_list.html")
+    context = {'player_list': Player.objects.all()}
+    return render(request, "players/player_list.html", context)
 
 
 def player_delete(request):

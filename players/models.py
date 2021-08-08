@@ -1,3 +1,5 @@
+import time
+
 from django.db import models
 
 # Create your models here.
@@ -11,8 +13,8 @@ class Player(models.Model):
     post_code = models.CharField(max_length=255)  # Post code
     city = models.CharField(max_length=255)  # city
     society = models.CharField(max_length=255)  # Society
-    date_of_birth = models.DateField  # Date of birth.
-    phone_number = models.IntegerField  # phone number
-    email_address = models.EmailField  # email address.
+    date_of_birth = models.DateTimeField(default=time.localtime())  # Date of birth.
+    phone_number = models.CharField(default="0", max_length=255)  # phone number
+    email_address = models.EmailField()  # email address.
     image = models.ImageField(null=True, upload_to="images/", default="images/no_image.png",
                               blank=True)

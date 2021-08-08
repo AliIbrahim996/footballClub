@@ -31,8 +31,9 @@ class PlayerValidator(forms.ModelForm):
     }
 
     form_validators = {
-        'name': [RegexValidator('^[a-zA-Z ]*$', message='Bitte geben Sie nur alphabetische Buchstaben ein')],
-        'first_name': [RegexValidator('^[a-zA-Z ]*$', message='Bitte geben Sie nur alphabetische Buchstaben ein')],
+        'name': [RegexValidator('^[a-zA-Z]*$', message='Bitte geben Sie nur alphabetische Buchstaben ein')],
+        'first_name': [RegexValidator('^[a-zA-Z]*$', message='Bitte geben Sie nur alphabetische Buchstaben ein')],
+        'phone_number': [RegexValidator('^[0-9]*$', message='Bitte geben Sie nur alphabetische Buchstaben ein')],
     }
 
     address_error_dict = post_code_error_dict = erro_dict = dict()
@@ -58,8 +59,8 @@ class PlayerValidator(forms.ModelForm):
     date_of_birth = forms.DateTimeField(widget=widgets['date_of_birth'](attrs={'type': 'date'}),
                                         error_messages=erro_dict,
                                         label=labels['date_of_birth'])  # Date of birth.
-    phone_number = forms.IntegerField(widget=widgets['phone_number'], error_messages=erro_dict,
-                                      label=labels['phone_number'])  # phone number
+    phone_number = forms.CharField(widget=widgets['phone_number'], error_messages=erro_dict,
+                                   label=labels['phone_number'])  # phone number
     email_address = forms.EmailField(widget=widgets['email_address'], error_messages=erro_dict,
                                      label=labels['email_address'])  # email address.
     image = forms.ImageField(widget=widgets['image'](attrs={'class': "uploadFile img",

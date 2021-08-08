@@ -14,17 +14,31 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<div class="container">
-    <div class="col-md-12  mt-5">
-        <div class="jumbotron">
-            <h1 class="display-6">Football player Registration</h1>
-            <p class="lead font-italic">Django project for managing football players registration</p>
-            <hr class="my-4">
-            {% block content %}
-            {% endblock content %}
-        </div>
+<nav class="navbar navbar-default   bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"> <img src="" alt="" class="img1">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto rightText">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'players' %}">Players</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Plan</a>
+            </li>
+        </ul>
     </div>
-</div>
+</nav>
+    <div class="jumbotron">
+        <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">Registrierung von
+            Fußballspielern</h1>
+        <hr class="my-4">
+        {% block content %}
+        {% endblock content %}
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
