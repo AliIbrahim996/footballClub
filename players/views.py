@@ -30,12 +30,10 @@ def add_player(request):
             # print(fs.url(file_name))
             # ************************************
             form.save()
-            request.session.clear()
             return redirect('players')
         else:
-            print("Invalid inputs")
-            print(request.POST)
-            request.session['form_errors'] = form.errors
-            request.session['data'] = request.POST
-            print(form.errors)
-            return redirect(player_form)
+            player = form
+            return render(request, "players/player_form.html", {'form': player})
+    elif request.method == 'GET':
+        player = PlayerValidator()
+        return render(request, "players/player_form.html", {'form': player})

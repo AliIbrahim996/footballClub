@@ -24,7 +24,7 @@ class PlayerValidator(forms.ModelForm):
         'post_code': forms.TextInput,
         'city': forms.TextInput,
         'society': forms.TextInput,
-        'date_of_birth': forms.DateInput,
+        'date_of_birth': forms.DateTimeInput,
         'phone_number': forms.NumberInput,
         'email_address': forms.EmailInput,
         'image': forms.FileInput
@@ -55,14 +55,17 @@ class PlayerValidator(forms.ModelForm):
                            label=labels['city'])  # city
     society = forms.CharField(widget=widgets['society'], max_length=255, error_messages=erro_dict,
                               label=labels['society'])  # Society
-    date_of_birth = forms.DateField(widget=widgets['date_of_birth'], error_messages=erro_dict,
-                                    label=labels['date_of_birth'])  # Date of birth.
+    date_of_birth = forms.DateTimeField(widget=widgets['date_of_birth'](attrs={'type': 'date'}),
+                                        error_messages=erro_dict,
+                                        label=labels['date_of_birth'])  # Date of birth.
     phone_number = forms.IntegerField(widget=widgets['phone_number'], error_messages=erro_dict,
                                       label=labels['phone_number'])  # phone number
     email_address = forms.EmailField(widget=widgets['email_address'], error_messages=erro_dict,
                                      label=labels['email_address'])  # email address.
-    image = forms.ImageField(widget=widgets['image'],
-                             label=labels['image'])
+    image = forms.ImageField(widget=widgets['image'](attrs={'class': "uploadFile img",
+                                                            'style': "width: 0;height: 0;",
+                                                            'overflow': "hidden"}),
+                             label=labels['image'], required=False)
 
     class Meta:
         model = Player

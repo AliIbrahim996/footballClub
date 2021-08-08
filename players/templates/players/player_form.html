@@ -1,185 +1,60 @@
 {% extends "players/base.html" %}
+{% load crispy_forms_filters %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <form method="post" action="{% url 'add' %}" autocomplete="off" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <!--name -->
-
-                <label for="name">{{ form.name.label }}
-                    {% if request.session.form_errors.name %}
-                        <div id="alert" class="alert alert-danger" role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.name }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="text" name="name" class="form-control" id="name" value="{{ request.session.data.name }}">
-            </div>
-            <div class="form-group col-md-6">
-                <!-- first name -->
-                <label for="first_name">{{ form.first_name.label }}
-                    {% if request.session.form_errors.first_name %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.first_name }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="text" name="first_name" class="form-control" id="first_name"
-                       value="{{ request.session.data.first_name }}">
-            </div>
-            <div class="form-group col-md-6">
-                <!--Street, house number -->
-                <label for="address">{{ form.address.label }}
-                    {% if request.session.form_errors.address %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.address }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="text" name="address" class="form-control" id="address" placeholder="1234 Main St">
-            </div>
-            <div class="form-group col-md-6">
-                <!--email -->
-                <label for="email_address">{{ form.email_address.label }}
-                    {% if request.session.form_errors.email %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.email }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="email" value="{{ request.session.data.email_address }}" name=" email_address"
-                       class="form-control" id="email_address">
-            </div>
-            <div class="form- col-md-12">
-                <!--Date of birth. -->
-                <label for="date_of_birth">{{ form.date_of_birth.label }}
-                    {% if request.session.form_errors.date_of_birth %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.date_of_birth }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="date" name="date_of_birth" value="{{ request.session.data.date_of_birth }}" class="
-                       form-control" id="date_of_birth">
-            </div><!-- form-group -->
-            <br>
-            <div class="form-group col-md-6">
-                <!--city -->
-                <label for="city">{{ form.city.label }}
-                    {% if request.session.form_errors.city %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.city }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="text" value="{{ request.session.data.city }}" name="city" class="form-control" id="city">
-            </div>
-            <div class="form-group col-md-6">
-                <!-- phone number -->
-                <label for="phone_number">{{ form.phone_number.label }}
-                    {% if request.session.form_errors.phone_number %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.phone_number }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="number" value="{{ request.session.data.phone_number }}" name=" phone_number"
-                       class="form-control" id="phone_number">
-            </div>
-            <div class="form-group col-md-6">
-                <!-- Society -->
-                <label for="society">{{ form.society.label }}
-                    {% if request.session.form_errors.society %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.society }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="text" value="{{ request.session.data.society }}" name="society" id="society"
-                       class="form-control">
-            </div>
-            <div class="form-group col-md-6">
-                <!-- Post code -->
-                <label for="post_code">{{ form.post_code.label }}
-                    {% if request.session.form_errors.post_code %}
-                        <div id="alert" class="alert alert-danger " role="alert">
-                            <p class="font-italic">{{ request.session.form_errors.post_code }}</p>
-                            <script type="text/javascript">
-                                setTimeout(function () {
-                                    // Closing the alert
-                                    $('#alert').alert('close');
-                                }, 5000);
-                            </script>
-                        </div>
-                    {% endif %}
-                </label>
-                <input type="text" value="{{ request.session.data.post_code }}" name="post_code" class="form-control"
-                       id="post_code">
-            </div>
+<form method="post" action="{% url 'add' %}" autocomplete="off" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <!--name -->
+            {{ form.name|as_crispy_field }}
         </div>
+        <div class="form-group col-md-6">
+            <!-- first name -->
+            {{ form.first_name|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+            <!--Street, house number -->
+            {{ form.address|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+            <!--email -->
+            {{ form.email_address|as_crispy_field }}
+        </div>
+        <div class="form- col-md-12">
+            <!--Date of birth. -->
+            {{ form.date_of_birth|as_crispy_field }}
+        </div><!-- form-group -->
         <br>
-        <div class="container">
-            <div class="form-group col-md-2 imgUp">
-                <div class="imagePreview"></div>
-                <label class="btn btn-primary">
-                    {{ form.image.label }}<input type="file" class="uploadFile img"
-                                                 name="image"
-                                                 value="{{ request.session.data.image }}"
-                                                 style="width: 0;height: 0;overflow: hidden;">
-                </label>
-            </div>
-        </div><!-- container -->
-        <br>
-        <button type="submit" class="btn btn-success">Schaffen</button>
-    </form>
+        <div class="form-group col-md-6">
+            <!--city -->
+            {{ form.city|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+            <!-- phone number -->
+            {{ form.phone_number|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+            <!-- Society -->
+            {{ form.society|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+            <!-- Post code -->
+            {{ form.post_code|as_crispy_field }}
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="form-group col-md-2 imgUp">
+            <div class="imagePreview"></div>
+            <label class="btn btn-primary">
+                {{ form.image|as_crispy_field }}
+            </label>
+        </div>
+    </div><!-- container -->
+    <br>
+    <button type="submit" class="btn btn-success"><i class="fas fa-database"></i> Schaffen</button>
+</form>
 
 {% endblock content %}
