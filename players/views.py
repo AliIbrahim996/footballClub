@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template.context_processors import request
+
 from .models import Player
 from django.shortcuts import redirect
 from .forms import PlayerValidator
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your views here.
@@ -21,20 +25,16 @@ def player_delete(request):
 
 def add_player(request):
     if request.method == 'POST':
-        form = PlayerValidator(request.POST)
+        form = PlayerValidator(request.POST, request.FILES)
         if form.is_valid():
-            player = Player()
-            player.name = request.POST.get('name')
-            player.first_name = request.POST.get('first_name')
-            player.address = request.POST.get('address')
-            player.date_of_birth = request.POST.get('date_of_birth')
-            player.city = request.POST.get('city')
-            player.phone_number = request.POST.get('phone_number')
-            player.society = request.POST.get('society')
-            player.post_code = request.POST.get('post_code')
-            player.email_address = request.POST.get('email_address')
-            player.image = request.POST.get('image')
-            player.save()
+            # to save in  media root directory
+            # my_file = request.FILES['image']
+            # fs = FileSystemStorage()
+            # file_name = fs.save(my_file.name, my_file)
+            # print(fs.url(file_name))
+            # ************************************
+            form.save()
+            request.session.clear()
             return redirect('players')
         else:
             print("Invalid inputs")

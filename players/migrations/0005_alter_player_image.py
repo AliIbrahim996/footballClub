@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('players', '0004_alter_player_image'),
+        ('players', '0002_auto_20210807_2019'),
     ]
 
     operations = [
