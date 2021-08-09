@@ -27,7 +27,7 @@
             {% for player in player_list %}
 
                 <tr>
-                    <th scope="row"><a href="{% url 'update' player.id %}">{{ player.id }}</a></th>
+                    <th scope="row"><a href="{% url 'update' player.id %}">{{ forloop.counter }}</a></th>
                     <td><img width="75px" height="75px"
                              src="{{ player.image.url }}"
                              alt="Image{{ player.id }}"/>
@@ -46,7 +46,11 @@
             </tbody>
         </table>
     </div>
+
+{% endblock content %}
+
+{% block float_button %}
     <a href="{% url 'create' %}" class="float">
         <i class="fa fa-plus my-float"></i>
     </a>
-{% endblock content %}
+{% endblock %}

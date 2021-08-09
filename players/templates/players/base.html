@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -45,8 +44,12 @@
 <div class="jumbotron">
     {% block content %}
     {% endblock content %}
+
 </div>
 
-
+<div style="margin-top: 25%; padding: 15%">
+    {% block float_button %}
+    {% endblock %}
+</div>
 </body>
 </html>

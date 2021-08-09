@@ -78,8 +78,8 @@ tr > th > a:visited {
 	position:fixed;
 	width:60px;
 	height:60px;
-	bottom:140px;
-	right:140px;
+	bottom:5%;
+	right:50px;
 	background-color:#0C9;
 	color:#FFF;
 	border-radius:50px;
