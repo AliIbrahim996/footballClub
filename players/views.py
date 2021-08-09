@@ -18,7 +18,8 @@ def player_list(request):
 
 
 def player_delete(request, p_id=0):
-    return HttpResponse("Hello,world")
+    Player.objects.filter(pk=p_id).delete()
+    return redirect('players')
 
 
 def player_update(request, p_id=0):

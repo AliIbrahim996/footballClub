@@ -56,7 +56,7 @@ class PlayerValidator(forms.ModelForm):
                            label=labels['city'])  # city
     society = forms.CharField(widget=widgets['society'], max_length=255, error_messages=erro_dict,
                               label=labels['society'])  # Society
-    date_of_birth = forms.DateTimeField(widget=widgets['date_of_birth'](attrs={'type': 'date'}),
+    date_of_birth = forms.DateTimeField(widget=widgets['date_of_birth'](attrs={'type': 'datetime-local'}),
                                         error_messages=erro_dict,
                                         label=labels['date_of_birth'])  # Date of birth.
     phone_number = forms.CharField(widget=widgets['phone_number'], error_messages=erro_dict,
