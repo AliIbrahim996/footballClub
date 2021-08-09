@@ -1,0 +1,60 @@
+{% extends "players/base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Spielerinformationen
+{% endblock %}
+{% block content %}
+    <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
+        Spielerinformationen</h1>
+    <hr class="my-4">
+    <img src="/media/{{ form.image.value }}" width="150px" height="150px">
+    <br>
+    <form method="POST" action="{% url 'update' p_id %}">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <!--name -->
+                {{ form.name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- first name -->
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!--Street, house number -->
+                {{ form.address|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!--email -->
+                {{ form.email_address|as_crispy_field }}
+            </div>
+            <div class="form- col-md-12">
+                <!--Date of birth. -->
+                {{ form.date_of_birth|as_crispy_field }}
+            </div><!-- form-group -->
+            <br>
+            <div class="form-group col-md-6">
+                <!--city -->
+                {{ form.city|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- phone number -->
+                {{ form.phone_number|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- Society -->
+                {{ form.society|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- Post code -->
+                {{ form.post_code|as_crispy_field }}
+            </div>
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success"><i class="fas fa-database"></i> Aktualisieren</button>
+        <a href="{% url 'delete'  p_id %}" class="btn btn-danger"><i class="fas fa-trash" ></i> Löschen</a>
+    </form>
+{% endblock %}

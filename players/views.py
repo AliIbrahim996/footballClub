@@ -17,8 +17,24 @@ def player_list(request):
     return render(request, "players/player_list.html", context)
 
 
-def player_delete(request):
+def player_delete(request, p_id=0):
     return HttpResponse("Hello,world")
+
+
+def player_update(request, p_id=0):
+    if request.method == 'GET':
+        player_object = Player.objects.get(pk=p_id)
+        form = PlayerValidator(instance=player_object)
+        return render(request, "players/player_update.html", {'form': form, 'p_id': p_id})
+    elif request.method == 'POST':
+        player_object = Player.objects.get(pk=p_id)
+        form = PlayerValidator(request.POST, instance=player_object)
+        if form.is_valid():
+            form.save()
+            return redirect('players')
+        else:
+            player = form
+            return render(request, "players/player_update.html", {'form': player})
 
 
 def add_player(request):
