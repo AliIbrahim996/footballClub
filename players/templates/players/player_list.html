@@ -26,24 +26,27 @@
             <tbody>
             {% for player in player_list %}
 
-                    <tr>
-                        <th scope="row"><a href="{% url 'update' player.id %}">{{ player.id }}</a></th>
-                        <td><img width="75px" height="75px"
-                                 src="{{ player.image.url }}"
-                                 alt="Image{{ player.id }}"/>
-                        </td>
-                        <td>{{ player.name }}</td>
-                        <td>{{ player.first_name }}</td>
-                        <td>{{ player.address }}</td>
-                        <td>{{ player.post_code }}</td>
-                        <td>{{ player.city }}</td>
-                        <td>{{ player.society }}</td>
-                        <td>{{ player.date_of_birth }}</td>
-                        <td>{{ player.phone_number }}</td>
-                        <td>{{ player.email_address }}</td>
-                    </tr>
+                <tr>
+                    <th scope="row"><a href="{% url 'update' player.id %}">{{ player.id }}</a></th>
+                    <td><img width="75px" height="75px"
+                             src="{{ player.image.url }}"
+                             alt="Image{{ player.id }}"/>
+                    </td>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.first_name }}</td>
+                    <td>{{ player.address }}</td>
+                    <td>{{ player.post_code }}</td>
+                    <td>{{ player.city }}</td>
+                    <td>{{ player.society }}</td>
+                    <td>{{ player.date_of_birth }}</td>
+                    <td>{{ player.phone_number }}</td>
+                    <td>{{ player.email_address }}</td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    <a href="{% url 'create' %}" class="float">
+        <i class="fa fa-plus my-float"></i>
+    </a>
 {% endblock content %}
