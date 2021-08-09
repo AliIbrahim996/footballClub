@@ -1,6 +1,11 @@
 {% extends "players/base.html" %}
-
+{% block title %}
+    Spielerinformationen
+{% endblock %}
 {% block content %}
+    <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
+        Spielerinformationen</h1>
+    <hr class="my-4">
     <div class="table-responsive">
         <table class="table table-borderless table-striped">
             <thead>
@@ -20,19 +25,23 @@
             </thead>
             <tbody>
             {% for player in player_list %}
-                <tr>
-                    <th scope="row">{{ player.id }}</th>
-                    <td><img width="50px" height="50px" src="{{ player.image.url }}"/></td>
-                    <td>{{ player.name }}</td>
-                    <td>{{ player.first_name }}</td>
-                    <td>{{ player.address }}</td>
-                    <td>{{ player.post_code }}</td>
-                    <td>{{ player.city }}</td>
-                    <td>{{ player.society }}</td>
-                    <td>{{ player.date_of_birth }}</td>
-                    <td>{{ player.phone_number }}</td>
-                    <td>{{ player.email_address }}</td>
-                </tr>
+
+                    <tr>
+                        <th scope="row"><a href="{% url 'update' player.id %}">{{ player.id }}</a></th>
+                        <td><img width="75px" height="75px"
+                                 src="{{ player.image.url }}"
+                                 alt="Image{{ player.id }}"/>
+                        </td>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.first_name }}</td>
+                        <td>{{ player.address }}</td>
+                        <td>{{ player.post_code }}</td>
+                        <td>{{ player.city }}</td>
+                        <td>{{ player.society }}</td>
+                        <td>{{ player.date_of_birth }}</td>
+                        <td>{{ player.phone_number }}</td>
+                        <td>{{ player.email_address }}</td>
+                    </tr>
             {% endfor %}
             </tbody>
         </table>

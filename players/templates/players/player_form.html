@@ -2,59 +2,65 @@
 {% load crispy_forms_filters %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% block title %}
+    Registrierung von Fußballspielern
+{% endblock %}
 {% block content %}
-<form method="post" action="{% url 'add' %}" autocomplete="off" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <!--name -->
-            {{ form.name|as_crispy_field }}
+    <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">Registrierung von
+        Fußballspielern</h1>
+    <hr class="my-4">
+    <form method="post" action="{% url 'add' %}" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <!--name -->
+                {{ form.name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- first name -->
+                {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!--Street, house number -->
+                {{ form.address|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!--email -->
+                {{ form.email_address|as_crispy_field }}
+            </div>
+            <div class="form- col-md-12">
+                <!--Date of birth. -->
+                {{ form.date_of_birth|as_crispy_field }}
+            </div><!-- form-group -->
+            <br>
+            <div class="form-group col-md-6">
+                <!--city -->
+                {{ form.city|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- phone number -->
+                {{ form.phone_number|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- Society -->
+                {{ form.society|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- Post code -->
+                {{ form.post_code|as_crispy_field }}
+            </div>
         </div>
-        <div class="form-group col-md-6">
-            <!-- first name -->
-            {{ form.first_name|as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6">
-            <!--Street, house number -->
-            {{ form.address|as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6">
-            <!--email -->
-            {{ form.email_address|as_crispy_field }}
-        </div>
-        <div class="form- col-md-12">
-            <!--Date of birth. -->
-            {{ form.date_of_birth|as_crispy_field }}
-        </div><!-- form-group -->
         <br>
-        <div class="form-group col-md-6">
-            <!--city -->
-            {{ form.city|as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6">
-            <!-- phone number -->
-            {{ form.phone_number|as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6">
-            <!-- Society -->
-            {{ form.society|as_crispy_field }}
-        </div>
-        <div class="form-group col-md-6">
-            <!-- Post code -->
-            {{ form.post_code|as_crispy_field }}
-        </div>
-    </div>
-    <br>
-    <div class="container">
-        <div class="form-group col-md-2 imgUp">
-            <div class="imagePreview"></div>
-            <label class="btn btn-primary">
-                {{ form.image|as_crispy_field }}
-            </label>
-        </div>
-    </div><!-- container -->
-    <br>
-    <button type="submit" class="btn btn-success"><i class="fas fa-database"></i> Schaffen</button>
-</form>
+        <div class="container">
+            <div class="form-group col-md-2 imgUp">
+                <div class="imagePreview"></div>
+                <label class="btn btn-primary">
+                    {{ form.image|as_crispy_field }}
+                </label>
+            </div>
+        </div><!-- container -->
+        <br>
+        <button type="submit" class="btn btn-success"><i class="fas fa-database"></i> Schaffen</button>
+    </form>
 
 {% endblock content %}

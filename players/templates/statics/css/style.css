@@ -45,3 +45,31 @@ td, th {
     font-family: 'Times New Roman', Times, serif;
     text-align: center;
 }
+
+tr > th > a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+tr > th > a:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+tr > th > a {
+    color: white;
+}
+
+tr > th > a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+tr > th > a:visited {
+    color: cornsilk;
+    background-color: transparent;
+    text-decoration: none;
+}
