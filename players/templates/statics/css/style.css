@@ -1,5 +1,5 @@
 body {
-    background-color: #f5f5f5;
+    background-color: #e9ecef;
 }
 
 .imagePreview {
@@ -74,19 +74,23 @@ tr > th > a:visited {
     text-decoration: none;
 }
 
-.float{
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:5%;
-	right:50px;
-	background-color:#0C9;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 5%;
+    right: 50px;
+    background-color: #0C9;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
 }
 
-.my-float{
-	margin-top:22px;
+.my-float {
+    margin-top: 22px;
+}
+
+nav > p > a {
+    color: cornflowerblue;
 }

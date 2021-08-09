@@ -23,24 +23,7 @@
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
 <script src="{% static 'js/script.js' %}"></script>
-<nav class="navbar navbar-default   bg-dark navbar-dark">
-    <a class="navbar-brand" href="#"> <img src="" alt="" class="img1">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto rightText">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'players' %}">Players</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">Plan</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+{% include 'players/navbar.html' %}
 <div class="jumbotron">
     {% block content %}
     {% endblock content %}
