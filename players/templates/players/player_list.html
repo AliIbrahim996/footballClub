@@ -3,50 +3,22 @@
     Spielerinformationen
 {% endblock %}
 {% block content %}
-    <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
-        Spielerinformationen</h1>
-    <hr class="my-4">
-    <div class="table-responsive">
-        <table class="table table-borderless table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Hochladen</th>
-                <th scope="col">Name</th>
-                <th scope="col">Vorname</th>
-                <th scope="col">Straße/Hausnummer</th>
-                <th scope="col">Postleitzahl</th>
-                <th scope="col">Stadt</th>
-                <th scope="col">Verein</th>
-                <th scope="col">Geburtstag</th>
-                <th scope="col">Telefon</th>
-                <th scope="col">Emailadresse</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for player in player_list %}
-
-                <tr>
-                    <th scope="row"><a href="{% url 'update' player.id %}">{{ forloop.counter }}</a></th>
-                    <td><img width="75px" height="75px"
-                             src="{{ player.image.url }}"
-                             alt="Image{{ player.id }}"/>
-                    </td>
-                    <td>{{ player.name }}</td>
-                    <td>{{ player.first_name }}</td>
-                    <td>{{ player.address }}</td>
-                    <td>{{ player.post_code }}</td>
-                    <td>{{ player.city }}</td>
-                    <td>{{ player.society }}</td>
-                    <td>{{ player.date_of_birth }}</td>
-                    <td>{{ player.phone_number }}</td>
-                    <td>{{ player.email_address }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <h1 class="text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff"> Spielerinformationen</h1>
+    <div style="display:flex; flex-direction: row; flex-wrap: wrap">
+        {% for player in player_list %}
+            <div class="card" style="width:18rem; margin:10px">
+                <img class="card-img-top"  height="130rem" src="{{ player.image.url }}"/>
+                <div class="card-body">
+                    <div style="display: flex; flex-direction: row">
+                        <h5 class="text-center">{{ player.name }}</h5>
+                    </div>
+                    <p class="card-text">{{ player.email_address }}</p>
+                    <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten<i class="fas fa-pen-alt"></i></a>
+                    <a class="btn btn-danger" style="width: 100%;" href="{% url 'delete' player.id %}">löschen <i class="fas fa-trash"></i></a>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-
 {% endblock content %}
 
 {% block float_button %}
