@@ -1,6 +1,38 @@
 body {
-    background-color: #e9ecef;
+    background-color: #f4f6f8;
 }
+header {
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 25px 0 black;
+}
+
+header * {
+    display: inline;
+}
+
+header li {
+    margin: 20px;
+}
+
+header li a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+header li a:hover {
+    color: cornflowerblue;
+    background-color: transparent;
+    text-decoration: none;
+}
+
 
 .imagePreview {
     width: 100%;
@@ -22,58 +54,6 @@ body {
     margin-bottom: 15px;
 }
 
-th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #176ea9;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
-}
-
-td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-style: italic;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
-}
-
-tr > th > a:link {
-    color: white;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-tr > th > a:hover {
-    color: white;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-tr > th > a {
-    color: white;
-}
-
-tr > th > a:active {
-    color: yellow;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-tr > th > a:visited {
-    color: cornsilk;
-    background-color: transparent;
-    text-decoration: none;
-}
-
 .float {
     position: fixed;
     width: 60px;
@@ -89,8 +69,4 @@ tr > th > a:visited {
 
 .my-float {
     margin-top: 22px;
-}
-
-nav > p > a {
-    color: cornflowerblue;
 }

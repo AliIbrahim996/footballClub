@@ -8,13 +8,13 @@
     <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
         {% for player in player_list %}
             <div class="card" style="width:18rem; margin:10px">
-                <img class="card-img-top"  height="130rem" src="{{ player.image.url }}"/>
+                <img class="card-img-top rounded-circle"  height="135rem" src="{{ player.image.url }}"/>
                 <div class="card-body">
                     <div style="display: flex; flex-direction: row">
                         <h5 class="text-center">{{ player.name }}</h5>
                     </div>
                     <p class="card-text">{{ player.email_address }}</p>
-                    <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten<i class="fas fa-pen-alt"></i></a>
+                    <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i class="fas fa-pen-alt"></i></a>
                     <a class="btn btn-danger" style="width: 100%;" href="{% url 'delete' player.id %}">löschen <i class="fas fa-trash"></i></a>
                 </div>
             </div>

@@ -1,17 +1,19 @@
 {% load static %}
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html lang="de">
 <head>
     {% include 'players/linking.html' %}
 </head>
+<body>
 {% include 'players/scripts.html' %}
 {% include 'players/navbar.html' %}
-<div class="jumbotron" style="padding: 5px">
-    {% block content %}
-    {% endblock content %}
+<main style="margin-top: 1%">
+    <div class="jumbotron" style="padding: 5px;background-color: inherit">
+        {% block content %}
+        {% endblock content %}
 
-</div>
-
+    </div>
+</main>
 <div style="margin-top: 25%; padding: 15%">
     {% block float_button %}
     {% endblock %}

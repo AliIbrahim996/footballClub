@@ -6,12 +6,13 @@
     Spielerinformationen
 {% endblock %}
 {% block content %}
-    <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">Spielerinformationen</h1>
+    <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
+        Spielerinformationen</h1>
     <hr class="my-4">
     <br>
     <div class="card col-md-6" style="width: 50%; margin-left:25%;">
         <div class="card-img-top d-flex justify-content-center">
-            <img  class="rounded-circle" src="/media/{{ form.image.value }}" width="150px" height="150px">
+            <img class="rounded-circle" src="/media/{{ form.image.value }}" width="150px" height="150px">
         </div>
         <div class="card-body">
             <form method="POST" action="{% url 'update' p_id %}">
@@ -57,7 +58,10 @@
                 </div>
                 <br>
                 <br>
-                <button type="submit" style="width: 100%;" class="btn btn-success"><i class="fas fa-database"></i> Aktualisieren</button>
+                <button type="submit" style="width: 100%;" class="btn btn-success"><i class="fas fa-database"></i>
+                    Aktualisieren
+                </button>
             </form>
         </div>
+    </div>
 {% endblock %}

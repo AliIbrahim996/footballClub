@@ -1,13 +1,17 @@
 {% block navbar %}
-    <nav class="navbar navbar-light">
-        <p class="nav-item">
-            <a class="nav-link" href="{% url 'players' %}">Players</a>
-        </p>
-        <p class="nav-item">
-            <a class="nav-link" href="">Plan</a>
-        </p>
-        <p class="nav-item">
-            <a class="nav-link" href="">Logout</a>
-        </p>
-    </nav>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'players' %}">Spieler</a>
+                </li>
+                <li>
+                    <a href="#">Taktik</a>
+                </li>
+                <li>
+                    <a href="#">Ausloggen</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 {% endblock %}
