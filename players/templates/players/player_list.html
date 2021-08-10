@@ -4,7 +4,8 @@
 {% endblock %}
 {% block content %}
     <h1 class="text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff"> Spielerinformationen</h1>
-    <div style="display:flex; flex-direction: row; flex-wrap: wrap">
+     <hr class="my-4">
+    <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
         {% for player in player_list %}
             <div class="card" style="width:18rem; margin:10px">
                 <img class="card-img-top"  height="130rem" src="{{ player.image.url }}"/>
