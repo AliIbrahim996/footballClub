@@ -25,8 +25,9 @@ def player_list(request):
 
 @login_required
 def player_delete(request, p_id=0):
-    Player.objects.filter(pk=p_id).delete()
-    return redirect('players')
+    if request.method == 'POST':
+        Player.objects.filter(pk=p_id).delete()
+        return redirect('players')
 
 
 @login_required
@@ -66,3 +67,8 @@ def add_player(request):
     elif request.method == 'GET':
         player = PlayerValidator()
         return render(request, "players/player_form.html", {'form': player})
+
+
+@login_required
+def tactic(request):
+    return render(request, 'players/tactic.html')

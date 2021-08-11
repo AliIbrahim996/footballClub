@@ -6,36 +6,40 @@
     Spielerinformationen
 {% endblock %}
 {% block content %}
-    <h1 class="text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff"> Spielerinformationen</h1>
-    <hr class="my-4">
-    <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
-        {% for player in player_list %}
-            <div class="card" style="width:18rem; margin:10px">
-                <img class="card-img-top rounded-circle" height="135rem" src="{{ player.image.url }}"/>
-                <div class="card-body">
-                    <div style="display: flex; flex-direction: row">
-                        <h5 class="text-center">{{ player.name }}</h5>
+    <div class="jumbotron" style="padding: 5px;background-color: inherit">
+        <h1 class="text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff"> Spielerinformationen</h1>
+        <hr class="my-4">
+        <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
+            {% for player in player_list %}
+                <div class="card" style="width:18rem; margin:10px">
+                    <img class="card-img-top rounded-circle" height="135rem" src="{{ player.image.url }}"/>
+                    <div class="card-body">
+                        <div style="display: flex; flex-direction: row">
+                            <h5 class="text-center">{{ player.name }}</h5>
+                        </div>
+                        <p class="card-text">{{ player.email_address }}</p>
+                        <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i
+                                class="fas fa-pen-alt"></i></a>
+                        <br>
+                        <a href="javascript:void(0)" data-toggle="modal"
+                           class="confirm-delete btn btn-danger"
+                           style="width: 100%;"
+                           data-url="{% url 'delete' player.id %}"
+                           data-target="#deleteItemModal"
+                           data-message="Sind Sie sicher, dass Sie löschen möchten?">löschen <i
+                                class="fas fa-trash-alt"></i></a>
                     </div>
-                    <p class="card-text">{{ player.email_address }}</p>
-                    <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i
-                            class="fas fa-pen-alt"></i></a>
-                    <br>
-                    <a href="javascript:void(0)" data-toggle="modal"
-                       class="confirm-delete btn btn-danger"
-                       style="width: 100%;"
-                       data-url="{% url 'delete' player.id %}"
-                       data-target="#deleteItemModal"
-                       data-message="Sind Sie sicher, dass Sie löschen möchten?">löschen <i
-                            class="fas fa-trash-alt"></i></a>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        {% include 'players/model.html' %}
     </div>
-    {% include 'players/model.html' %}
 {% endblock content %}
 
 {% block float_button %}
-    <a href="{% url 'create' %}" class="float">
-        <i class="fa fa-plus my-float"></i>
-    </a>
+    <div style="margin-top: 25%; padding: 15%">
+        <a href="{% url 'create' %}" class="float">
+            <i class="fa fa-plus my-float"></i>
+        </a>
+    </div>
 {% endblock %}

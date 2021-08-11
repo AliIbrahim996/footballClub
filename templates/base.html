@@ -10,17 +10,14 @@
 {% block nav %}
     {% include 'navbar.html' %}
 {% endblock %}
+{% block tacktic %}
+{% endblock %}
 <main style="margin-top: 1%">
-    <div class="jumbotron" style="padding: 5px;background-color: inherit">
-        {% block content %}
-        {% endblock content %}
-
-    </div>
+    {% block content %}
+    {% endblock content %}
 </main>
-<div style="margin-top: 25%; padding: 15%">
-    {% block float_button %}
-    {% endblock %}
-</div>
+{% block float_button %}
+{% endblock %}
 {% include 'footer.html' %}
 {% include 'scripts.html' %}
 </body>
