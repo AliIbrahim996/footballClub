@@ -2,11 +2,14 @@
 <!DOCTYPE html >
 <html lang="de">
 <head>
-    {% include 'players/linking.html' %}
+    {% include 'linking.html' %}
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-{% include 'players/scripts.html' %}
-{% include 'players/navbar.html' %}
+{% include 'scripts.html' %}
+{% block nav %}
+    {% include 'navbar.html' %}
+{% endblock %}
 <main style="margin-top: 1%">
     <div class="jumbotron" style="padding: 5px;background-color: inherit">
         {% block content %}

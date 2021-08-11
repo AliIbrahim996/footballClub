@@ -1,9 +1,12 @@
-{% extends "players/base.html" %}
+{% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}
     Spielerinformationen
+{% endblock %}
+{% block nav %}
+{% include "players/navbar.html" %}
 {% endblock %}
 {% block content %}
     <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
