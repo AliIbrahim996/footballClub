@@ -5,16 +5,17 @@
 {% block content %}
 
     {% if form.errors %}
-        <div class="alert-danger">Your username and password didn't match. Please try again.</div>
+        <div class="alert-danger">Ihr Benutzername und Ihr Passwort stimmten nicht überein. Bitte versuche es erneut.
+        </div>
     {% endif %}
 
     {% if next %}
         {% if user.is_authenticated %}
-            <div class="alert-warning">Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.
+            <div class="alert-warning">Ihr Konto hat keinen Zugriff auf diese Seite.
+                Um fortzufahren, melden Sie sich bitte mit einem Konto an, das Zugriff hat.
             </div>
         {% else %}
-            <div class="alert-info">Please login to see this page.</div>
+            <div class="alert-info">Bitte loggen Sie sich ein, um diese Seite zu sehen.</div>
         {% endif %}
     {% endif %}
 
