@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-{% include 'scripts.html' %}
+
 {% block nav %}
     {% include 'navbar.html' %}
 {% endblock %}
@@ -21,5 +21,7 @@
     {% block float_button %}
     {% endblock %}
 </div>
+{% include 'footer.html' %}
+{% include 'scripts.html' %}
 </body>
 </html>
