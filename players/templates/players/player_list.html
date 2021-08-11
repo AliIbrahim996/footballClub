@@ -19,12 +19,19 @@
                     <p class="card-text">{{ player.email_address }}</p>
                     <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i
                             class="fas fa-pen-alt"></i></a>
-                    <a class="btn btn-danger" style="width: 100%;" href="{% url 'delete' player.id %}">löschen <i
-                            class="fas fa-trash"></i></a>
+                    <br>
+                    <a href="javascript:void(0)" data-toggle="modal"
+                       class="confirm-delete btn btn-danger"
+                       style="width: 100%;"
+                       data-url="{% url 'delete' player.id %}"
+                       data-target="#deleteItemModal"
+                       data-message="Sind Sie sicher, dass Sie löschen möchten?">löschen <i
+                            class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
         {% endfor %}
     </div>
+    {% include 'players/model.html' %}
 {% endblock content %}
 
 {% block float_button %}

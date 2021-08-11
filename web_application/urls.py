@@ -17,13 +17,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-from . import views
-
+from . import views as my_views
+from django.contrib.auth import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', my_views.home, name='home'),
     path('admin/', admin.site.urls),
-    path('', include('django.contrib.auth.urls')),
+    path('login/', views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
+    path('logout/', views.LogoutView.as_view(), name='logout'),
     path('player/', include('players.urls'))
 ]
 
