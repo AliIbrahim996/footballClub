@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    {% if form.errors %}
+        <div class="alert-danger">Your username and password didn't match. Please try again.</div>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <div class="alert-warning">Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.
+            </div>
+        {% else %}
+            <div class="alert-info">Please login to see this page.</div>
+        {% endif %}
+    {% endif %}
+
+    <div class="card col-md-6" style="width: 50%; margin-left:25%;">
+        <div class="card-body">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-row d-xl-flex justify-content-sm-center">
+                    <div class="form-group col-md-10">
+                        <!--name -->
+                        {{ form.username |as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-10">
+                        <!-- first name -->
+                        {{ form.password|as_crispy_field }}
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary rounded" value="login"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

@@ -3,25 +3,31 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from .forms import PlayerValidator
 from .models import Player
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+@login_required
 def player_form(request):
     player = PlayerValidator()
     return render(request, "players/player_form.html", {'form': player})
 
 
+@login_required
 def player_list(request):
+    if request.user.is_superuser:
+        return redirect("/admin/")
     context = {'player_list': Player.objects.all()}
     return render(request, "players/player_list.html", context)
 
 
+@login_required
 def player_delete(request, p_id=0):
     Player.objects.filter(pk=p_id).delete()
     return redirect('players')
 
 
+@login_required
 def player_update(request, p_id=0):
     if request.method == 'GET':
         player_object = Player.objects.get(pk=p_id)
@@ -39,6 +45,7 @@ def player_update(request, p_id=0):
             return render(request, "players/player_update.html", {'form': player})
 
 
+@login_required
 def add_player(request):
     if request.method == 'POST':
         form = PlayerValidator(request.POST, request.FILES)
