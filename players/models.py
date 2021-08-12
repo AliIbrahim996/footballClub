@@ -1,9 +1,8 @@
-import time
 
 from django.db import models
 
+
 # Create your models here.
-from web_application.settings import MEDIA_ROOT
 
 
 class Player(models.Model):
@@ -18,3 +17,13 @@ class Player(models.Model):
     email_address = models.EmailField()  # email address.
     image = models.ImageField(null=True, upload_to="images/", default="images/no_image.png",
                               blank=True)
+
+
+class Skills(models.Model):
+    skillType = models.CharField(max_length=255)
+
+
+class Player_Skill(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
+    rate = models.IntegerField()

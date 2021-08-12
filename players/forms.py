@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-from .models import Player
+from .models import *
 
 
 class PlayerValidator(forms.ModelForm):
@@ -79,3 +79,10 @@ class PlayerValidator(forms.ModelForm):
         super().__init__(*args, **kwargs)
         print(self.fields['date_of_birth'].widget.__dict__)
         self.fields['date_of_birth'].widget.localize = False
+
+
+class SkillForm(forms.ModelForm):
+
+    class Meta:
+        model = Skills
+        fields = "__all__"

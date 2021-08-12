@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from .forms import PlayerValidator
-from .models import Player
+from .forms import *
+from .models import *
 from django.contrib.auth.decorators import login_required
 
 
@@ -27,7 +27,7 @@ def player_list(request):
 def player_delete(request, p_id=0):
     if request.method == 'POST':
         Player.objects.filter(pk=p_id).delete()
-        return redirect('players')
+    return redirect('players')
 
 
 @login_required
@@ -35,8 +35,8 @@ def player_update(request, p_id=0):
     if request.method == 'GET':
         player_object = Player.objects.get(pk=p_id)
         form = PlayerValidator(instance=player_object)
-        print(form)
-        return render(request, "players/player_update.html", {'form': form, 'p_id': p_id})
+        return render(request, "players/player_update.html",
+                      {'form': form, 'p_id': p_id, 'skills': Skills.objects.all()})
     elif request.method == 'POST':
         player_object = Player.objects.get(pk=p_id)
         form = PlayerValidator(request.POST, instance=player_object)
