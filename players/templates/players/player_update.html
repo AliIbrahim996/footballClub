@@ -70,4 +70,7 @@
             </div>
         </div>
     </div>
+    {% for skill in skills %}
+        {{ skill.skillType }}
+    {% endfor %}
 {% endblock %}

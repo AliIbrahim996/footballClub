@@ -81,8 +81,13 @@ class PlayerValidator(forms.ModelForm):
         self.fields['date_of_birth'].widget.localize = False
 
 
-class SkillForm(forms.ModelForm):
-
+class Skill_form(forms.ModelForm):
     class Meta:
         model = Skills
-        fields = "__all__"
+        fields = '__all__'
+
+
+class Player_Skill_Form(forms.ModelForm):
+    class Meta:
+        model = Player_Skill
+        fields = '__all__'
