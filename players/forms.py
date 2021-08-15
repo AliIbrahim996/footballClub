@@ -79,9 +79,3 @@ class PlayerValidator(forms.ModelForm):
         super().__init__(*args, **kwargs)
         print(self.fields['date_of_birth'].widget.__dict__)
         self.fields['date_of_birth'].widget.localize = False
-
-
-class SkillsForm(forms.ModelForm):
-    class Meta:
-        model = Skills
-        fields = "__all__"

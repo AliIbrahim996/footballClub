@@ -11,6 +11,21 @@ class PlayerAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Plans)
+class PlansAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Skills)
-class SkillAdmin(admin.ModelAdmin):
+class SkillsAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PlayerSkills)
+class PlayerSkills(admin.ModelAdmin):
     pass
