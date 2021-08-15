@@ -11,9 +11,15 @@
                 <li>
                     <a href="{% url 'plans' %}">Pläne</a>
                 </li>
+                {% if user.is_superuser %}
+                    <li>
+                        <a href="{% url 'admin:index' %}">Admin Page</a>
+                    </li>
+                {% endif %}
                 <li>
-                    <a href="{% url 'logout' %}">Abmelden</a>
+                    <a href="{% url 'playerLogout' %}">Abmelden</a>
                 </li>
+
             </ul>
         </nav>
     </header>

@@ -22,9 +22,8 @@ from django.contrib.auth import views
 
 urlpatterns = [
     path('', my_views.home, name='home'),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('login/', views.LoginView.as_view(redirect_authenticated_user=True), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
     path('player/', include('players.urls'))
 ]
 

@@ -54,7 +54,7 @@ ROOT_URLCONF = 'web_application.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'web_application/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -115,7 +115,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'statics'), 'players/templates/statics']
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'statics'), 'players/statics/players/']
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

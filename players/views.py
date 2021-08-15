@@ -16,11 +16,8 @@ def player_form(request):
 @login_required
 def player_list(request):
     if request.user.is_authenticated:
-        if request.user.is_superuser:
-            return redirect("/admin/")
-        else:
-            context = {'player_list': Player.objects.all()}
-            return render(request, "players/player_list.html", context)
+        context = {'player_list': Player.objects.all()}
+        return render(request, "players/player_list.html", context)
 
 
 @login_required
