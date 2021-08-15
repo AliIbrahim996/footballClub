@@ -24,17 +24,7 @@ def clear_data(self):
     """Deletes all the table data"""
     self.stdout.write("Delete instances")
     Skills.objects.all().delete()
-
-
-
-def create_Skills(self):
-    """Creates skills objects"""
-    self.stdout.write("Creating skills")
-    skills = ['visuell', 'vestibulär', 'propriozeptiv', 'Fortbewegung', 'Niveauänderung', 'Rotation', 'Druck und Zug']
-    for s in skills:
-        skill = Skills(skillType=s)
-        skill.save()
-    self.stdout.write("Finished!")
+    Player.objects.all().delete()
 
 
 def run_seed(self, mode):
@@ -44,5 +34,3 @@ def run_seed(self, mode):
     clear_data(self)
     if mode == MODE_CLEAR:
         return
-
-    create_Skills(self)

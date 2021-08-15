@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Player
-from .models import Skills
+from .models import *
 
 admin.site.site_header = 'Verwaltung'
 admin.site.site_title = 'Verwaltung'

@@ -71,4 +71,28 @@ def add_player(request):
 
 @login_required
 def tactic(request):
-    return render(request, 'players/tactic.html')
+    return render(request, 'plans/tactic.html')
+
+
+@login_required
+def plans(request):
+    """
+
+    :param request:
+    :return: plan list page
+    """
+    context = {'plan_list': ''}
+    return render(request, 'plans/plan_lists.html', context)
+
+
+@login_required
+def search(request):
+    """
+
+    :param request
+    :return: result query results after executing query or no data found
+    """
+
+
+def evaluate_player(request):
+    return render(request, 'players/evaluation_page.html')

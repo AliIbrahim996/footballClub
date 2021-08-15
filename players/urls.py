@@ -1,3 +1,4 @@
+from dateutil.parser import parser
 from django.urls import path
 
 from . import views
@@ -8,5 +9,7 @@ urlpatterns = [
     path('<int:p_id>', views.player_delete, name='delete'),
     path('<int:p_id>/', views.player_update, name='update'),
     path('add', views.add_player, name='add'),
-    path('tactics', views.tactic, name='tactic')
+    path('tactics', views.tactic, name='tactic'),
+    path('plans', views.plans, name='plans'),
+    path('evaluation', views.evaluate_player, name='evaluation'),
 ]

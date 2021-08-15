@@ -20,10 +20,3 @@ class Player(models.Model):
 
 class Skills(models.Model):
     skillType = models.CharField(max_length=255)
-
-
-class Player_Skill(models.Model):
-    player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
-    rate = models.IntegerField()
-    feed_back = models.CharField(max_length=255)
