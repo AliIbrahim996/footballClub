@@ -1,4 +1,3 @@
-from dateutil.parser import parser
 from django.urls import path
 
 from . import views

@@ -73,7 +73,8 @@ class PlayerValidator(forms.ModelForm):
 
     class Meta:
         model = Player
-        fields = '__all__'
+        fields = ['name', 'first_name', 'address', 'post_code', 'city', 'society', 'date_of_birth'
+            , 'phone_number', 'email_address', 'image']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
