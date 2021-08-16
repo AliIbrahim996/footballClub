@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import redirect
+
 from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -68,7 +70,8 @@ def add_player(request):
 
 @login_required
 def tactic(request):
-    return render(request, 'plans/tactic.html')
+    tactic = PlanForm()
+    return render(request, 'plans/tactic.html', {'tactic': tactic})
 
 
 @login_required
@@ -78,8 +81,14 @@ def plans(request):
     :param request:
     :return: plan list page
     """
-    context = {'plan_list': ''}
-    return render(request, 'plans/plan_lists.html', context)
+    try:
+        plan = Plans.objects.get()
+        users = User.objects.all()
+        context = {'plan_list': plan, 'users': users}
+        return render(request, 'plans/plan_lists.html', context)
+    except Plans.DoesNotExist:
+        request.session['data'] = 'No data found'
+        return render(request, 'plans/plan_lists.html')
 
 
 @login_required
@@ -89,7 +98,37 @@ def search(request):
     :param request
     :return: result query results after executing query or no data found
     """
+    if request.method == "GET":
+        try:
+            plan = Plans.objects.all()
+            if request.GET['_user']:
+                plan = plan.filter(created_by__in=request.GET['_user'])
+            if request.GET['_start_date'] and request.GET['_end_date']:
+                plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
+            if request.GET['_search_box']:
+                plan = plan.filter(comment__contains=request.GET['_search_box'])
+            context = {'plan_list': plan}
+            return render(request, 'plans/plan_lists.html', context)
+        except Plans.DoesNotExist:
+            request.session['data'] = 'No data found'
+            return render(request, 'plans/plan_lists.html')
 
 
 def evaluate_player(request):
     return render(request, 'players/evaluation_page.html')
+
+
+def save_plan(request):
+    if request.method == 'POST':
+        plan_form = PlanForm(request.POST, request.FILES)
+        print(request.POST)
+        print(request.FILES)
+        if plan_form.is_valid():
+            plan_form.save()
+            return redirect('tactic')
+        else:
+            request.session['error'] = plan_form.errors
+            tactic = plan_form
+            return render(request, 'plans/tactic.html', {'tactic': tactic})
+    else:
+        return render(request, 'plans/tactic.html')

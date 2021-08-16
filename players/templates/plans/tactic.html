@@ -12,23 +12,31 @@
         </iframe>
     </div>
     <div class="container" style="margin-top: 1%; ">
-        <form method="POST" action="">
+        {% if request.sessios.error %}
+            <div class="alert-danger">
+                {{ request.session.error }}
+            </div>
+        {% endif %}
+        <form method="POST" action="{% url 'save' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="created_by" value="{{ user }}">
+            <input type="hidden" name="created_at" value="{% now "Y-m-d h:i:s" %}">
             <div class="form-row ">
                 <div class="form-group col-md-4">
                     <label>
-                        <input class="texting textInput form-control" name="comment" type="text" placeholder="Write a comment" required>
+                        <input class="texting textInput form-control" id="comment" name="comment" type="text"
+                               placeholder="Write a comment" required>
                     </label>
                 </div>
                 <div class="form-group col-md-6">
-                    <label>
-                        <input class="form-control-file" type="file" name="plan_image" required>
-                    </label>
+                    {% load crispy_forms_filters %}
+                    {% load crispy_forms_tags %}
+                    {{ tactic.image | as_crispy_field }}
                 </div>
                 <div class="form-group col-md-10">
                     <input type="submit" class="btn btn-primary rounded" value="Save">
                 </div>
             </div>
-
         </form>
     </div>
 {% endblock %}

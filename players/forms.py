@@ -80,3 +80,9 @@ class PlayerValidator(forms.ModelForm):
         super().__init__(*args, **kwargs)
         print(self.fields['date_of_birth'].widget.__dict__)
         self.fields['date_of_birth'].widget.localize = False
+
+
+class PlanForm(forms.ModelForm):
+    class Meta:
+        model = Plans
+        fields = "__all__"

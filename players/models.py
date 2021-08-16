@@ -38,3 +38,4 @@ class Plans(models.Model):
     image = models.ImageField(upload_to="images/")
     created_at = models.DateTimeField(default=django.utils.timezone.now)
     created_by = models.CharField(max_length=255)
+    comment = models.CharField(max_length=255)
