@@ -14,4 +14,5 @@ urlpatterns = [
     path('evaluation', views.evaluate_player, name='evaluation'),
     path('logout', view.LogoutView.as_view(), name='playerLogout'),
     path('save', views.save_plan, name='save'),
+    path('search', views.search, name='search'),
 ]

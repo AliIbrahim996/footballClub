@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+# from django.http import JsonResponse
 from django.shortcuts import redirect
-
+# from django.core import serializers
+# import json
 from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -82,7 +83,7 @@ def plans(request):
     :return: plan list page
     """
     try:
-        plan = Plans.objects.get()
+        plan = Plans.objects.all()
         users = User.objects.all()
         context = {'plan_list': plan, 'users': users}
         return render(request, 'plans/plan_lists.html', context)
@@ -101,13 +102,17 @@ def search(request):
     if request.method == "GET":
         try:
             plan = Plans.objects.all()
-            if request.GET['_user']:
-                plan = plan.filter(created_by__in=request.GET['_user'])
-            if request.GET['_start_date'] and request.GET['_end_date']:
+            if '_user' in request.GET:
+                plan = plan.filter(created_by=request.GET['_user'])
+                print(request.GET['_user'])
+            if '_start_date' in request.GET and '_end_date' in request.GET:
                 plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
-            if request.GET['_search_box']:
+            if '_search_box' in request.GET:
                 plan = plan.filter(comment__contains=request.GET['_search_box'])
             context = {'plan_list': plan}
+            # print(plan.values())
+            #  data = serializers.serialize("json", plan)
+            #  return JsonResponse(data, safe=False)
             return render(request, 'plans/plan_lists.html', context)
         except Plans.DoesNotExist:
             request.session['data'] = 'No data found'
