@@ -102,6 +102,7 @@ def search(request):
     if request.method == "GET":
         try:
             plan = Plans.objects.all()
+            users = User.objects.all()
             if '_user' in request.GET:
                 plan = plan.filter(created_by=request.GET['_user'])
                 print(request.GET['_user'])
@@ -109,7 +110,7 @@ def search(request):
                 plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
             if '_search_box' in request.GET:
                 plan = plan.filter(comment__contains=request.GET['_search_box'])
-            context = {'plan_list': plan}
+            context = {'plan_list': plan, 'users': users}
             # print(plan.values())
             #  data = serializers.serialize("json", plan)
             #  return JsonResponse(data, safe=False)
@@ -126,8 +127,8 @@ def evaluate_player(request):
 def save_plan(request):
     if request.method == 'POST':
         plan_form = PlanForm(request.POST, request.FILES)
-        print(request.POST)
-        print(request.FILES)
+        # print(request.POST)
+        # print(request.FILES)
         if plan_form.is_valid():
             plan_form.save()
             return redirect('tactic')
