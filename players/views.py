@@ -105,7 +105,6 @@ def search(request):
             users = User.objects.all()
             if '_user' in request.GET:
                 plan = plan.filter(created_by=request.GET['_user'])
-                print(request.GET['_user'])
             if '_start_date' in request.GET and '_end_date' in request.GET:
                 plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
             if '_search_box' in request.GET:
@@ -119,11 +118,13 @@ def search(request):
             request.session['data'] = 'No data found'
             return render(request, 'plans/plan_lists.html')
 
-
+@login_required
 def evaluate_player(request):
-    return render(request, 'players/evaluation_page.html')
+    skills = Skills.objects.all()
+    context = {'skills_list': skills}
+    return render(request, 'players/evaluation_page.html', context)
 
-
+@login_required
 def save_plan(request):
     if request.method == 'POST':
         plan_form = PlanForm(request.POST, request.FILES)
