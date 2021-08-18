@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{cd97a96e-a23c-4630-9683-17f72f24dd26}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>MSBuild|venv|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="media\images\no_image.png" />
+    <Content Include="media\images\Solution-Architecture.jpg" />
+    <Content Include="media\images\Solution-Architecture_HDxvMob.jpg" />
+    <Content Include="media\images\Solution-Architecture_jyT6dpk.jpg" />
+    <Content Include="media\images\Solution-Architecture_KNoacnI.jpg" />
+    <Content Include="media\images\Solution-Architecture_uRis2rL.jpg" />
+    <Content Include="media\images\Solution-Architecture_WFIVKB7.jpg" />
+    <Content Include="media\images\trainingsform.png" />
+    <Content Include="media\images\trainingsform_AQUEogU.png" />
+    <Content Include="media\Solution-Architecture.jpg" />
+    <Content Include="players\statics\players\css\style.css" />
+    <Content Include="players\statics\players\js\script.js" />
+    <Content Include="players\templates\plans\plan_lists.html" />
+    <Content Include="players\templates\plans\tactic.html" />
+    <Content Include="players\templates\players\evaluation_page.html" />
+    <Content Include="players\templates\players\model.html" />
+    <Content Include="players\templates\players\navbar.html" />
+    <Content Include="players\templates\players\player_form.html" />
+    <Content Include="players\templates\players\player_list.html" />
+    <Content Include="players\templates\players\player_update.html" />
+    <Content Include="requirements.txt" />
+    <Content Include="web_application\templates\base.html" />
+    <Content Include="web_application\templates\footer.html" />
+    <Content Include="web_application\templates\home.html" />
+    <Content Include="web_application\templates\linking.html" />
+    <Content Include="web_application\templates\navbar.html" />
+    <Content Include="web_application\templates\registration\logged_out.html" />
+    <Content Include="web_application\templates\registration\login.html" />
+    <Content Include="web_application\templates\scripts.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="manage.py" />
+    <Compile Include="players\admin.py" />
+    <Compile Include="players\apps.py" />
+    <Compile Include="players\forms.py" />
+    <Compile Include="players\management\commands\seed.py" />
+    <Compile Include="players\migrations\0001_initial.py" />
+    <Compile Include="players\migrations\0002_auto_20210807_2019.py" />
+    <Compile Include="players\migrations\0005_alter_player_image.py" />
+    <Compile Include="players\migrations\0006_alter_player_image.py" />
+    <Compile Include="players\migrations\0007_alter_player_image.py" />
+    <Compile Include="players\migrations\0008_auto_20210808_1443.py" />
+    <Compile Include="players\migrations\0009_alter_player_phone_number.py" />
+    <Compile Include="players\migrations\0010_alter_player_phone_number.py" />
+    <Compile Include="players\migrations\0011_alter_player_phone_number.py" />
+    <Compile Include="players\migrations\0012_alter_player_date_of_birth.py" />
+    <Compile Include="players\migrations\0013_alter_player_date_of_birth.py" />
+    <Compile Include="players\migrations\0014_alter_player_date_of_birth.py" />
+    <Compile Include="players\migrations\0015_alter_player_date_of_birth.py" />
+    <Compile Include="players\migrations\0016_auto_20210815_1419.py" />
+    <Compile Include="players\migrations\0017_plans.py" />
+    <Compile Include="players\migrations\0018_auto_20210815_1422.py" />
+    <Compile Include="players\migrations\0019_auto_20210815_1427.py" />
+    <Compile Include="players\migrations\0020_skills_category_id.py" />
+    <Compile Include="players\migrations\0021_auto_20210815_1434.py" />
+    <Compile Include="players\migrations\0022_plans_comment.py" />
+    <Compile Include="players\migrations\__init__.py" />
+    <Compile Include="players\models.py" />
+    <Compile Include="players\tests.py" />
+    <Compile Include="players\urls.py" />
+    <Compile Include="players\views.py" />
+    <Compile Include="players\__init__.py" />
+    <Compile Include="web_application\asgi.py" />
+    <Compile Include="web_application\settings.py" />
+    <Compile Include="web_application\urls.py" />
+    <Compile Include="web_application\views.py" />
+    <Compile Include="web_application\wsgi.py" />
+    <Compile Include="web_application\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="media" />
+    <Folder Include="media\images" />
+    <Folder Include="players" />
+    <Folder Include="players\management\commands" />
+    <Folder Include="players\migrations" />
+    <Folder Include="players\statics\players\css" />
+    <Folder Include="players\statics\players\js" />
+    <Folder Include="players\templates\plans" />
+    <Folder Include="players\templates\players" />
+    <Folder Include="web_application" />
+    <Folder Include="web_application\templates" />
+    <Folder Include="web_application\templates\registration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="venv\">
+      <Id>venv</Id>
+      <Description>venv (Python 3.8 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <Version>3.8</Version>
+      <Architecture>X64</Architecture>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
