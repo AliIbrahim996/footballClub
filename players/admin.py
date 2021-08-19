@@ -1,31 +1,32 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.site_header = 'Verwaltung'
-admin.site.site_title = 'Verwaltung'
-admin.site.index_title = 'Verwaltung'
-
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-    pass
+    class Meta:
+        verbose_name = ugettext_lazy('Player')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    pass
+    class Meta:
+        verbose_name = ugettext_lazy('Category')
 
 
 @admin.register(Plans)
 class PlansAdmin(admin.ModelAdmin):
-    pass
+    class Meta:
+        verbose_name = ugettext_lazy('Plans')
 
 
 @admin.register(Skills)
 class SkillsAdmin(admin.ModelAdmin):
-    pass
+    class Meta:
+        verbose_name = ugettext_lazy('Skills')
 
 
 @admin.register(PlayerSkills)
 class PlayerSkills(admin.ModelAdmin):
-    pass
+    class Meta:
+        verbose_name = ugettext_lazy('Player_Skills')

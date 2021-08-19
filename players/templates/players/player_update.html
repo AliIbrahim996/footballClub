@@ -2,8 +2,9 @@
 {% load crispy_forms_filters %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 {% block title %}
-    Spielerinformationen
+    {% trans 'Update_players_title' %}
 {% endblock %}
 {% block nav %}
     {% include "players/navbar.html" %}
@@ -11,7 +12,7 @@
 {% block content %}
     <div class="jumbotron" style="padding: 5px;background-color: inherit">
         <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
-            Spielerinformationen</h1>
+            {% trans 'update_player' %}</h1>
         <hr class="my-4">
         <br>
         <div class="card col-md-6" style="width: 50%; margin-left:25%;">
@@ -63,7 +64,7 @@
                     <br>
                     <br>
                     <button type="submit" style="width: 100%;" class="btn btn-success"><i class="fas fa-database"></i>
-                        Aktualisieren
+                        {% trans 'save_info' %}
                     </button>
                 </form>
             </div>

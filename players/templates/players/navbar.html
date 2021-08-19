@@ -1,25 +1,26 @@
 {% block navbar %}
+    {% load i18n %}
     <header>
         <nav>
             <ul>
                 <li>
-                    <a href="{% url 'players' %}">Spieler</a>
+                    <a href="{% url 'players' %}">{% trans 'Player' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'tactic' %}">Taktik</a>
+                    <a href="{% url 'tactic' %}">{% trans 'Tactics' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'plans' %}">Pläne</a>
+                    <a href="{% url 'plans' %}">{% trans 'Plans' %}</a>
                 </li>
                 {% if user.is_superuser %}
                     <li>
-                        <a href="{% url 'admin:index' %}">Admin Page</a>
+                        <a href="{% url 'admin:index' %}">{% trans 'Admin page' %}</a>
                     </li>
                 {% endif %}
                 <li>
-                    <a href="{% url 'playerLogout' %}">Abmelden</a>
+                    <a href="{% url 'playerLogout' %}">{% trans 'logout' %}</a>
                 </li>
-
+                {% include 'language_list.html' %}
             </ul>
         </nav>
     </header>

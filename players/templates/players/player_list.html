@@ -2,12 +2,14 @@
 {% block nav %}
     {% include 'players/navbar.html' %}
 {% endblock %}
+{% load i18n %}
 {% block title %}
-    Spielerinformationen
+    {% trans 'player_info' %}
 {% endblock %}
 {% block content %}
     <div class="jumbotron" style="padding: 5px;background-color: inherit">
-        <h1 class="text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff"> Spielerinformationen</h1>
+        <h1 class="text-center"
+            style="font-family: 'Times New Roman',serif; color: #3f7fff"> {% trans 'player_info' %}</h1>
         <hr class="my-4">
         <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
             {% for player in player_list %}
@@ -16,18 +18,20 @@
                     <div class="card-body">
                         <div style="display: flex;  flex-direction:row">
                             <h5 class="text-center ">{{ player.name }}</h5>
-                            <a style="margin-left: 60% " href="{% url 'evaluation' player.id %}"><i class="btn fas fa-star btn-warning"></i></a>
+                            <a style="margin-left: 60% " href="{% url 'evaluation' player.id %}"><i
+                                    class="btn fas fa-star btn-warning"></i></a>
                         </div>
                         <p class="card-text">{{ player.email_address }}</p>
-                        <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i
-                                class="fas fa-pen-alt"></i></a>
+                        <a class="btn btn-primary" href="{% url 'update' player.id %}">{% trans 'update_player_info' %}
+                            <i
+                                    class="fas fa-pen-alt"></i></a>
                         <br>
                         <a href="javascript:void(0)" data-toggle="modal"
                            class="confirm-delete btn btn-danger"
                            style="width: 100%;"
                            data-url="{% url 'delete' player.id %}"
                            data-target="#deleteItemModal"
-                           data-message="Sind Sie sicher, dass Sie löschen möchten?">löschen <i
+                           data-message="{% trans 'delete_player_message' %}">{% trans 'delete_player_record' %}<i
                                 class="fas fa-trash-alt"></i></a>
                     </div>
                 </div>

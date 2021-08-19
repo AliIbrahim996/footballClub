@@ -1,0 +1,264 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-20 00:59+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\players\forms.py:10 .\players\models.py:25
+msgid "first_name"
+msgstr "first name"
+
+#: .\players\forms.py:11
+msgid "address"
+msgstr "address"
+
+#: .\players\forms.py:12 .\players\models.py:28
+msgid "post_code"
+msgstr "post code"
+
+#: .\players\forms.py:13 .\players\models.py:29
+msgid "city"
+msgstr "city"
+
+#: .\players\forms.py:14 .\players\models.py:30
+msgid "society"
+msgstr "society"
+
+#: .\players\forms.py:15 .\players\models.py:32
+msgid "date_of_birth"
+msgstr "date of birth"
+
+#: .\players\forms.py:16 .\players\models.py:34
+msgid "phone_number"
+msgstr "phone number"
+
+#: .\players\forms.py:17 .\players\models.py:35
+msgid "email_address"
+msgstr "email address"
+
+#: .\players\forms.py:18 .\players\models.py:37 .\players\models.py:54
+msgid "image"
+msgstr "image"
+
+#: .\players\forms.py:34 .\players\forms.py:35
+msgid "text_error_message"
+msgstr "Please enter only alphabets"
+
+#: .\players\forms.py:36
+msgid "phone_number_error_message"
+msgstr "please only enter numbers"
+
+#: .\players\forms.py:41
+msgid "address_required_error_message"
+msgstr "Check that the field is not empty or that it is a valid address"
+
+#: .\players\forms.py:43
+msgid "post_code_required_error_message"
+msgstr "Check that the field is not empty or that it is a valid zip code"
+
+#: .\players\forms.py:44
+msgid "default_required_error_message"
+msgstr "Make sure the field isn't blank"
+
+#: .\players\models.py:11
+msgid "Category"
+msgstr "Category"
+
+#: .\players\models.py:15
+#, fuzzy
+#| msgid "skill"
+msgid "skill_name"
+msgstr "Skill name"
+
+#: .\players\models.py:16 .\players\models.py:57
+msgid "comment"
+msgstr "comment"
+
+#: .\players\models.py:17
+msgid "category"
+msgstr "Category"
+
+#: .\players\models.py:20
+#, fuzzy
+#| msgid "skill"
+msgid "Skills"
+msgstr "Skills"
+
+#: .\players\models.py:24
+msgid "name"
+msgstr "name"
+
+#: .\players\models.py:27
+msgid "street_house number"
+msgstr "street/house number"
+
+#: .\players\models.py:41 .\players\templates\players\navbar.html:7
+msgid "Player"
+msgstr "Players"
+
+#: .\players\models.py:45
+#, fuzzy
+#| msgid "Player"
+msgid "player"
+msgstr "Players"
+
+#: .\players\models.py:46
+msgid "skill"
+msgstr "Skills"
+
+#: .\players\models.py:47
+msgid "value"
+msgstr "value"
+
+#: .\players\models.py:50
+#, fuzzy
+#| msgid "Player"
+msgid "Player_Skills"
+msgstr "Players"
+
+#: .\players\models.py:55
+msgid "created_at"
+msgstr "created_at"
+
+#: .\players\models.py:56
+msgid "created_by"
+msgstr "created_by"
+
+#: .\players\models.py:60 .\players\templates\players\navbar.html:13
+msgid "Plans"
+msgstr "Plans"
+
+#: .\players\templates\players\model.html:10
+msgid "confirm_delete"
+msgstr "Confirm delete"
+
+#: .\players\templates\players\model.html:21
+msgid "close"
+msgstr "close"
+
+#: .\players\templates\players\model.html:23
+msgid "save_changes"
+msgstr "yes"
+
+#: .\players\templates\players\navbar.html:10
+msgid "Tactics"
+msgstr "Tactics"
+
+#: .\players\templates\players\navbar.html:17
+msgid "Admin page"
+msgstr "Admin page"
+
+#: .\players\templates\players\navbar.html:21
+msgid "logout"
+msgstr "logout"
+
+#: .\players\templates\players\player_form.html:7
+msgid "Register players"
+msgstr "Register players"
+
+#: .\players\templates\players\player_form.html:15
+msgid "register_player"
+msgstr "Register new player"
+
+#: .\players\templates\players\player_form.html:72
+#, fuzzy
+#| msgid "address"
+msgid "add"
+msgstr "add"
+
+#: .\players\templates\players\player_list.html:7
+#: .\players\templates\players\player_list.html:12
+#, fuzzy
+#| msgid "Player"
+msgid "player_info"
+msgstr "Players"
+
+#: .\players\templates\players\player_list.html:25
+msgid "update_player_info"
+msgstr "update information"
+
+#: .\players\templates\players\player_list.html:34
+#, fuzzy
+#| msgid "text_error_message"
+msgid "delete_player_message"
+msgstr "Are you sure you want to delete that?"
+
+#: .\players\templates\players\player_list.html:34
+msgid "delete_player_record"
+msgstr "delete"
+
+#: .\players\templates\players\player_update.html:7
+#, fuzzy
+#| msgid "Player"
+msgid "Update_players_title"
+msgstr "Update player"
+
+#: .\players\templates\players\player_update.html:15
+#, fuzzy
+#| msgid "Player"
+msgid "update_player"
+msgstr "update player info"
+
+#: .\players\templates\players\player_update.html:67
+msgid "save_info"
+msgstr "save"
+
+#, fuzzy
+#~| msgid "address"
+#~ msgid "and"
+#~ msgstr "add"
+
+#, fuzzy
+#~| msgid "email_address"
+#~ msgid "Email address"
+#~ msgstr "email address"
+
+#, fuzzy
+#~| msgid "address"
+#~ msgid "IPv4 address"
+#~ msgstr "address"
+
+#, fuzzy
+#~| msgid "address"
+#~ msgid "IP address"
+#~ msgstr "address"
+
+#, fuzzy
+#~| msgid "image"
+#~ msgid "Image"
+#~ msgstr "image"
+
+#, fuzzy
+#~| msgid "street_house number"
+#~ msgid "Enter a whole number."
+#~ msgstr "street/house number"
+
+#, fuzzy
+#~| msgid "phone_number"
+#~ msgid "November"
+#~ msgstr "phone number"
+
+#, fuzzy
+#~| msgid "society"
+#~ msgid "oct"
+#~ msgstr "society"
+
+#, fuzzy
+#~| msgid "phone_number"
+#~ msgctxt "alt. month"
+#~ msgid "November"
+#~ msgstr "phone number"

@@ -1,13 +1,12 @@
 {% block navbar %}
+    {% load i18n %}
     <header>
         <nav>
             <ul>
                 <li>
-                    <a href="/">Startseite</a>
+                    <a href="{% url 'login' %}">{% trans 'login'%}</a>
                 </li>
-                <li>
-                    <a href="{% url 'login' %}">Einloggen</a>
-                </li>
+                {% include 'language_list.html' %}
             </ul>
         </nav>
     </header>
