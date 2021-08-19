@@ -14,12 +14,16 @@
                 {{ skill.id }} <!--put a hidden filed-->
                 {{ skill.skill_name }}
                 {% if  skill.playerskills_set.count > 0 %}
-                    {% for p_skill in skill.playerskills_set.all %}
+                    {% for p_skill in skill.playerskills_set.all|player_filter:p_id %}
+                    {{ p_skill.value }}
+                    {% endfor %}
+                    {% comment %} }}
                         <!--change loop with customized filter-->
                         {% if p_skill.player.id == p_id %}
                             {{ p_skill.value  }}
                         {% endif %}
                     {% endfor %}
+                    {% endcomment %}
                 {% else %}
                     {{ rating_value }}
                 {% endif %}
