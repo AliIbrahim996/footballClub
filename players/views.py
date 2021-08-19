@@ -118,11 +118,14 @@ def search(request):
             request.session['data'] = 'No data found'
             return render(request, 'plans/plan_lists.html')
 
+
 @login_required
-def evaluate_player(request):
-    skills = Skills.objects.all()
-    context = {'skills_list': skills}
+def evaluate_player(request, p_id=0):
+    categories = Category.objects.all()
+    context = {'categories_list': categories, 'p_id': p_id}
+
     return render(request, 'players/evaluation_page.html', context)
+
 
 @login_required
 def save_plan(request):

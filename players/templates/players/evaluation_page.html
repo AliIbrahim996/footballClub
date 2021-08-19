@@ -5,5 +5,26 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-
+    {% load player_tags %}
+    {% with 0 as rating_value %}
+        {% for category in categories_list %}
+            {{ category.name }}
+            <br>
+            {% for skill in category.skills_set.all %}
+                {{ skill.id }} <!--put a hidden filed-->
+                {{ skill.skill_name }}
+                {% if  skill.playerskills_set.count > 0 %}
+                    {% for p_skill in skill.playerskills_set.all %}
+                        <!--change loop with customized filter-->
+                        {% if p_skill.player.id == p_id %}
+                            {{ p_skill.value  }}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {{ rating_value }}
+                {% endif %}
+                <br>
+            {% endfor %}
+        {% endfor %}
+    {% endwith %}
 {% endblock %}

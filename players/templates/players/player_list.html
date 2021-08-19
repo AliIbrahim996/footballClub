@@ -16,6 +16,7 @@
                     <div class="card-body">
                         <div style="display: flex;  flex-direction:row">
                             <h5 class="text-center ">{{ player.name }}</h5>
+                            <a style="margin-left: 60% " href="{% url 'evaluation' player.id %}"><i class="btn fas fa-star btn-warning"></i></a>
                         </div>
                         <p class="card-text">{{ player.email_address }}</p>
                         <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i
