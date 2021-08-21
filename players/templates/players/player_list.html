@@ -16,9 +16,9 @@
                 <div class="card" style="width:18rem; margin:10px">
                     <img class="card-img-top rounded-circle" height="135rem" src="{{ player.image.url }}"/>
                     <div class="card-body">
-                        <div style="display: flex;  flex-direction:row">
+                        <div style="display: inline-block;">
                             <h5 class="text-center ">{{ player.name }}</h5>
-                            <a style="margin-left: 60% " href="{% url 'evaluation' player.id %}"><i
+                            <a href="{% url 'evaluation' player.id %}"><i
                                     class="btn fas fa-star btn-warning"></i></a>
                         </div>
                         <p class="card-text">{{ player.email_address }}</p>

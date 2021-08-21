@@ -10,12 +10,12 @@
     {% include 'players/navbar.html' %}
 {% endblock %}
 {% block content %}
-    <div class="jumbotron" style="padding: 5px;background-color: inherit">
+    <div class="jumbotron flex justify-content-center" style="padding: 5px;background-color: inherit">
         <h1 class="display-6 text-center"
             style="font-family: 'Times New Roman',serif; color: #3f7fff">{% trans 'register_player_header' %}</h1>
         <hr class="my-4">
 
-        <div class="card col-md-6" style="width: 50%; margin-left:25%;">
+        <div class="card col-md-6 " style="width: 50%; margin-left: 25%; margin-right: 25%">
             <div class="card-body">
                 <form method="post" action="{% url 'add' %}" autocomplete="off" enctype="multipart/form-data">
                     {% csrf_token %}
