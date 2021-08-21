@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:09+0300\n"
+"POT-Creation-Date: 2021-08-21 11:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,168 +20,180 @@ msgstr ""
 
 #: .\players\models.py:8 .\players\models.py:24
 msgid "name"
-msgstr ""
+msgstr "Name"
 
 #: .\players\models.py:11
 msgid "Category_model"
-msgstr ""
+msgstr "Category"
 
 #: .\players\models.py:15
 msgid "skill_name"
-msgstr ""
+msgstr "Skill name"
 
 #: .\players\models.py:16 .\players\models.py:57
 msgid "comment"
-msgstr ""
+msgstr "Comment"
 
 #: .\players\models.py:17
 msgid "category"
-msgstr ""
+msgstr "Category"
 
 #: .\players\models.py:20
 msgid "Skills_model"
-msgstr ""
+msgstr "Skills"
 
 #: .\players\models.py:25
 msgid "first_name"
-msgstr ""
+msgstr "First name"
 
 #: .\players\models.py:27
 msgid "street_house number"
-msgstr ""
+msgstr "Street/house number"
 
 #: .\players\models.py:28
 msgid "post_code"
-msgstr ""
+msgstr "Post code"
 
 #: .\players\models.py:29
 msgid "city"
-msgstr ""
+msgstr "City"
 
 #: .\players\models.py:30
 msgid "society"
-msgstr ""
+msgstr "Society"
 
 #: .\players\models.py:32
 msgid "date_of_birth"
-msgstr ""
+msgstr "Date of birth"
 
 #: .\players\models.py:34
 msgid "phone_number"
-msgstr ""
+msgstr "Phone number"
 
 #: .\players\models.py:35
 msgid "email_address"
-msgstr ""
+msgstr "Email address"
 
 #: .\players\models.py:37 .\players\models.py:54
 msgid "image"
-msgstr ""
+msgstr "Player image"
 
 #: .\players\models.py:41
 msgid "Player_model"
-msgstr ""
+msgstr "Player model"
 
 #: .\players\models.py:45
 msgid "player"
-msgstr ""
+msgstr "Player id"
 
 #: .\players\models.py:46
 msgid "skill"
-msgstr ""
+msgstr "Skill id"
 
 #: .\players\models.py:47
 msgid "value"
-msgstr ""
+msgstr "Value"
 
 #: .\players\models.py:50
 msgid "Player_Skills_model"
-msgstr ""
+msgstr "Player's skills"
 
 #: .\players\models.py:55
 msgid "created_at"
-msgstr ""
+msgstr "Created at"
 
 #: .\players\models.py:56
 msgid "created_by"
-msgstr ""
+msgstr "Created by"
 
 #: .\players\models.py:60
 msgid "Plans_model"
-msgstr ""
+msgstr "Planc"
+
+#: .\players\templates\plans\tactic.html:7
+msgid "tacktic_title"
+msgstr "Tactics"
+
+#: .\players\templates\plans\tactic.html:30
+msgid "comment_placeholder"
+msgstr "Write a comment"
+
+#: .\players\templates\plans\tactic.html:39
+msgid "save_image"
+msgstr "Save"
 
 #: .\players\templates\players\model.html:10
 msgid "confirm_delete"
-msgstr ""
+msgstr "Delete a player"
 
 #: .\players\templates\players\model.html:21
 msgid "close"
-msgstr ""
+msgstr "Close"
 
 #: .\players\templates\players\model.html:23
 msgid "save_changes"
-msgstr ""
+msgstr "Confirm"
 
 #: .\players\templates\players\navbar.html:7
 msgid "player_nav"
-msgstr ""
+msgstr "Players"
 
 #: .\players\templates\players\navbar.html:10
 msgid "tactics_nav"
-msgstr ""
+msgstr "Create a tactic"
 
 #: .\players\templates\players\navbar.html:13
 msgid "plan_nav"
-msgstr ""
+msgstr "Plans"
 
 #: .\players\templates\players\navbar.html:17
 msgid "admin_page"
-msgstr ""
+msgstr "Management"
 
 #: .\players\templates\players\navbar.html:21
 msgid "logout_nav"
-msgstr ""
+msgstr "Logout"
 
 #: .\players\templates\players\player_form.html:7
 msgid "register_players_title"
-msgstr ""
+msgstr "Register a player"
 
 #: .\players\templates\players\player_form.html:15
 msgid "register_player_header"
-msgstr ""
+msgstr "Register new player"
 
 #: .\players\templates\players\player_form.html:72
 msgid "add_player"
-msgstr ""
+msgstr "Add"
 
 #: .\players\templates\players\player_list.html:7
 msgid "player_info_title"
-msgstr ""
+msgstr "Player Information"
 
 #: .\players\templates\players\player_list.html:12
 msgid "player_info_header"
-msgstr ""
+msgstr "Player Information"
 
 #: .\players\templates\players\player_list.html:25
 msgid "update_player_info"
-msgstr ""
+msgstr "Update Information"
 
 #: .\players\templates\players\player_list.html:34
 msgid "delete_player_message"
-msgstr ""
+msgstr "Are you sure you want to delete this player?"
 
 #: .\players\templates\players\player_list.html:34
 msgid "delete_player_record"
-msgstr ""
+msgstr "Delete"
 
 #: .\players\templates\players\player_update.html:7
 msgid "Update_players_title"
-msgstr ""
+msgstr "Update Player Information"
 
 #: .\players\templates\players\player_update.html:15
 msgid "update_player_header"
-msgstr ""
+msgstr "Update Player Information"
 
 #: .\players\templates\players\player_update.html:67
 msgid "save_info_btn"
-msgstr ""
+msgstr "Save"
