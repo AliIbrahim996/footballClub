@@ -8,7 +8,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name=ugettext_lazy('name'))
 
     class Meta:
-        verbose_name = ugettext_lazy('Category')
+        verbose_name = ugettext_lazy('Category_model')
 
 
 class Skills(models.Model):
@@ -17,7 +17,7 @@ class Skills(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=ugettext_lazy('category'))
 
     class Meta:
-        verbose_name = ugettext_lazy('Skills')
+        verbose_name = ugettext_lazy('Skills_model')
 
 
 class Player(models.Model):
@@ -38,7 +38,7 @@ class Player(models.Model):
     skills = models.ManyToManyField(Skills, through='PlayerSkills')
 
     class Meta:
-        verbose_name = ugettext_lazy('Player')
+        verbose_name = ugettext_lazy('Player_model')
 
 
 class PlayerSkills(models.Model):
@@ -47,7 +47,7 @@ class PlayerSkills(models.Model):
     value = models.IntegerField(default=0, verbose_name=ugettext_lazy("value"))
 
     class Meta:
-        verbose_name = ugettext_lazy('Player_Skills')
+        verbose_name = ugettext_lazy('Player_Skills_model')
 
 
 class Plans(models.Model):
@@ -57,4 +57,4 @@ class Plans(models.Model):
     comment = models.CharField(max_length=255, verbose_name=ugettext_lazy("comment"))
 
     class Meta:
-        verbose_name = ugettext_lazy('Plans')
+        verbose_name = ugettext_lazy('Plans_model')

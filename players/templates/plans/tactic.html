@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block nav %}
     {% include 'players/navbar.html' %}
 {% endblock %}
 {% block title %}
-    Taktik
+    {% trans 'tacktic_title' %}
 {% endblock %}
+
 {% block tacktic %}
     <div style="width:100%; height:  500px">
         <iframe src="https://ft-graphics.fussballtraining.com/" width="100%" height="100%"
@@ -25,7 +27,7 @@
                 <div class="form-group col-md-4">
                     <label>
                         <input class="texting textInput form-control" id="comment" name="comment" type="text"
-                               placeholder="Write a comment" required>
+                               placeholder="{% trans 'comment_placeholder' %}" required>
                     </label>
                 </div>
                 <div class="form-group col-md-6">
@@ -34,7 +36,7 @@
                     {{ tactic.image | as_crispy_field }}
                 </div>
                 <div class="form-group col-md-10">
-                    <input type="submit" class="btn btn-primary rounded" value="Save">
+                    <input type="submit" class="btn btn-primary rounded" value="{% trans 'save_image' %}">
                 </div>
             </div>
         </form>

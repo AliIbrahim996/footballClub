@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 01:00+0300\n"
+"POT-Creation-Date: 2021-08-21 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,10 +142,6 @@ msgid_plural ""
 "%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:413
 #, python-format
@@ -157,10 +153,6 @@ msgid_plural ""
 "%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:432
 #: .\venv\Lib\site-packages\django\forms\fields.py:292
@@ -174,10 +166,6 @@ msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:439
 #, python-format
@@ -185,10 +173,6 @@ msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:444
 #, python-format
@@ -198,10 +182,6 @@ msgid_plural ""
 "Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:506
 #, python-format
@@ -538,10 +518,6 @@ msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\forms\fields.py:556
 msgid "Please either submit a file or check the clear checkbox, not both."
@@ -601,10 +577,6 @@ msgid "Please submit at most %d form."
 msgid_plural "Please submit at most %d forms."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:377
 #, python-format
@@ -612,10 +584,6 @@ msgid "Please submit at least %d form."
 msgid_plural "Please submit at least %d forms."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:405
 #: .\venv\Lib\site-packages\django\forms\formsets.py:412
@@ -703,10 +671,6 @@ msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\template\defaultfilters.py:853
 #, python-format
@@ -1055,10 +1019,6 @@ msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:10
 #, python-format
@@ -1066,10 +1026,6 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:11
 #, python-format
@@ -1077,10 +1033,6 @@ msgid "%d week"
 msgid_plural "%d weeks"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:12
 #, python-format
@@ -1088,10 +1040,6 @@ msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:13
 #, python-format
@@ -1099,10 +1047,6 @@ msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\utils\timesince.py:14
 #, python-format
@@ -1110,10 +1054,6 @@ msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: .\venv\Lib\site-packages\django\views\csrf.py:110
 msgid "Forbidden"
@@ -1282,6 +1222,26 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
+#: .\web_application\settings.py:138
+msgid "English"
+msgstr ""
+
+#: .\web_application\settings.py:139
+msgid "Arabic"
+msgstr ""
+
+#: .\web_application\settings.py:140
+msgid "Germany"
+msgstr ""
+
 #: .\web_application\templates\navbar.html:7
 msgid "login"
-msgstr "تسجيل الدخول"
+msgstr ""
+
+#: .\web_application\templates\registration\logged_out.html:4
+msgid "logout_warning"
+msgstr ""
+
+#: .\web_application\templates\registration\logged_out.html:5
+msgid "logout_message"
+msgstr ""

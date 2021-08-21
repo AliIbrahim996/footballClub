@@ -12,7 +12,7 @@
 {% block content %}
     <div class="jumbotron" style="padding: 5px;background-color: inherit">
         <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
-            {% trans 'update_player' %}</h1>
+            {% trans 'update_player_header' %}</h1>
         <hr class="my-4">
         <br>
         <div class="card col-md-6" style="width: 50%; margin-left:25%;">
@@ -64,13 +64,10 @@
                     <br>
                     <br>
                     <button type="submit" style="width: 100%;" class="btn btn-success"><i class="fas fa-database"></i>
-                        {% trans 'save_info' %}
+                        {% trans 'save_info_btn' %}
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    {% for skill in skills %}
-        {{ skill.skillType }}
-    {% endfor %}
 {% endblock %}

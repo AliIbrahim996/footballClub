@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 00:59+0300\n"
+"POT-Creation-Date: 2021-08-21 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1221,6 +1221,26 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
+#: .\web_application\settings.py:138
+msgid "English"
+msgstr ""
+
+#: .\web_application\settings.py:139
+msgid "Arabic"
+msgstr ""
+
+#: .\web_application\settings.py:140
+msgid "Germany"
+msgstr ""
+
 #: .\web_application\templates\navbar.html:7
 msgid "login"
-msgstr "login"
+msgstr ""
+
+#: .\web_application\templates\registration\logged_out.html:4
+msgid "logout_warning"
+msgstr ""
+
+#: .\web_application\templates\registration\logged_out.html:5
+msgid "logout_message"
+msgstr ""

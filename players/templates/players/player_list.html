@@ -4,12 +4,12 @@
 {% endblock %}
 {% load i18n %}
 {% block title %}
-    {% trans 'player_info' %}
+    {% trans 'player_info_title' %}
 {% endblock %}
 {% block content %}
     <div class="jumbotron" style="padding: 5px;background-color: inherit">
         <h1 class="text-center"
-            style="font-family: 'Times New Roman',serif; color: #3f7fff"> {% trans 'player_info' %}</h1>
+            style="font-family: 'Times New Roman',serif; color: #3f7fff"> {% trans 'player_info_header' %}</h1>
         <hr class="my-4">
         <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
             {% for player in player_list %}

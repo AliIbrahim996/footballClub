@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
-    <div class="alert-warning">Abgemeldet!</div>
-    <a href="{% url 'login' %}">Klicken Sie hier, um sich erneut anzumelden.</a>
+    <div class="alert-warning">{% trans 'logout_warning' %}</div>
+    <a href="{% url 'login' %}">{% trans 'logout_message' %}</a>
 {% endblock %}

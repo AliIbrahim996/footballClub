@@ -1,21 +1,21 @@
 from django import forms
 from django.core.validators import RegexValidator
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext_lazy as tran
 from .models import *
 
 
 class PlayerValidator(forms.ModelForm):
     labels = {
-        'name': 'Name',
-        'first_name': ugettext('first_name'),
-        'address': ugettext('address'),
-        'post_code': ugettext('post_code'),
-        'city': ugettext('city'),
-        'society': ugettext('society'),
-        'date_of_birth': ugettext('date_of_birth'),
-        'phone_number': ugettext('phone_number'),
-        'email_address': ugettext('email_address'),
-        'image': ugettext('image')
+        'name': tran('name'),
+        'first_name': tran('first_name'),
+        'address': tran('street_house number'),
+        'post_code': tran('post_code'),
+        'city': tran('city'),
+        'society': tran('society'),
+        'date_of_birth': tran('date_of_birth'),
+        'phone_number': tran('phone_number'),
+        'email_address': tran('email_address'),
+        'image': tran('image')
     }
     widgets = {
         'name': forms.TextInput,
@@ -31,17 +31,17 @@ class PlayerValidator(forms.ModelForm):
     }
 
     form_validators = {
-        'name': [RegexValidator('^[a-zA-Z]*$', message=ugettext("text_error_message"))],
-        'first_name': [RegexValidator('^[a-zA-Z]*$', message=ugettext("text_error_message"))],
-        'phone_number': [RegexValidator('^[0-9]*$', message=ugettext("phone_number_error_message"))],
+        'name': [RegexValidator('^[a-zA-Z]*$', message=tran("text_error_message"))],
+        'first_name': [RegexValidator('^[a-zA-Z]*$', message=tran("text_error_message"))],
+        'phone_number': [RegexValidator('^[0-9]*$', message=tran("phone_number_error_message"))],
     }
 
     address_error_dict = post_code_error_dict = erro_dict = dict()
     address_error_dict[
-        'required'] = ugettext("address_required_error_message")
+        'required'] = tran("address_required_error_message")
     post_code_error_dict[
-        'required'] = ugettext("post_code_required_error_message")
-    erro_dict['required'] = ugettext("default_required_error_message")
+        'required'] = tran("post_code_required_error_message")
+    erro_dict['required'] = tran("default_required_error_message")
 
     name = forms.CharField(widget=widgets['name'], max_length=255, error_messages=erro_dict, label=labels['name'],
                            validators=form_validators['name'])  # name

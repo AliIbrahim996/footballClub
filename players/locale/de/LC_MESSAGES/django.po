@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 01:00+0300\n"
+"POT-Creation-Date: 2021-08-21 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,68 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\players\forms.py:10 .\players\models.py:25
-msgid "first_name"
+#: .\players\models.py:8 .\players\models.py:24
+msgid "name"
 msgstr ""
-
-#: .\players\forms.py:11
-msgid "address"
-msgstr ""
-
-#: .\players\forms.py:12 .\players\models.py:28
-msgid "post_code"
-msgstr ""
-
-#: .\players\forms.py:13 .\players\models.py:29
-msgid "city"
-msgstr ""
-
-#: .\players\forms.py:14 .\players\models.py:30
-msgid "society"
-msgstr ""
-
-#: .\players\forms.py:15 .\players\models.py:32
-msgid "date_of_birth"
-msgstr ""
-
-#: .\players\forms.py:16 .\players\models.py:34
-msgid "phone_number"
-msgstr ""
-
-#: .\players\forms.py:17 .\players\models.py:35
-msgid "email_address"
-msgstr ""
-
-#: .\players\forms.py:18 .\players\models.py:37 .\players\models.py:54
-msgid "image"
-msgstr ""
-
-#: .\players\forms.py:34 .\players\forms.py:35
-msgid "text_error_message"
-msgstr "Please enter only alphabets"
-
-#: .\players\forms.py:36
-msgid "phone_number_error_message"
-msgstr "bitte nur Nummern eingeben"
-
-#: .\players\forms.py:41
-msgid "address_required_error_message"
-msgstr ""
-"Überprüfen Sie, ob das Feld nicht leer ist oder ob es eine gültige Adresse "
-"ist"
-
-#: .\players\forms.py:43
-msgid "post_code_required_error_message"
-msgstr ""
-"Überprüfen Sie, ob das Feld nicht leer ist oder ob es sich um eine gültige "
-"Postleitzahl handelt"
-
-#: .\players\forms.py:44
-msgid "default_required_error_message"
-msgstr "Vergewissern Sie sich, dass das Feld nicht leer ist"
 
 #: .\players\models.py:11
-msgid "Category"
+msgid "Category_model"
 msgstr ""
 
 #: .\players\models.py:15
@@ -95,26 +39,52 @@ msgid "category"
 msgstr ""
 
 #: .\players\models.py:20
-msgid "Skills"
+msgid "Skills_model"
 msgstr ""
 
-#: .\players\models.py:24
-msgid "name"
+#: .\players\models.py:25
+msgid "first_name"
 msgstr ""
 
 #: .\players\models.py:27
 msgid "street_house number"
 msgstr ""
 
-#: .\players\models.py:41 .\players\templates\players\navbar.html:7
-msgid "Player"
-msgstr "Spieler"
+#: .\players\models.py:28
+msgid "post_code"
+msgstr ""
+
+#: .\players\models.py:29
+msgid "city"
+msgstr ""
+
+#: .\players\models.py:30
+msgid "society"
+msgstr ""
+
+#: .\players\models.py:32
+msgid "date_of_birth"
+msgstr ""
+
+#: .\players\models.py:34
+msgid "phone_number"
+msgstr ""
+
+#: .\players\models.py:35
+msgid "email_address"
+msgstr ""
+
+#: .\players\models.py:37 .\players\models.py:54
+msgid "image"
+msgstr ""
+
+#: .\players\models.py:41
+msgid "Player_model"
+msgstr ""
 
 #: .\players\models.py:45
-#, fuzzy
-#| msgid "Player"
 msgid "player"
-msgstr "Spieler"
+msgstr ""
 
 #: .\players\models.py:46
 msgid "skill"
@@ -125,10 +95,8 @@ msgid "value"
 msgstr ""
 
 #: .\players\models.py:50
-#, fuzzy
-#| msgid "Player"
-msgid "Player_Skills"
-msgstr "Spieler"
+msgid "Player_Skills_model"
+msgstr ""
 
 #: .\players\models.py:55
 msgid "created_at"
@@ -138,9 +106,9 @@ msgstr ""
 msgid "created_by"
 msgstr ""
 
-#: .\players\models.py:60 .\players\templates\players\navbar.html:13
-msgid "Plans"
-msgstr "Pläne"
+#: .\players\models.py:60
+msgid "Plans_model"
+msgstr ""
 
 #: .\players\templates\players\model.html:10
 msgid "confirm_delete"
@@ -154,63 +122,66 @@ msgstr ""
 msgid "save_changes"
 msgstr ""
 
+#: .\players\templates\players\navbar.html:7
+msgid "player_nav"
+msgstr ""
+
 #: .\players\templates\players\navbar.html:10
-msgid "Tactics"
-msgstr "Taktik"
+msgid "tactics_nav"
+msgstr ""
+
+#: .\players\templates\players\navbar.html:13
+msgid "plan_nav"
+msgstr ""
 
 #: .\players\templates\players\navbar.html:17
-msgid "Admin page"
-msgstr "Administrator Seite"
+msgid "admin_page"
+msgstr ""
 
 #: .\players\templates\players\navbar.html:21
-msgid "logout"
-msgstr "abmelden"
+msgid "logout_nav"
+msgstr ""
 
 #: .\players\templates\players\player_form.html:7
-msgid "Register players"
+msgid "register_players_title"
 msgstr ""
 
 #: .\players\templates\players\player_form.html:15
-msgid "register_player"
+msgid "register_player_header"
 msgstr ""
 
 #: .\players\templates\players\player_form.html:72
-msgid "add"
+msgid "add_player"
 msgstr ""
 
 #: .\players\templates\players\player_list.html:7
+msgid "player_info_title"
+msgstr ""
+
 #: .\players\templates\players\player_list.html:12
-#, fuzzy
-#| msgid "Player"
-msgid "player_info"
-msgstr "Spieler"
+msgid "player_info_header"
+msgstr ""
 
 #: .\players\templates\players\player_list.html:25
 msgid "update_player_info"
 msgstr ""
 
 #: .\players\templates\players\player_list.html:34
-#, fuzzy
-#| msgid "text_error_message"
 msgid "delete_player_message"
-msgstr "Please enter only alphabets"
+msgstr ""
 
 #: .\players\templates\players\player_list.html:34
 msgid "delete_player_record"
 msgstr ""
 
 #: .\players\templates\players\player_update.html:7
-#, fuzzy
-#| msgid "Player"
 msgid "Update_players_title"
-msgstr "Spieler"
+msgstr ""
 
 #: .\players\templates\players\player_update.html:15
-#, fuzzy
-#| msgid "Player"
-msgid "update_player"
-msgstr "Spieler"
+msgid "update_player_header"
+msgstr ""
 
 #: .\players\templates\players\player_update.html:67
-msgid "save_info"
+msgid "save_info_btn"
 msgstr ""

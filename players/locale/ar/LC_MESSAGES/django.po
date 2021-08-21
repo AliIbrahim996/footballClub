@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 01:00+0300\n"
+"POT-Creation-Date: 2021-08-21 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,128 +19,96 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: .\players\forms.py:10 .\players\models.py:25
-msgid "first_name"
-msgstr "الأسم الأول"
-
-#: .\players\forms.py:11
-msgid "address"
-msgstr "العنوان"
-
-#: .\players\forms.py:12 .\players\models.py:28
-msgid "post_code"
-msgstr "الرمز البريدي"
-
-#: .\players\forms.py:13 .\players\models.py:29
-msgid "city"
-msgstr "مدينة"
-
-#: .\players\forms.py:14 .\players\models.py:30
-msgid "society"
-msgstr "المجتمع"
-
-#: .\players\forms.py:15 .\players\models.py:32
-msgid "date_of_birth"
-msgstr "تاريخ الميلاد"
-
-#: .\players\forms.py:16 .\players\models.py:34
-msgid "phone_number"
-msgstr "رقم الهاتف"
-
-#: .\players\forms.py:17 .\players\models.py:35
-msgid "email_address"
-msgstr "البريد الإلكتروني"
-
-#: .\players\forms.py:18 .\players\models.py:37 .\players\models.py:54
-msgid "image"
-msgstr "الصورة"
-
-#: .\players\forms.py:34 .\players\forms.py:35
-msgid "text_error_message"
-msgstr "الرجاء إدخال الأحرف الأبجدية فقط"
-
-#: .\players\forms.py:36
-msgid "phone_number_error_message"
-msgstr "الرجاء إدخال الأرقام فقط"
-
-#: .\players\forms.py:41
-msgid "address_required_error_message"
-msgstr "تأكد من أن الحقل ليس فارغًا أو أنه عنوان صالح"
-
-#: .\players\forms.py:43
-msgid "post_code_required_error_message"
-msgstr "تأكد من أن الحقل ليس فارغًا أو أنه رمز بريدي صالح"
-
-#: .\players\forms.py:44
-msgid "default_required_error_message"
-msgstr "تأكد من أن الحقل ليس فارغاً"
+#: .\players\models.py:8 .\players\models.py:24
+msgid "name"
+msgstr "الأسم "
 
 #: .\players\models.py:11
-msgid "Category"
+msgid "Category_model"
 msgstr "الفئات"
 
 #: .\players\models.py:15
-#, fuzzy
-#| msgid "skill"
 msgid "skill_name"
 msgstr "المهارة"
 
 #: .\players\models.py:16 .\players\models.py:57
 msgid "comment"
-msgstr "نعليق"
+msgstr "تعليق"
 
 #: .\players\models.py:17
-#, fuzzy
-#| msgid "Category"
 msgid "category"
-msgstr "الفئات"
+msgstr "الفئة"
 
 #: .\players\models.py:20
-#, fuzzy
-#| msgid "skill"
-msgid "Skills"
+msgid "Skills_model"
 msgstr "المهارات"
 
-#: .\players\models.py:24
-msgid "name"
-msgstr "الاسم"
+#: .\players\models.py:25
+msgid "first_name"
+msgstr "الأسم الأول"
 
 #: .\players\models.py:27
 msgid "street_house number"
-msgstr "رقم الشارع/المنزل"
+msgstr "رقم الشارع/ المنزل"
 
-#: .\players\models.py:41 .\players\templates\players\navbar.html:7
-msgid "Player"
+#: .\players\models.py:28
+msgid "post_code"
+msgstr "الرمز البريدي"
+
+#: .\players\models.py:29
+msgid "city"
+msgstr "المدينة"
+
+#: .\players\models.py:30
+msgid "society"
+msgstr "المجتمع"
+
+#: .\players\models.py:32
+msgid "date_of_birth"
+msgstr "تاريخ الميلاد"
+
+#: .\players\models.py:34
+msgid "phone_number"
+msgstr "رقم الهاتف"
+
+#: .\players\models.py:35
+msgid "email_address"
+msgstr "البريد الإلكتروني"
+
+#: .\players\models.py:37 .\players\models.py:54
+msgid "image"
+msgstr "صورة اللاعب"
+
+#: .\players\models.py:41
+msgid "Player_model"
 msgstr "اللاعبون"
 
 #: .\players\models.py:45
 msgid "player"
-msgstr "اللاعب"
+msgstr "معرّف اللاعب"
 
 #: .\players\models.py:46
 msgid "skill"
-msgstr "المهارة"
+msgstr "معرّف المهارة"
 
 #: .\players\models.py:47
 msgid "value"
 msgstr "التقييم"
 
 #: .\players\models.py:50
-#, fuzzy
-#| msgid "Player"
-msgid "Player_Skills"
-msgstr "مهارات اللاعبين"
+msgid "Player_Skills_model"
+msgstr "تقييمات اللاعبون"
 
 #: .\players\models.py:55
 msgid "created_at"
-msgstr "تاريخ الإنشاء"
+msgstr "أٌنشئ في"
 
 #: .\players\models.py:56
 msgid "created_by"
-msgstr "اُنشئ من قبل"
+msgstr "أُنشئ من قبل"
 
-#: .\players\models.py:60 .\players\templates\players\navbar.html:13
-msgid "Plans"
+#: .\players\models.py:60
+msgid "Plans_model"
 msgstr "الخطط"
 
 #: .\players\templates\players\model.html:10
@@ -149,71 +117,81 @@ msgstr "تأكيد الحذف"
 
 #: .\players\templates\players\model.html:21
 msgid "close"
-msgstr "إلغاء"
+msgstr "إغلاق"
 
 #: .\players\templates\players\model.html:23
 msgid "save_changes"
-msgstr "نعم"
+msgstr "حفظ التغييرات"
+
+#: .\players\templates\players\navbar.html:7
+msgid "player_nav"
+msgstr "اللاعبون"
 
 #: .\players\templates\players\navbar.html:10
-msgid "Tactics"
-msgstr "إنشاء خطة"
+msgid "tactics_nav"
+msgstr "رسم خطة"
+
+#: .\players\templates\players\navbar.html:13
+msgid "plan_nav"
+msgstr "الخطط"
 
 #: .\players\templates\players\navbar.html:17
-msgid "Admin page"
-msgstr "صفحة المدير"
+msgid "admin_page"
+msgstr "صفحة الإدارة"
 
 #: .\players\templates\players\navbar.html:21
-msgid "logout"
+msgid "logout_nav"
 msgstr "تسجيل خروج"
 
 #: .\players\templates\players\player_form.html:7
-msgid "Register players"
-msgstr "تسجيل اللاعبين"
+msgid "register_players_title"
+msgstr "تسجل لاعب جديد"
 
 #: .\players\templates\players\player_form.html:15
-msgid "register_player"
+msgid "register_player_header"
 msgstr "تسجل لاعب جديد"
 
 #: .\players\templates\players\player_form.html:72
-#, fuzzy
-#| msgid "address"
-msgid "add"
-msgstr "إضافة"
+msgid "add_player"
+msgstr "إضافة اللاعب"
 
 #: .\players\templates\players\player_list.html:7
+msgid "player_info_title"
+msgstr "معلومات اللاعبين"
+
 #: .\players\templates\players\player_list.html:12
-#, fuzzy
-#| msgid "player"
-msgid "player_info"
-msgstr "اللاعبون"
+msgid "player_info_header"
+msgstr "معلومات اللاعبين"
 
 #: .\players\templates\players\player_list.html:25
 msgid "update_player_info"
-msgstr "تعديل البيانات"
+msgstr "تعديل المعلومات"
 
 #: .\players\templates\players\player_list.html:34
-#, fuzzy
-#| msgid "text_error_message"
 msgid "delete_player_message"
-msgstr "هل أنت متأكد أنك تريد حذف ذلك؟"
+msgstr "هل تريد بالتأكيد حذف اللاعب"
 
 #: .\players\templates\players\player_list.html:34
 msgid "delete_player_record"
-msgstr "حذف"
+msgstr "إزالة اللاعب"
 
 #: .\players\templates\players\player_update.html:7
-#, fuzzy
-#| msgid "register_player"
 msgid "Update_players_title"
-msgstr "تسجل لاعب جديد"
+msgstr "تعديل معلومات اللاعب"
 
 #: .\players\templates\players\player_update.html:15
-#, fuzzy
-#| msgid "register_player"
-msgid "update_player"
-msgstr "تسجل لاعب جديد"
+msgid "update_player_header"
+msgstr "تعديل معلومات اللاعب"
 
 #: .\players\templates\players\player_update.html:67
-msgid "save_info"
+msgid "save_info_btn"
 msgstr "حفظ"
+
+msgid "save_image"
+msgstr "حفظ"
+
+msgid "tacktic_title"
+msgstr "رسم خطة"
+
+msgid "comment_placeholder"
+msgstr "اكتب تعليق"

@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -131,12 +131,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/player/'
 LOGIN_URL = '/login/'
 
-LOCALE_PATHS = (BASE_DIR / 'web_application/locale/', BASE_DIR / 'players/locale/')
-
-get_text = lambda s: s
-
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'web_application/locale'), os.path.join(BASE_DIR, 'players/locale')
+)
 LANGUAGES = (
-    ('en', get_text('English')),
-    ('ar', get_text('Arabic')),
-    ('de', get_text('Germany')),
+    ('en', _('English')),
+    ('ar', _('Arabic')),
+    ('de', _('Germany')),
 )
