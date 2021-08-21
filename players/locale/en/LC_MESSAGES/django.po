@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:43+0300\n"
+"POT-Creation-Date: 2021-08-21 12:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,7 +80,7 @@ msgstr "Player image"
 
 #: .\players\models.py:41
 msgid "Player_model"
-msgstr "Player model"
+msgstr "Players"
 
 #: .\players\models.py:45
 msgid "player"
@@ -108,7 +108,7 @@ msgstr "Created by"
 
 #: .\players\models.py:60
 msgid "Plans_model"
-msgstr "Planc"
+msgstr "Plans"
 
 #: .\players\templates\plans\tactic.html:7
 msgid "tacktic_title"

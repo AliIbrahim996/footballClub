@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:09+0300\n"
+"POT-Creation-Date: 2021-08-21 12:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1235,12 +1235,34 @@ msgstr ""
 
 #: .\web_application\templates\navbar.html:7
 msgid "login"
-msgstr ""
+msgstr "Einloggen"
 
 #: .\web_application\templates\registration\logged_out.html:4
 msgid "logout_warning"
-msgstr ""
+msgstr "Abgemeldet!"
 
 #: .\web_application\templates\registration\logged_out.html:5
 msgid "logout_message"
+msgstr "Klicken Sie hier, um sich erneut anzumelden."
+
+#: .\web_application\templates\registration\login.html:9
+msgid "login_form_error_message"
 msgstr ""
+"Ihr Benutzername und Ihr Passwort stimmen nicht überein. Bitte versuche es "
+"erneut"
+
+#: .\web_application\templates\registration\login.html:14
+msgid "login_form_user_auth_error_messgae"
+msgstr "Bitte loggen Sie sich ein, um diese Seite zu sehen."
+
+#: .\web_application\templates\registration\login.html:16
+msgid "login_form_user_unauth_error_messgae"
+msgstr ""
+"Ihr Konto hat keinen Zugriff auf diese Seite.Um fortzufahren, melden Sie "
+"sich bitte mit einem Konto an, das Zugriff hat."
+
+#: .\web_application\templates\registration\login.html:34
+#, fuzzy
+#| msgid "login"
+msgid "login_btn"
+msgstr "Einloggen"
