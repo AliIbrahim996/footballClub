@@ -3,6 +3,4 @@
 */__pycache__/*
 .pyc
 media/images/
-docs/_build
-docs/_static
-docs/_templates
+docs/

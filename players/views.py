@@ -12,18 +12,34 @@ from django.contrib.auth.models import User
 # Create your views here.
 @login_required
 def player_form(request):
+    """
+    A function that render player form.
+    :param request: POST request sent from client
+    :return: an html page to add a new player
+    """
     player = PlayerValidator()
     return render(request, "players/player_form.html", {'form': player})
 
 
 @login_required
 def player_list(request):
+    """
+    A function that render player list page.
+    :param request: POST request sent from client
+    :return: an html page with list of all players in the database.
+    """
     context = {'player_list': Player.objects.all()}
     return render(request, "players/player_list.html", context)
 
 
 @login_required
 def player_delete(request, p_id=0):
+    """
+    A function that delete  player information  in database.
+    :param request: POST request sent from the client.
+    :param p_id: player id that you want to delete.
+    :return: player page
+    """
     if request.method == 'POST':
         Player.objects.filter(pk=p_id).delete()
     return redirect('players')
@@ -31,6 +47,12 @@ def player_delete(request, p_id=0):
 
 @login_required
 def player_update(request, p_id=0):
+    """
+    A function that update  player information  in database.
+    :param request: POST request sent from the client with player info.
+    :param p_id: player id that you want to update.
+    :return: player page
+    """
     if request.method == 'GET':
         player_object = Player.objects.get(pk=p_id)
         form = PlayerValidator(instance=player_object)
@@ -49,6 +71,11 @@ def player_update(request, p_id=0):
 
 @login_required
 def add_player(request):
+    """
+    A function that add new player to Player table in database.
+    :param request: POST request sent from the client with player info.
+    :return: redirect('players') which will open players page, or re-open add new player page in case of any errors.
+    """
     if request.method == 'POST':
         form = PlayerValidator(request.POST, request.FILES)
         if form.is_valid():
@@ -70,16 +97,21 @@ def add_player(request):
 
 @login_required
 def tactic(request):
-    tactic = PlanForm()
-    return render(request, 'plans/tactic.html', {'tactic': tactic})
+    """
+    A function that open Tactic page in order in draw a new one.
+    :param request: post request sent from the client.
+    :return: list of all tactic available in the database.
+    """
+    tactic_el = PlanForm()
+    return render(request, 'plans/tactic.html', {'tactic': tactic_el})
 
 
 @login_required
 def plans(request):
     """
-
-    :param request:
-    :return: plan list page
+    A function that open plan list page.
+    :param request: post request sent from the client.
+    :return: list of all plans available in the database.
     """
     try:
         plan = Plans.objects.all()
@@ -94,9 +126,9 @@ def plans(request):
 @login_required
 def search(request):
     """
-
-    :param request
-    :return: result query results after executing query or no data found
+    A function that search for plans with specified search parameters.
+    :param request: GET request sent from the client with search parameters.
+    :return: search results after executing query or no data found.
     """
     if request.method == "GET":
         try:
@@ -120,6 +152,12 @@ def search(request):
 
 @login_required
 def evaluate_player(request, p_id=0):
+    """
+    A function that open evaluation page.
+    :param request: post request sent from the client.
+    :param p_id: refers to the player id that you want to evaluate.
+    :return: a query results after executing query or no data found.
+    """
     categories = Category.objects.all()
     context = {'categories_list': categories, 'p_id': p_id}
 
@@ -128,10 +166,13 @@ def evaluate_player(request, p_id=0):
 
 @login_required
 def save_plan(request):
+    """
+    A function that save a new plan in the database.
+    :param request: post request sent from the client
+    :return: result query results after executing query or no data found
+    """
     if request.method == 'POST':
         plan_form = PlanForm(request.POST, request.FILES)
-        # print(request.POST)
-        # print(request.FILES)
         if plan_form.is_valid():
             plan_form.save()
             return redirect('tactic')

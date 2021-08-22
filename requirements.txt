@@ -3,3 +3,4 @@ Pillow
 colorama
 django-crispy-forms
 sphinx
+django-extensions
