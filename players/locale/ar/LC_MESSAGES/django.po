@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 12:50+0300\n"
+"POT-Creation-Date: 2021-08-22 09:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,107 +19,107 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: .\players\models.py:8 .\players\models.py:24
+#: .\players\models.py:8 .\players\models.py:30
 msgid "name"
 msgstr "الأسم "
 
-#: .\players\models.py:11
+#: .\players\models.py:14
 msgid "Category_model"
 msgstr "الفئات"
 
-#: .\players\models.py:15
+#: .\players\models.py:18
 msgid "skill_name"
 msgstr "المهارة"
 
-#: .\players\models.py:16 .\players\models.py:57
+#: .\players\models.py:19 .\players\models.py:66
 msgid "comment"
 msgstr "تعليق"
 
-#: .\players\models.py:17
+#: .\players\models.py:20
 msgid "category"
 msgstr "الفئة"
 
-#: .\players\models.py:20
+#: .\players\models.py:26
 msgid "Skills_model"
 msgstr "المهارات"
 
-#: .\players\models.py:25
+#: .\players\models.py:31
 msgid "first_name"
 msgstr "الأسم الأول"
 
-#: .\players\models.py:27
+#: .\players\models.py:33
 msgid "street_house number"
 msgstr "رقم الشارع/ المنزل"
 
-#: .\players\models.py:28
+#: .\players\models.py:34
 msgid "post_code"
 msgstr "الرمز البريدي"
 
-#: .\players\models.py:29
+#: .\players\models.py:35
 msgid "city"
 msgstr "المدينة"
 
-#: .\players\models.py:30
+#: .\players\models.py:36
 msgid "society"
 msgstr "المجتمع"
 
-#: .\players\models.py:32
+#: .\players\models.py:38
 msgid "date_of_birth"
 msgstr "تاريخ الميلاد"
 
-#: .\players\models.py:34
+#: .\players\models.py:40
 msgid "phone_number"
 msgstr "رقم الهاتف"
 
-#: .\players\models.py:35
+#: .\players\models.py:41
 msgid "email_address"
 msgstr "البريد الإلكتروني"
 
-#: .\players\models.py:37 .\players\models.py:54
+#: .\players\models.py:43 .\players\models.py:63
 msgid "image"
 msgstr "صورة اللاعب"
 
-#: .\players\models.py:41
+#: .\players\models.py:50
 msgid "Player_model"
 msgstr "اللاعبون"
 
-#: .\players\models.py:45
+#: .\players\models.py:54
 msgid "player"
 msgstr "معرّف اللاعب"
 
-#: .\players\models.py:46
+#: .\players\models.py:55
 msgid "skill"
 msgstr "معرّف المهارة"
 
-#: .\players\models.py:47
+#: .\players\models.py:56
 msgid "value"
 msgstr "التقييم"
 
-#: .\players\models.py:50
+#: .\players\models.py:59
 msgid "Player_Skills_model"
 msgstr "تقييمات اللاعبون"
 
-#: .\players\models.py:55
+#: .\players\models.py:64
 msgid "created_at"
 msgstr "أٌنشئ في"
 
-#: .\players\models.py:56
+#: .\players\models.py:65
 msgid "created_by"
 msgstr "أُنشئ من قبل"
 
-#: .\players\models.py:60
+#: .\players\models.py:69
 msgid "Plans_model"
 msgstr "الخطط"
 
-#: .\players\templates\plans\tactic.html:7
+#: .\players\templates\plans\tactic.html:9
 msgid "tacktic_title"
 msgstr "رسم خطة"
 
-#: .\players\templates\plans\tactic.html:30
+#: .\players\templates\plans\tactic.html:33
 msgid "comment_placeholder"
 msgstr "اكتب تعليق"
 
-#: .\players\templates\plans\tactic.html:39
+#: .\players\templates\plans\tactic.html:40
 msgid "save_image"
 msgstr "حفظ"
 

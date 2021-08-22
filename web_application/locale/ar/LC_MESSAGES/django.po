@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 12:50+0300\n"
+"POT-Creation-Date: 2021-08-22 09:14+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1234,7 +1234,12 @@ msgstr ""
 msgid "Germany"
 msgstr ""
 
+#: .\web_application\templates\language_list.html:18
+msgid "Go"
+msgstr "تغيير"
+
 #: .\web_application\templates\navbar.html:7
+#: .\web_application\templates\registration\login.html:34
 msgid "login"
 msgstr "تسجيل دخول"
 
@@ -1259,9 +1264,3 @@ msgid "login_form_user_unauth_error_messgae"
 msgstr ""
 "حسابك ليس لديه حق الوصول إلى هذه الصفحة. للمتابعة ، يرجى تسجيل الدخول "
 "باستخدام حساب له حق الوصول."
-
-#: .\web_application\templates\registration\login.html:34
-#, fuzzy
-#| msgid "login"
-msgid "login_btn"
-msgstr "تسجيل دخول"

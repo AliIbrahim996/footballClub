@@ -7,6 +7,9 @@ from django.utils.translation import ugettext_lazy
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name=ugettext_lazy('name'))
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = ugettext_lazy('Category_model')
 
@@ -15,6 +18,9 @@ class Skills(models.Model):
     skill_name = models.CharField(max_length=255, verbose_name=ugettext_lazy('skill_name'))
     comment = models.CharField(max_length=255, verbose_name=ugettext_lazy('comment'))
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=ugettext_lazy('category'))
+
+    def __str__(self):
+        return self.skill_name
 
     class Meta:
         verbose_name = ugettext_lazy('Skills_model')
@@ -36,6 +42,9 @@ class Player(models.Model):
     image = models.ImageField(null=True, upload_to="images/", default="images/no_image.png",
                               blank=True, verbose_name=ugettext_lazy("image"))
     skills = models.ManyToManyField(Skills, through='PlayerSkills')
+
+    def __str__(self):
+        return self.first_name
 
     class Meta:
         verbose_name = ugettext_lazy('Player_model')

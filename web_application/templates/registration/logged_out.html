@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-    <div class="alert-warning">{% trans 'logout_warning' %}</div>
-    <a href="{% url 'login' %}">{% trans 'logout_message' %}</a>
+    <div class="alert-warning text-center" style="margin-top: 5%; margin-bottom: 2%">{% trans 'logout_warning' %}</div>
+    <div class="container text-center col-lg-10" style="margin-bottom: 30%">
+        <a href="{% url 'login' %}">{% trans 'logout_message' %}</a>
+    </div>
 {% endblock %}

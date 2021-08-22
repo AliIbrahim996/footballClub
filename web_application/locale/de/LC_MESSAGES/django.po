@@ -1266,3 +1266,8 @@ msgstr ""
 #| msgid "login"
 msgid "login_btn"
 msgstr "Einloggen"
+
+
+#: .\web_application\templates\language_list.html:18
+msgid "Go"
+msgstr "Ändern"
