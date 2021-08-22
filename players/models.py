@@ -1,4 +1,5 @@
 import django.utils.timezone
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy
 
@@ -53,10 +54,12 @@ class Player(models.Model):
 class PlayerSkills(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name=ugettext_lazy("player"))
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE, verbose_name=ugettext_lazy("skill"))
-    value = models.IntegerField(default=0, verbose_name=ugettext_lazy("value"))
+    value = models.IntegerField(default=0, verbose_name=ugettext_lazy("value"),
+                                validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     class Meta:
         verbose_name = ugettext_lazy('Player_Skills_model')
+        unique_together = ['player', 'skill']
 
 
 class Plans(models.Model):
