@@ -2,3 +2,4 @@ Django
 Pillow
 colorama
 django-crispy-forms
+sphinx
