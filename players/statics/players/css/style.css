@@ -1,33 +1,22 @@
 body {
     background-color: #f4f6f8;
 }
-header {
+.myNav {
     background-color: white;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 0 25px 0 black;
 }
 
-header * {
-    display: inline;
-}
-
-header li {
+.myNav li {
     margin: 20px;
 }
 
-header li a {
+.myNav  a {
     color: black;
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
 }
 
-header li a:hover {
+.myNav li a:hover {
     color: cornflowerblue;
     background-color: transparent;
     text-decoration: none;

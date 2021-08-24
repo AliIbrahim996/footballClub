@@ -137,6 +137,6 @@ LOCALE_PATHS = (
 )
 LANGUAGES = (
     ('en', _('English')),
-    ('ar', _('Arabic')),
+    # ('ar', _('Arabic')),
     ('de', _('Germany')),
 )

@@ -28,6 +28,7 @@ def player_list(request):
     :param request: POST request sent from client
     :return: an html page with list of all players in the database.
     """
+    # Todo pagination
     context = {'player_list': Player.objects.all()}
     return render(request, "players/player_list.html", context)
 
@@ -113,6 +114,7 @@ def plans(request):
     :param request: post request sent from the client.
     :return: list of all plans available in the database.
     """
+    # Todo pagination
     try:
         plan = Plans.objects.all()
         users = User.objects.all()
@@ -131,6 +133,7 @@ def search(request):
     :return: search results after executing query or no data found.
     """
     if request.method == "GET":
+        # Todo pagination
         try:
             plan = Plans.objects.all()
             users = User.objects.all()

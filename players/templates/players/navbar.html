@@ -1,11 +1,13 @@
 {% block navbar %}
     {% load i18n %}
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a href="{% url 'players' %}">{% trans 'player_nav' %}</a>
-                </li>
+    <nav class="navbar navbar-expand-sm  myNav">
+        <p>Logo</p>
+        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#collapsingNavbarSm">
+           <i class="fa fa-bars" style="color:#FFFFFF;"></i>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbarSm">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'players' %}">{% trans 'player_nav' %}</a></li>
                 <li>
                     <a href="{% url 'tactic' %}">{% trans 'tactics_nav' %}</a>
                 </li>
@@ -22,6 +24,11 @@
                 </li>
                 {% include 'language_list.html' %}
             </ul>
-        </nav>
-    </header>
+        </div>
+        {% comment  %}
+        <ul class="navbar-nav">
+
+        </ul>
+        {% endcomment %}
+    </nav>
 {% endblock %}
