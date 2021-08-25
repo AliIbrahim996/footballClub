@@ -178,7 +178,6 @@ class PlayerSkillsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['skill'].disabled = True
-        print(self.fields['skill'].widget)
 
     class Meta:
         model = PlayerSkills

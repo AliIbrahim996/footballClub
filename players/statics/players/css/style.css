@@ -1,6 +1,7 @@
 body {
     background-color: #f4f6f8;
 }
+
 .myNav {
     background-color: white;
 }
@@ -67,7 +68,7 @@ body {
     color: black;
 }
 
-.btn_submit{
+.btn_submit {
     color: #FFFFFF;
     background-color: coral;
     border-radius: 12%;
@@ -75,15 +76,25 @@ body {
     margin-left: 2%;
     font-style: italic;
 }
-.btn_submit:hover{
-     color: #FFFFFF;
+
+.btn_submit:hover {
+    color: #FFFFFF;
     background-color: #00CC99;
     border-color: #00CC99;
 }
 
-#card_anchor{
+#card_anchor {
     text-decoration: none;
     color: black;
-    text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.custom-select, .select, .form-control:disabled, .form-control[readonly]{
+    background: none;
+    width: fit-content;
+    margin-left: 15%;
+    border: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
 }
