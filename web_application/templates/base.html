@@ -18,10 +18,12 @@
 {% endblock %}
 <main style="margin-top: 1%">
     {% block content %}
+        {% block float_button %}
+        {% endblock %}
     {% endblock content %}
+
 </main>
-{% block float_button %}
-{% endblock %}
+
 {% include 'footer.html' %}
 
 </html>

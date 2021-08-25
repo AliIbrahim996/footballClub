@@ -9,6 +9,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.forms import modelformset_factory, inlineformset_factory
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -31,7 +32,9 @@ def player_list(request):
     :return: an html page with list of all players in the database.
     """
     # Todo pagination
-    context = {'player_list': Player.objects.all()}
+    paginator = Paginator(Player.objects.all(), 12)
+    page_number = request.GET.get('page')
+    context = {'player_list': paginator.get_page(page_number)}
     return render(request, "players/player_list.html", context)
 
 
@@ -119,8 +122,10 @@ def plans(request):
     # Todo pagination
     try:
         plans = Plans.objects.all()
+        paginator = Paginator(plans, 12)
+        page_number = request.GET.get('page')
         users = User.objects.all()
-        context = {'plan_list': plans, 'users': users}
+        context = {'plan_list': paginator.get_page(page_number), 'users': users}
         return render(request, 'plans/plan_lists.html', context)
     except Plans.DoesNotExist:
         request.session['data'] = 'No data found'
@@ -145,7 +150,9 @@ def search(request):
                 plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
             if '_search_box' in request.GET:
                 plan = plan.filter(comment__contains=request.GET['_search_box'])
-            context = {'plan_list': plan, 'users': users}
+            paginator = Paginator(plan, 12)
+            page_number = request.GET.get('page')
+            context = {'plan_list': paginator.get_page(page_number), 'users': users}
             # print(plan.values())
             #  data = serializers.serialize("json", plan)
             #  return JsonResponse(data, safe=False)

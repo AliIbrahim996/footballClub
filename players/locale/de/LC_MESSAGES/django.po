@@ -99,8 +99,6 @@ msgid "Player_Skills_model"
 msgstr "Fähigkeiten des Spielers"
 
 #: .\players\models.py:132
-#, fuzzy
-#| msgid "image"
 msgid "image_filed"
 msgstr "Fußballspieler Bild"
 
