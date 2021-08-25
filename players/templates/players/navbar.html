@@ -1,9 +1,12 @@
 {% block navbar %}
+    {% load static %}
     {% load i18n %}
     <nav class="navbar navbar-expand-sm  myNav">
-        <p>Logo</p>
-        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#collapsingNavbarSm">
-           <i class="fa fa-bars" style="color:#FFFFFF;"></i>
+        <img class="rounded-circle" src="/media/logo.png"
+             alt=""/>
+        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse"
+                data-target="#collapsingNavbarSm">
+            <i class="fa fa-bars" style="color:#FFFFFF;"></i>
         </button>
         <div class="navbar-collapse collapse" id="collapsingNavbarSm">
             <ul class="navbar-nav">
