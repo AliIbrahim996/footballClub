@@ -117,9 +117,7 @@ msgid "Plans_model"
 msgstr "Pläne"
 
 #: .\players\templates\plans\plan_lists.html:4
-#, fuzzy
-#| msgid "player_info_title"
-msgid "Plan_lits_title"
+msgid "PlanList_title"
 msgstr "Pläne"
 
 #: .\players\templates\plans\plan_lists.html:16
