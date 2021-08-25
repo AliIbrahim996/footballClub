@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django.db.models import TextField
 from django.shortcuts import render
 # from django.http import JsonResponse
@@ -191,9 +193,9 @@ def evaluate_player(request, p_id=0):
     form_set.helper = form_set_helper
     context = {'form_set': form_set}
     """
-
     player = Player.objects.get(pk=p_id)
-    skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False)
+    skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False,
+                                            formset=PlayerSkillsFormset, extra=0)
     form_set = skills_form_set(instance=player)
     form_set.helper = get_form_set_helper()
     context = {'form_set': form_set, 'p_id': p_id}
@@ -205,7 +207,8 @@ def save_evaluation(request):
     if request.method == "POST":
         p_id = request.POST['p_id']
         player = Player.objects.get(pk=p_id)
-        skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False)
+        skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False,
+                                                formset=PlayerSkillsFormset, )
         form_set = skills_form_set(request.POST, instance=player)
         if form_set.is_valid():
             form_set.save()

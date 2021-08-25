@@ -12,13 +12,71 @@ A form field is represented to a user in the browser as an HTML “widget” - a
 Each field type has an appropriate default Widget class, but these can be overridden as required.
 for more information visit: https://docs.djangoproject.com/en/3.2/topics/forms/
 """
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
 from django import forms
 from django.core.validators import RegexValidator
+from django.forms import BaseInlineFormSet
 from django.utils.translation import ugettext_lazy as tran
 from .models import *
-from crispy_forms.layout import Layout, Submit, Row, Column
+from django_starfield import Stars
+from abc import abstractmethod, ABC
+
+
+class PrefilledExtraFormsFormsetMixin(ABC):
+    """
+    A formset mixin class that can be added to admin inline formset classes to insert prefilled
+    extra forms.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # these instances are better fetched later, as this enables subclasses to access attributes
+        # that are later injected into the class e.g. NestedAdminWithFormParents
+        self.extra_forms_instances = None
+
+    def total_form_count(self):
+        """
+        Overrides BaseFormSet.total_form_count() to account for extra prefilled forms.
+        """
+        count = super().total_form_count()
+        # fetch instances by calling the provided abstract method (if we haven't already did)
+        if self.extra_forms_instances is None:
+            # turn into a list to enable fast random access
+            self.extra_forms_instances = list(self.get_prefilled_forms_queryset())
+        if not self.is_bound:
+            # if it is a bound form, then prefilled form have already been inserted and the count
+            # obtained from super().total_form_count() already includes them
+            # otherwise, we need to increase count in order to add prefilled forms
+            count += len(self.extra_forms_instances)
+        return count
+
+    def _construct_form(self, i, **kwargs):
+        """
+        Overrides BaseFormSet._construct_form to configure initial values for prefilled forms.
+        """
+        form = super()._construct_form(i, **kwargs)
+        # set initial value for added prefilled forms
+        # this has to be done even for bound forms, to help django discard unchanged forms
+        prefilled_form_idx = i - self.initial_form_count()
+        if 0 <= prefilled_form_idx < len(self.extra_forms_instances):
+            self.prefill_extra_form(form, self.extra_forms_instances[prefilled_form_idx])
+        return form
+
+    @abstractmethod
+    def get_prefilled_forms_queryset(self):
+        """
+        Has to be overridden in subclasses to return a queryset/list of elements for which we need
+        to have extra prefilled forms. The length of the returned queryset/list determines the
+        number of extra forms to insert.
+        """
+
+    @abstractmethod
+    def prefill_extra_form(self, form, instance):
+        """
+        Has to be overridden in subclasses to set the initial field values for form according to
+        instance. This method is called for every extra form we have added. The parameter instance
+        is the form's corresponding element from the queryset/list returned by
+        get_prefilled_form_queryset()
+        """
 
 
 class PlayerValidator(forms.ModelForm):
@@ -115,13 +173,24 @@ class PlanForm(forms.ModelForm):
 
 
 class PlayerSkillsForm(forms.ModelForm):
-    value = forms.IntegerField(required=False, widget=forms.NumberInput, min_value=1, max_value=5)
-
-    # skill = forms.CharField(widget=forms.TextInput)
+    value = forms.IntegerField(required=False, widget=Stars, min_value=1, max_value=5)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['skill'].disabled = True
+        print(self.fields['skill'].widget)
 
     class Meta:
         model = PlayerSkills
         fields = ['skill', 'value']
+
+
+class PlayerSkillsFormset(PrefilledExtraFormsFormsetMixin, BaseInlineFormSet):
+    def get_prefilled_forms_queryset(self):
+        p_id = self.instance.id
+        skills_list = PlayerSkills.objects.filter(player=p_id).values_list("skill", flat=True)
+        skills_q_s = Skills.objects.exclude(id__in=skills_list)
+        return skills_q_s
+
+    def prefill_extra_form(self, form, instance):
+        form.fields['skill'].initial = instance

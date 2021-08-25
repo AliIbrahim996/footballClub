@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'players',
     'crispy_forms',
-    'django_extensions'
+    'django_extensions',
+    'django_starfield'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
