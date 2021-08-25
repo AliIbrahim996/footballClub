@@ -1,13 +1,11 @@
 {% block navbar %}
     {% load i18n %}
-    <header>
-        <nav>
-            <ul>
+        <nav class="navbar navbar-expand-sm  myNav">
+            <ul class="navbar-nav">
                 <li>
                     <a href="{% url 'login' %}">{% trans 'login'%}</a>
                 </li>
                 {% include 'language_list.html' %}
             </ul>
         </nav>
-    </header>
 {% endblock %}

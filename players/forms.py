@@ -12,10 +12,13 @@ A form field is represented to a user in the browser as an HTML “widget” - a
 Each field type has an appropriate default Widget class, but these can be overridden as required.
 for more information visit: https://docs.djangoproject.com/en/3.2/topics/forms/
 """
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout
 from django import forms
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as tran
 from .models import *
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 
 class PlayerValidator(forms.ModelForm):
@@ -109,3 +112,16 @@ class PlanForm(forms.ModelForm):
     class Meta:
         model = Plans
         fields = "__all__"
+
+
+class PlayerSkillsForm(forms.ModelForm):
+    value = forms.IntegerField(required=False, widget=forms.NumberInput, min_value=1, max_value=5)
+
+    # skill = forms.CharField(widget=forms.TextInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = PlayerSkills
+        fields = ['skill', 'value']

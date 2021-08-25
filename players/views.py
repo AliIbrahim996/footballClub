@@ -1,3 +1,4 @@
+from django.db.models import TextField
 from django.shortcuts import render
 # from django.http import JsonResponse
 from django.shortcuts import redirect
@@ -7,6 +8,7 @@ from .forms import *
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.forms import modelformset_factory, inlineformset_factory
 
 
 # Create your views here.
@@ -116,9 +118,9 @@ def plans(request):
     """
     # Todo pagination
     try:
-        plan = Plans.objects.all()
+        plans = Plans.objects.all()
         users = User.objects.all()
-        context = {'plan_list': plan, 'users': users}
+        context = {'plan_list': plans, 'users': users}
         return render(request, 'plans/plan_lists.html', context)
     except Plans.DoesNotExist:
         request.session['data'] = 'No data found'
@@ -134,9 +136,9 @@ def search(request):
     """
     if request.method == "GET":
         # Todo pagination
+        users = User.objects.all()
         try:
             plan = Plans.objects.all()
-            users = User.objects.all()
             if '_user' in request.GET:
                 plan = plan.filter(created_by=request.GET['_user'])
             if '_start_date' in request.GET and '_end_date' in request.GET:
@@ -149,8 +151,18 @@ def search(request):
             #  return JsonResponse(data, safe=False)
             return render(request, 'plans/plan_lists.html', context)
         except Plans.DoesNotExist:
+            context = {'users': users}
             request.session['data'] = 'No data found'
-            return render(request, 'plans/plan_lists.html')
+            return render(request, 'plans/plan_lists.html', context)
+
+
+def get_form_set_helper():
+    form_set_helper = FormHelper()
+    form_set_helper.template = 'bootstrap4/table_inline_formset.html'
+    form_set_helper.form_tag = False
+    form_set_helper.add_input(Submit('submit', 'Save', css_class='btn btn_submit'))
+    form_set_helper.form_method = 'POST'
+    return form_set_helper
 
 
 @login_required
@@ -161,10 +173,40 @@ def evaluate_player(request, p_id=0):
     :param p_id: refers to the player id that you want to evaluate.
     :return: a query results after executing query or no data found.
     """
-    categories = Category.objects.all()
-    context = {'categories_list': categories, 'p_id': p_id}
+    """
+    skills_form_set = modelformset_factory(model=PlayerSkills, form=PlayerSkillsForm, extra=0)
+    form_set_helper = FormHelper()
+    form_set_helper.template = 'bootstrap4/table_inline_formset.html'
+    form_set_helper.form_tag = False
+    form_set_helper.add_input(Submit('submit', 'Save', css_class='btn btn-primary'))
+    form_set_helper.form_method = 'POST'
+    form_set = skills_form_set(queryset=PlayerSkills.objects.filter(player=p_id))
+    form_set.helper = form_set_helper
+    context = {'form_set': form_set}
+    """
 
+    player = Player.objects.get(pk=p_id)
+    skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False)
+    form_set = skills_form_set(instance=player)
+    form_set.helper = get_form_set_helper()
+    context = {'form_set': form_set, 'p_id': p_id}
     return render(request, 'players/evaluation_page.html', context)
+
+
+@login_required
+def save_evaluation(request):
+    if request.method == "POST":
+        p_id = request.POST['p_id']
+        player = Player.objects.get(pk=p_id)
+        skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False)
+        form_set = skills_form_set(request.POST, instance=player)
+        if form_set.is_valid():
+            form_set.save()
+            return redirect('players')
+        else:
+            form_set.helper = get_form_set_helper()
+            context = {'form_set': form_set, 'p_id': p_id}
+            return render(request, 'players/evaluation_page.html', context)
 
 
 @login_required

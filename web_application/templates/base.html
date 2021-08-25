@@ -6,6 +6,7 @@
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
     {% include 'linking.html' %}
+    {% include 'scripts.html' %}
     <title>{% block title %}{% endblock %}</title>
 
 </head>
@@ -22,5 +23,5 @@
 {% block float_button %}
 {% endblock %}
 {% include 'footer.html' %}
-{% include 'scripts.html' %}
+
 </html>

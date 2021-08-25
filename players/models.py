@@ -129,7 +129,7 @@ class Plans(models.Model):
             4) created_by refers to name of the manager who draws this plan.
             5) comment refers to a small message that the manager will write it about the this plan.
     """
-    image = models.ImageField(upload_to="images/", verbose_name=ugettext_lazy("image"))
+    image = models.ImageField(upload_to="images/", verbose_name=ugettext_lazy("image_filed"))
     created_at = models.DateTimeField(default=django.utils.timezone.now, verbose_name=ugettext_lazy("created_at"))
     created_by = models.CharField(max_length=255, verbose_name=ugettext_lazy("created_by"))
     comment = models.CharField(max_length=255, verbose_name=ugettext_lazy("comment"))

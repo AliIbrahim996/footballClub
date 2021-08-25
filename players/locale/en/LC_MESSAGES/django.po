@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 12:52+0300\n"
+"POT-Creation-Date: 2021-08-25 10:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,107 +18,139 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\players\models.py:8 .\players\models.py:24
+#: .\players\models.py:28 .\players\models.py:78
 msgid "name"
 msgstr "Name"
 
-#: .\players\models.py:11
+#: .\players\models.py:34
 msgid "Category_model"
 msgstr "Category"
 
-#: .\players\models.py:15
+#: .\players\models.py:48
 msgid "skill_name"
 msgstr "Skill name"
 
-#: .\players\models.py:16 .\players\models.py:57
+#: .\players\models.py:49 .\players\models.py:135
 msgid "comment"
 msgstr "Comment"
 
-#: .\players\models.py:17
+#: .\players\models.py:50
 msgid "category"
 msgstr "Category"
 
-#: .\players\models.py:20
+#: .\players\models.py:56
 msgid "Skills_model"
 msgstr "Skills"
 
-#: .\players\models.py:25
+#: .\players\models.py:79
 msgid "first_name"
 msgstr "First name"
 
-#: .\players\models.py:27
+#: .\players\models.py:81
 msgid "street_house number"
 msgstr "Street/house number"
 
-#: .\players\models.py:28
+#: .\players\models.py:82
 msgid "post_code"
 msgstr "Post code"
 
-#: .\players\models.py:29
+#: .\players\models.py:83
 msgid "city"
 msgstr "City"
 
-#: .\players\models.py:30
+#: .\players\models.py:84
 msgid "society"
 msgstr "Society"
 
-#: .\players\models.py:32
+#: .\players\models.py:86
 msgid "date_of_birth"
 msgstr "Date of birth"
 
-#: .\players\models.py:34
+#: .\players\models.py:88
 msgid "phone_number"
 msgstr "Phone number"
 
-#: .\players\models.py:35
+#: .\players\models.py:89
 msgid "email_address"
 msgstr "Email address"
 
-#: .\players\models.py:37 .\players\models.py:54
+#: .\players\models.py:91
 msgid "image"
 msgstr "Player image"
 
-#: .\players\models.py:41
+#: .\players\models.py:98
 msgid "Player_model"
 msgstr "Players"
 
-#: .\players\models.py:45
+#: .\players\models.py:111
 msgid "player"
 msgstr "Player id"
 
-#: .\players\models.py:46
+#: .\players\models.py:112
 msgid "skill"
 msgstr "Skill id"
 
-#: .\players\models.py:47
+#: .\players\models.py:113
 msgid "value"
 msgstr "Value"
 
-#: .\players\models.py:50
+#: .\players\models.py:117
 msgid "Player_Skills_model"
 msgstr "Player's skills"
 
-#: .\players\models.py:55
+#: .\players\models.py:132
+#, fuzzy
+#| msgid "image"
+msgid "image_filed"
+msgstr "Player image"
+
+#: .\players\models.py:133
 msgid "created_at"
 msgstr "Created at"
 
-#: .\players\models.py:56
+#: .\players\models.py:134
 msgid "created_by"
 msgstr "Created by"
 
-#: .\players\models.py:60
+#: .\players\models.py:138
 msgid "Plans_model"
 msgstr "Plans"
 
-#: .\players\templates\plans\tactic.html:7
+#: .\players\templates\plans\plan_lists.html:4
+#, fuzzy
+#| msgid "player_info_title"
+msgid "Plan_lits_title"
+msgstr "Plans"
+
+#: .\players\templates\plans\plan_lists.html:16
+msgid "start_date"
+msgstr "Start date"
+
+#: .\players\templates\plans\plan_lists.html:20
+msgid "End date"
+msgstr "End date"
+
+#: .\players\templates\plans\plan_lists.html:26
+msgid "plan_placeholder"
+msgstr "Write a comment"
+
+#: .\players\templates\plans\plan_lists.html:31
+msgid "choose_user_list"
+msgstr "Choose user"
+
+#: .\players\templates\plans\plan_lists.html:40
+msgid "search_btn"
+msgstr "Search"
+
+#: .\players\templates\plans\tactic.html:9
 msgid "tacktic_title"
 msgstr "Tactics"
 
-#: .\players\templates\plans\tactic.html:30
+#: .\players\templates\plans\tactic.html:33
 msgid "comment_placeholder"
 msgstr "Write a comment"
 
-#: .\players\templates\plans\tactic.html:39
+#: .\players\templates\plans\tactic.html:40
 msgid "save_image"
 msgstr "Save"
 
@@ -134,23 +166,23 @@ msgstr "Close"
 msgid "save_changes"
 msgstr "Confirm"
 
-#: .\players\templates\players\navbar.html:7
+#: .\players\templates\players\navbar.html:10
 msgid "player_nav"
 msgstr "Players"
 
-#: .\players\templates\players\navbar.html:10
+#: .\players\templates\players\navbar.html:12
 msgid "tactics_nav"
 msgstr "Create a tactic"
 
-#: .\players\templates\players\navbar.html:13
+#: .\players\templates\players\navbar.html:15
 msgid "plan_nav"
 msgstr "Plans"
 
-#: .\players\templates\players\navbar.html:17
+#: .\players\templates\players\navbar.html:19
 msgid "admin_page"
 msgstr "Management"
 
-#: .\players\templates\players\navbar.html:21
+#: .\players\templates\players\navbar.html:23
 msgid "logout_nav"
 msgstr "Logout"
 

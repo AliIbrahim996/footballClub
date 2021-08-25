@@ -7,6 +7,10 @@ from .models import *
 from django.utils.translation import ugettext_lazy as tran
 
 
+class PlayerSkillsInlineAdmin(admin.TabularInline):
+    model = PlayerSkills
+
+
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
     """
@@ -14,6 +18,7 @@ class PlayerAdmin(admin.ModelAdmin):
         a model class to register Player model with the ModelAdmin
     """
     list_display = ['name', 'first_name', 'address']
+    inlines = (PlayerSkillsInlineAdmin,)
 
     class Meta:
         """

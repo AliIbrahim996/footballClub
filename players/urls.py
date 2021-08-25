@@ -15,4 +15,5 @@ urlpatterns = [
     path('logout', view.LogoutView.as_view(), name='playerLogout'),
     path('save', views.save_plan, name='save'),
     path('search', views.search, name='search'),
+    path('evaluation/save', views.save_evaluation, name='save_evaluation'),
 ]
