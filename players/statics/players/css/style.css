@@ -89,7 +89,7 @@ body {
     font-family: 'Times New Roman', Times, serif;
 }
 
-.custom-select, .select, .form-control:disabled, .form-control[readonly]{
+.custom-select, .select, .form-control:disabled, .form-control[readonly] {
     background: none;
     width: fit-content;
     margin-left: 15%;
@@ -97,4 +97,49 @@ body {
     color: black;
     font-family: 'Times New Roman', Times, serif;
     font-size: large;
+}
+
+.player_page_header {
+    font-family: 'Times New Roman', serif;
+    color: #3f7fff;
+}
+
+.list_class {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+}
+
+#list_page_card {
+    width: 18rem;
+}
+
+#card_body {
+    display: flex;
+    flex-direction: row
+}
+
+#player_id {
+    margin-left: 78%;
+}
+
+#float_button {
+    margin-top: 5%;
+    padding: 15%;
+}
+
+.player_form {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.jumbotron {
+    padding: 5px;
+    background-color: inherit;
+}
+
+#iframe_div {
+    width: 100%;
+    height: 500px;
 }

@@ -11,32 +11,4 @@
         <input type="hidden" name="p_id" value="{{ p_id }}">
         {% crispy form_set %}
     </form>
-    {% comment %}
-    {% load player_tags %}
-    {% with 0 as rating_value %}
-        {% for category in categories_list %}
-            <p class="cat_class">{{ category.name }}</p>
-            <br>
-            {% for skill in category.skills_set.all %}
-                <input type="hidden" name="skill_id" value="{{ skill.id }}"> <!--put a hidden filed-->
-                {{ skill.skill_name }}
-                {% if  not skill.playerskills_set.all|player_filter:p_id %}
-                    {{ rating_value }}
-                    {% comment %}
-                        <!--change loop with customized filter-->
-                        {% if p_skill.player.id == p_id %}
-                            {{ p_skill.value  }}
-                        {% endif %}
-                    {% endfor %}
-
-                {% else %}
-                    {% for p_skill in skill.playerskills_set.all|player_filter:p_id %}
-                        {{ p_skill.value }}
-                    {% endfor %}
-                {% endif %}
-                <br>
-            {% endfor %}
-        {% endfor %}
-    {% endwith %}
-  {% endcomment %}
 {% endblock %}

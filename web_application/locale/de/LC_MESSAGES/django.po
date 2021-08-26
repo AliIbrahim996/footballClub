@@ -59,7 +59,3 @@ msgstr ""
 "Ihr Konto hat keinen Zugriff auf diese Seite.Um fortzufahren, melden Sie "
 "sich bitte mit einem Konto an, das Zugriff hat."
 
-#, fuzzy
-#~| msgid "login"
-#~ msgid "login_btn"
-#~ msgstr "Einloggen"

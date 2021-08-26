@@ -41,24 +41,6 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#search_form").submit(function () {
-                if ($("#search_id").val() == "") {
-                    $("#search_id").remove();
-                }
-                if ($("#_user").val() == "") {
-                    $("#_user").remove();
-                }
-                if ($("#_start_date").val() == "") {
-                    $("#_start_date").remove();
-                }
-                if ($("#_end_date").val() == "") {
-                    $("#_end_date").remove();
-                }
-            });
-        });
-    </script>
     <br>
     {% if request.session.data or plan_list.count == 0 %}
         <div class="alert alert-warning flex text-center" style="
@@ -66,7 +48,7 @@
             No data found
         </div>
     {% else %}
-        <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
+        <div class="list_class d-flex justify-content-center">
             {% for plan in plan_list %}
                 <a id="card_anchor" href="{{ plan.image.url }}">
                     <div class="card" style="width:18rem; margin:10px">
@@ -81,21 +63,18 @@
                 </a>
             {% endfor %}
         </div>
-        <div class="pagination">
-            <span class="step-links">
-                {% if plan_list.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ plan_list.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="current">
-                    Page {{ plan_list.number }} of {{ plan_list.paginator.num_pages }}.
-                </span>
-
-                {% if player_list.has_next %}
-                    <a href="?page={{ plan_list.next_page_number }}">next</a>
-                    <a href="?page={{ plan_list.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
+        <ul class="pagination">
+            {% if plan_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ plan_list.previous_page_number }}">previous</a></li>
+            {% endif %}
+            {% if player_list.has_next %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ plan_list.next_page_number }}">next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ plan_list.paginator.num_pages }}">last
+                    &raquo;</a></li>
+            {% endif %}
+        </ul>
     {% endif %}
 {% endblock %}

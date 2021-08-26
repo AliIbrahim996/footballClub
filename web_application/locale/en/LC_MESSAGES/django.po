@@ -56,8 +56,3 @@ msgid "login_form_user_unauth_error_messgae"
 msgstr ""
 "Your account does not have access to this page.To continue, please sign in "
 "with an account that has access"
-
-#, fuzzy
-#~| msgid "login"
-#~ msgid "login_btn"
-#~ msgstr "Login"

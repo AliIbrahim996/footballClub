@@ -10,12 +10,12 @@
     {% include "players/navbar.html" %}
 {% endblock %}
 {% block content %}
-    <div class="jumbotron" style="padding: 5px;background-color: inherit">
-        <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
+    <div class="jumbotron flex justify-content-center">
+        <h1 class="player_page_header display-6 text-center">
             {% trans 'update_player_header' %}</h1>
         <hr class="my-4">
         <br>
-        <div class="card col-md-6" style="width: 50%; margin-left:25%; margin-right: 25%">
+        <div class="player_form card col-md-6">
             <div class="card-img-top d-flex justify-content-center">
                 <img class="rounded-circle" src="/media/{{ form.image.value }}" width="150px" height="150px">
             </div>

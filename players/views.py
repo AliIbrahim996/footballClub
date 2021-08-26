@@ -121,7 +121,6 @@ def plans(request):
     :param request: post request sent from the client.
     :return: list of all plans available in the database.
     """
-    # Todo pagination
     try:
         plans = Plans.objects.all()
         paginator = Paginator(plans, 12)
@@ -142,7 +141,6 @@ def search(request):
     :return: search results after executing query or no data found.
     """
     if request.method == "GET":
-        # Todo pagination
         users = User.objects.all()
         try:
             plan = Plans.objects.all()
@@ -181,17 +179,6 @@ def evaluate_player(request, p_id=0):
     :param request: post request sent from the client.
     :param p_id: refers to the player id that you want to evaluate.
     :return: a query results after executing query or no data found.
-    """
-    """
-    skills_form_set = modelformset_factory(model=PlayerSkills, form=PlayerSkillsForm, extra=0)
-    form_set_helper = FormHelper()
-    form_set_helper.template = 'bootstrap4/table_inline_formset.html'
-    form_set_helper.form_tag = False
-    form_set_helper.add_input(Submit('submit', 'Save', css_class='btn btn-primary'))
-    form_set_helper.form_method = 'POST'
-    form_set = skills_form_set(queryset=PlayerSkills.objects.filter(player=p_id))
-    form_set.helper = form_set_helper
-    context = {'form_set': form_set}
     """
     player = Player.objects.get(pk=p_id)
     skills_form_set = inlineformset_factory(Player, PlayerSkills, PlayerSkillsForm, can_delete=False,
