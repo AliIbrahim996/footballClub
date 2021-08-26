@@ -9,11 +9,13 @@ The basics:
     * With all of this, Django gives you an automatically-generated database-access API; see [Making queries](https://docs.djangoproject.com/en/3.2/topics/db/queries/).
 for more information visit: https://docs.djangoproject.com/en/3.2/topics/db/models/
 """
+import datetime
 
 import django.utils.timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -112,6 +114,8 @@ class PlayerSkills(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE, verbose_name=ugettext_lazy("skill"))
     value = models.IntegerField(default=0, verbose_name=ugettext_lazy("value"),
                                 validators=[MinValueValidator(1), MaxValueValidator(5)])
+    modified_by = models.CharField(max_length=255)
+    modified_at = models.DateTimeField(default="")
 
     class Meta:
         verbose_name = ugettext_lazy('Player_Skills_model')

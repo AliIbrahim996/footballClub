@@ -1,9 +1,12 @@
+import datetime
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.db.models import TextField
 from django.shortcuts import render
 # from django.http import JsonResponse
 from django.shortcuts import redirect
+import django.utils.timezone
 # from django.core import serializers
 # import json
 from .forms import *
@@ -198,6 +201,11 @@ def save_evaluation(request):
                                                 formset=PlayerSkillsFormset, )
         form_set = skills_form_set(request.POST, instance=player)
         if form_set.is_valid():
+            #            form_set.save(commit=False)
+            #            for form in form_set:
+            #                form.instance.modified_by = request.user.username
+            #                date = django.utils.timezone.now()
+            #                form.instance.modified_at = django.utils.timezone.localtime(date).strftime("%Y-%m-%d %H:%M:%S")
             form_set.save()
             return redirect('players')
         else:

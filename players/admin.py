@@ -83,7 +83,7 @@ class PlayerSkills(admin.ModelAdmin):
     Documentation for PlayerSkills:
      a model class to register PlayerSkills model with the ModelAdmin
     """
-    list_display = ['player', 'skill', 'value']
+    list_display = ['player', 'skill', 'value','modified_by']
 
     class Meta:
         """
