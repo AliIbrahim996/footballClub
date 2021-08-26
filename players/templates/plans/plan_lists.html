@@ -1,10 +1,80 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block title %}
-    Pläne
+    {% trans 'PlanList_title' %}
 {% endblock %}
 {% block nav %}
     {% include 'players/navbar.html' %}
 {% endblock %}
 {% block content %}
-    <p>list of all plans</p>
+
+    <div class="card flex justify-content-center">
+        <div class="card-body">
+            <form id="search_form" method="GET" action="{% url 'search' %}">
+                <div class="form-row">
+                    <div class="form-group col-xs-2">
+                        <label>{% trans 'start_date' %}</label>
+                        <input id="_start_date" class="form-control" type="datetime-local" name="_start_date">
+                    </div>
+                    <div class="form-group col-xs-2">
+                        <label>{% trans 'End date' %}</label>
+                        <input id="_end_date" class="form-control" type="datetime-local" name="_end_date">
+                    </div>
+                    <div class="form-group col-xs-4">
+                        <label></label>
+                        <input style="margin-top: 3%" id="search_id" class="form-control" type="search"
+                               placeholder="{% trans 'plan_placeholder' %}"
+                               name="_search_box">
+                    </div>
+                    <div class="form-group col-xs-2">
+                        <label>
+                            {% trans 'choose_user_list' %}
+                        </label>
+                        <select class="form-control" name="_user" id="_user">
+                            {% for user in users %}
+                                <option>{{ user }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <input id="submit_btn" class="btn btn-outline-success" type="submit" value="{% trans 'search_btn' %}">
+            </form>
+        </div>
+    </div>
+    <br>
+    {% if request.session.data or plan_list.count == 0 %}
+        <div class="alert alert-warning flex text-center" style="
+        font-family: 'Times New Roman';font-size: large; font-style: italic">
+            No data found
+        </div>
+    {% else %}
+        <div class="list_class d-flex justify-content-center">
+            {% for plan in plan_list %}
+                <a id="card_anchor" href="{{ plan.image.url }}">
+                    <div class="card" style="width:18rem; margin:10px">
+                        <img class="card-img-top rounded-circle" height="135rem" src="{{ plan.image.url }}"/>
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: row">
+                                <h5 class="text-center ">{{ plan.created_by }}</h5>
+                            </div>
+                            <p class="card-text">{{ plan.created_at }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <ul class="pagination">
+            {% if plan_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ plan_list.previous_page_number }}">previous</a></li>
+            {% endif %}
+            {% if player_list.has_next %}
+                <li class="page-item"><a class="page-link"
+                                         href="?page={{ plan_list.next_page_number }}">next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ plan_list.paginator.num_pages }}">last
+                    &raquo;</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
 {% endblock %}

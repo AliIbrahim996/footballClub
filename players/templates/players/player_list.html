@@ -2,44 +2,58 @@
 {% block nav %}
     {% include 'players/navbar.html' %}
 {% endblock %}
+{% load i18n %}
 {% block title %}
-    Spielerinformationen
+    {% trans 'player_info_title' %}
 {% endblock %}
 {% block content %}
-    <div class="jumbotron" style="padding: 5px;background-color: inherit">
-        <h1 class="text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff"> Spielerinformationen</h1>
-        <hr class="my-4">
-        <div style="display:flex; flex-direction: row; flex-wrap: wrap" class="d-flex justify-content-center">
-            {% for player in player_list %}
-                <div class="card" style="width:18rem; margin:10px">
-                    <img class="card-img-top rounded-circle" height="135rem" src="{{ player.image.url }}"/>
-                    <div class="card-body">
-                        <div style="display: flex;  flex-direction:row">
-                            <h5 class="text-center ">{{ player.name }}</h5>
-                        </div>
-                        <p class="card-text">{{ player.email_address }}</p>
-                        <a class="btn btn-primary" href="{% url 'update' player.id %}">Daten bearbeiten <i
-                                class="fas fa-pen-alt"></i></a>
-                        <br>
-                        <a href="javascript:void(0)" data-toggle="modal"
-                           class="confirm-delete btn btn-danger"
-                           style="width: 100%;"
-                           data-url="{% url 'delete' player.id %}"
-                           data-target="#deleteItemModal"
-                           data-message="Sind Sie sicher, dass Sie löschen möchten?">löschen <i
-                                class="fas fa-trash-alt"></i></a>
+    <h1 class="player_page_header text-center"> {% trans 'player_info_header' %}</h1>
+    <hr class="my-4">
+    <div class=" list_class d-flex justify-content-center">
+        {% for player in player_list %}
+            <div id="list_page_card" class="card">
+                <img class="card-img-top rounded-circle" height="135rem" src="{{ player.image.url }}"/>
+                <div class="card-body">
+                    <div id="card_body">
+                        <h5 class="text-center ">{{ player.name }}</h5>
+                        <a id="player_id" href="{% url 'evaluation' player.id %}"><i
+                                class="btn fas fa-star btn-warning"></i></a>
                     </div>
+                    <p class="card-text">{{ player.email_address }}</p>
+                    <a class="btn btn-primary" href="{% url 'update' player.id %}">{% trans 'update_player_info' %}
+                        <i class="fas fa-pen-alt"></i></a>
+                    <br>
+                    <a href="javascript:void(0)" data-toggle="modal"
+                       class="confirm-delete btn btn-danger"
+                       style="width: 100%;"
+                       data-url="{% url 'delete' player.id %}"
+                       data-target="#deleteItemModal"
+                       data-message="{% trans 'delete_player_message' %}">{% trans 'delete_player_record' %}<i
+                            class="fas fa-trash-alt"></i></a>
                 </div>
-            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'players/model.html' %}
+    {% block float_button %}
+        <div id="float_button">
+            <a href="{% url 'create' %}" class="float">
+                <i class="fa fa-plus my-float"></i>
+            </a>
         </div>
-        {% include 'players/model.html' %}
-    </div>
-{% endblock content %}
+    {% endblock %}
 
-{% block float_button %}
-    <div style="margin-top: 25%; padding: 15%">
-        <a href="{% url 'create' %}" class="float">
-            <i class="fa fa-plus my-float"></i>
-        </a>
-    </div>
-{% endblock %}
+    <ul class="pagination">
+        {% if player_list.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link"
+                                     href="?page={{ player_list.previous_page_number }}">previous</a></li>
+        {% endif %}
+        {% if player_list.has_next %}
+            <li class="page-item"><a class="page-link"
+                                     href="?page={{ player_list.next_page_number }}">next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ player_list.paginator.num_pages }}">last
+                &raquo;</a></li>
+        {% endif %}
+    </ul>
+{% endblock content %}

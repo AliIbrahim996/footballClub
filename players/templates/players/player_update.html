@@ -2,20 +2,20 @@
 {% load crispy_forms_filters %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 {% block title %}
-    Spielerinformationen
+    {% trans 'Update_players_title' %}
 {% endblock %}
 {% block nav %}
     {% include "players/navbar.html" %}
 {% endblock %}
 {% block content %}
-    <div class="jumbotron" style="padding: 5px;background-color: inherit">
-        <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">
-            Spielerinformationen</h1>
+    <div class="jumbotron flex justify-content-center">
+        <h1 class="player_page_header display-6 text-center">
+            {% trans 'update_player_header' %}</h1>
         <hr class="my-4">
         <br>
-        <div class="card"
-             style="width: 46%; background-color: #f4f6f8; border:none;  margin-left:2%;">
+        <div class="player_form card col-md-6">
             <div class="card-img-top d-flex justify-content-center">
                 <img class="rounded-circle" src="/media/{{ form.image.value }}" width="150px" height="150px">
             </div>
@@ -64,13 +64,10 @@
                     <br>
                     <br>
                     <button type="submit" style="width: 100%;" class="btn btn-success"><i class="fas fa-database"></i>
-                        Aktualisieren
+                        {% trans 'save_info_btn' %}
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    {% for skill in skills %}
-        {{ skill.skillType }}
-    {% endfor %}
 {% endblock %}

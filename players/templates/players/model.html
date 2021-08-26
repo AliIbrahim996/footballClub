@@ -1,4 +1,5 @@
 <!-- Modal -->
+{% load i18n %}
 <div id="container_delete">
     <!-- Modal -->
     <div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteItemModalLabel"
@@ -6,7 +7,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteItemModalLabel">Löschen bestätigen</h5>
+                    <h5 class="modal-title" id="deleteItemModalLabel">{% trans 'confirm_delete' %}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -17,9 +18,9 @@
                 <div class="modal-footer">
                     <form id="form_confirm_modal" action="" method="post">
                         {% csrf_token %}
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Schließen</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans 'close' %}</button>
                         <input type="submit" id="confirmButtonModal" class="btn btn-danger"
-                               value="Änderungen speichern"/>
+                               value="{% trans 'save_changes' %}"/>
                     </form>
                 </div>
             </div>
@@ -28,7 +29,6 @@
 </div>
 
 <script type="text/javascript">
-
     document.addEventListener('DOMContentLoaded', () => {
         let form_confirm = document.querySelector('#form_confirm_modal')
         let buttons = document.querySelectorAll("[data-target='#deleteItemModal']");

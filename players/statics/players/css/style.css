@@ -1,33 +1,23 @@
 body {
     background-color: #f4f6f8;
 }
-header {
+
+.myNav {
     background-color: white;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 0 25px 0 black;
 }
 
-header * {
-    display: inline;
-}
-
-header li {
+.myNav li {
     margin: 20px;
 }
 
-header li a {
+.myNav a {
     color: black;
     text-decoration: none;
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
 }
 
-header li a:hover {
+.myNav li a:hover {
     color: cornflowerblue;
     background-color: transparent;
     text-decoration: none;
@@ -69,4 +59,87 @@ header li a:hover {
 
 .my-float {
     margin-top: 22px;
+}
+
+.cat_class {
+    font-style: italic;
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+
+.btn_submit {
+    color: #FFFFFF;
+    background-color: coral;
+    border-radius: 12%;
+    border-color: coral;
+    margin-left: 2%;
+    font-style: italic;
+}
+
+.btn_submit:hover {
+    color: #FFFFFF;
+    background-color: #00CC99;
+    border-color: #00CC99;
+}
+
+#card_anchor {
+    text-decoration: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.custom-select, .select, .form-control:disabled, .form-control[readonly] {
+    background: none;
+    width: fit-content;
+    margin-left: 15%;
+    border: none;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+}
+
+.player_page_header {
+    font-family: 'Times New Roman', serif;
+    color: #3f7fff;
+}
+
+.list_class {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap
+}
+
+#list_page_card {
+    width: 18rem;
+}
+
+#card_body {
+    display: flex;
+    flex-direction: row
+}
+
+#player_id {
+    margin-left: 78%;
+}
+
+#float_button {
+    margin-top: 5%;
+    padding: 15%;
+}
+
+.player_form {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.jumbotron {
+    padding: 5px;
+    background-color: inherit;
+}
+
+#iframe_div {
+    width: 100%;
+    height: 500px;
 }

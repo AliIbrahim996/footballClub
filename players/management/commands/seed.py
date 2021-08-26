@@ -23,8 +23,11 @@ class Command(BaseCommand):
 def clear_data(self):
     """Deletes all the table data"""
     self.stdout.write("Delete instances")
+    PlayerSkills.objects.all().delete()
     Skills.objects.all().delete()
     Player.objects.all().delete()
+    Category.objects.all().delete()
+    Plans.objects.all().delete()
 
 
 def run_seed(self, mode):

@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% load static %}
+{% load  i18n %}
 {% load crispy_forms_tags %}
 {% block title %}
-    Registrierung von Fußballspielern
+    {% trans 'register_players_title' %}
 {% endblock %}
 {% block nav %}
     {% include 'players/navbar.html' %}
 {% endblock %}
 {% block content %}
-    <div class="jumbotron" style="padding: 5px;background-color: inherit">
-        <h1 class="display-6 text-center" style="font-family: 'Times New Roman',serif; color: #3f7fff">Registrierung von
-            Fußballspielern</h1>
+    <div class="jumbotron flex justify-content-center">
+        <h1 class=" player_page_header display-6 text-center">{% trans 'register_player_header' %}</h1>
         <hr class="my-4">
 
-        <div class="card col-md-6" style="width: 50%; margin-left:25%;">
+        <div class="player_form card col-md-6">
             <div class="card-body">
                 <form method="post" action="{% url 'add' %}" autocomplete="off" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -68,7 +68,7 @@
                     </div><!-- container -->
                     <br>
                     <button type="submit" style="width: 100%;" class="btn btn-success"><i class="fas fa-database"></i>
-                        Schaffen
+                       {% translate 'add_player' %}
                     </button>
                 </form>
             </div>

@@ -1,11 +1,15 @@
 {% load static %}
+{% load i18n %}
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html >
-<html lang="de">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
     {% include 'linking.html' %}
+    {% include 'scripts.html' %}
     <title>{% block title %}{% endblock %}</title>
+
 </head>
-<body>
 
 {% block nav %}
     {% include 'navbar.html' %}
@@ -14,11 +18,12 @@
 {% endblock %}
 <main style="margin-top: 1%">
     {% block content %}
+        {% block float_button %}
+        {% endblock %}
     {% endblock content %}
+
 </main>
-{% block float_button %}
-{% endblock %}
+
 {% include 'footer.html' %}
-{% include 'scripts.html' %}
-</body>
+
 </html>

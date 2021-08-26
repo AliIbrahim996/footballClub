@@ -2,8 +2,13 @@
 {% block nav %}
     {% include 'players/navbar.html' %}
 {% endblock %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
 {% block title %}
 {% endblock %}
 {% block content %}
-
+    <form method="POST" action="{% url 'save_evaluation' %}">
+        <input type="hidden" name="p_id" value="{{ p_id }}">
+        {% crispy form_set %}
+    </form>
 {% endblock %}

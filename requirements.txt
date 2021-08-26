@@ -2,4 +2,5 @@ Django
 Pillow
 colorama
 django-crispy-forms
-doxypypy
+django-extensions
+django-starfield

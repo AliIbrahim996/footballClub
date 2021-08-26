@@ -11,7 +11,9 @@ urlpatterns = [
     path('add', views.add_player, name='add'),
     path('tactics', views.tactic, name='tactic'),
     path('plans', views.plans, name='plans'),
-    path('evaluation', views.evaluate_player, name='evaluation'),
+    path('evaluation/<int:p_id>', views.evaluate_player, name='evaluation'),
     path('logout', view.LogoutView.as_view(), name='playerLogout'),
     path('save', views.save_plan, name='save'),
+    path('search', views.search, name='search'),
+    path('evaluation/save', views.save_evaluation, name='save_evaluation'),
 ]

@@ -2,24 +2,22 @@
 {% load crispy_forms_filters %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load  i18n %}
 {% block content %}
 
     {% if form.errors %}
-        <div class="alert-danger">Ihr Benutzername und Ihr Passwort stimmten nicht überein. Bitte versuche es erneut.
-        </div>
+        <div class="alert-danger">{% trans 'login_form_error_message' %}</div>
     {% endif %}
 
     {% if next %}
         {% if user.is_authenticated %}
-            <div class="alert-warning">Ihr Konto hat keinen Zugriff auf diese Seite.
-                Um fortzufahren, melden Sie sich bitte mit einem Konto an, das Zugriff hat.
-            </div>
+            <div class="alert-info">{% trans 'login_form_user_auth_error_messgae' %}</div>
         {% else %}
-            <div class="alert-info">Bitte loggen Sie sich ein, um diese Seite zu sehen.</div>
+            <div class="alert-warning">{% trans 'login_form_user_unauth_error_messgae' %}</div>
         {% endif %}
     {% endif %}
 
-    <div class="card col-lg-10" style="width: 50%; height: 50%; margin-left:25%; margin-bottom: 60%">
+    <div class="card col-lg-10" style="width: 50%; height: 50%; margin-left:25%; margin-right: 25%; margin-bottom: 60%">
         <div class="card-body">
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
@@ -33,7 +31,7 @@
                         {{ form.password|as_crispy_field }}
                     </div>
                 </div>
-                <input type="submit" class="btn btn-primary rounded" value="login"/>
+                <input type="submit" class="btn btn-primary rounded" value="{% trans 'login' %}"/>
                 <input type="hidden" name="next" value="{{ next }}"/>
 
             </form>

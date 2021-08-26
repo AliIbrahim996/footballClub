@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-25 10:51+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\web_application\settings.py:139
+msgid "English"
+msgstr ""
+
+#: .\web_application\settings.py:140
+msgid "Germany"
+msgstr ""
+
+#: .\web_application\templates\language_list.html:19
+msgid "Go"
+msgstr "Ändern"
+
+#: .\web_application\templates\navbar.html:6
+#: .\web_application\templates\registration\login.html:34
+msgid "login"
+msgstr "Einloggen"
+
+#: .\web_application\templates\registration\logged_out.html:4
+msgid "logout_warning"
+msgstr "Abgemeldet!"
+
+#: .\web_application\templates\registration\logged_out.html:6
+msgid "logout_message"
+msgstr "Klicken Sie hier, um sich erneut anzumelden."
+
+#: .\web_application\templates\registration\login.html:9
+msgid "login_form_error_message"
+msgstr ""
+"Ihr Benutzername und Ihr Passwort stimmen nicht überein. Bitte versuche es "
+"erneut"
+
+#: .\web_application\templates\registration\login.html:14
+msgid "login_form_user_auth_error_messgae"
+msgstr "Bitte loggen Sie sich ein, um diese Seite zu sehen."
+
+#: .\web_application\templates\registration\login.html:16
+msgid "login_form_user_unauth_error_messgae"
+msgstr ""
+"Ihr Konto hat keinen Zugriff auf diese Seite.Um fortzufahren, melden Sie "
+"sich bitte mit einem Konto an, das Zugriff hat."
+

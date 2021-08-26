@@ -1,26 +1,32 @@
 {% block navbar %}
-    <header>
-        <nav>
-            <ul>
+    {% load static %}
+    {% load i18n %}
+    <nav class="navbar navbar-expand-sm  myNav">
+        <img class="rounded-circle" src="/media/logo.png"
+             alt=""/>
+        <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse"
+                data-target="#collapsingNavbarSm">
+            <i class="fa fa-bars" style="color:#FFFFFF;"></i>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbarSm">
+            <ul class="navbar-nav">
+                <li><a href="{% url 'players' %}">{% trans 'player_nav' %}</a></li>
                 <li>
-                    <a href="{% url 'players' %}">Spieler</a>
+                    <a href="{% url 'tactic' %}">{% trans 'tactics_nav' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'tactic' %}">Taktik</a>
-                </li>
-                <li>
-                    <a href="{% url 'plans' %}">Pläne</a>
+                    <a href="{% url 'plans' %}">{% trans 'plan_nav' %}</a>
                 </li>
                 {% if user.is_superuser %}
                     <li>
-                        <a href="{% url 'admin:index' %}">Admin Page</a>
+                        <a href="{% url 'admin:index' %}">{% trans 'admin_page' %}</a>
                     </li>
                 {% endif %}
                 <li>
-                    <a href="{% url 'playerLogout' %}">Abmelden</a>
+                    <a href="{% url 'playerLogout' %}">{% trans 'logout_nav' %}</a>
                 </li>
-
+                {% include 'language_list.html' %}
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 {% endblock %}

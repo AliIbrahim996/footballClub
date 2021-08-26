@@ -1,0 +1,227 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-25 10:51+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\players\models.py:28 .\players\models.py:78
+msgid "name"
+msgstr "Name"
+
+#: .\players\models.py:34
+msgid "Category_model"
+msgstr "Category"
+
+#: .\players\models.py:48
+msgid "skill_name"
+msgstr "Skill name"
+
+#: .\players\models.py:49 .\players\models.py:135
+msgid "comment"
+msgstr "Comment"
+
+#: .\players\models.py:50
+msgid "category"
+msgstr "Category"
+
+#: .\players\models.py:56
+msgid "Skills_model"
+msgstr "Skills"
+
+#: .\players\models.py:79
+msgid "first_name"
+msgstr "First name"
+
+#: .\players\models.py:81
+msgid "street_house number"
+msgstr "Street/house number"
+
+#: .\players\models.py:82
+msgid "post_code"
+msgstr "Post code"
+
+#: .\players\models.py:83
+msgid "city"
+msgstr "City"
+
+#: .\players\models.py:84
+msgid "society"
+msgstr "Society"
+
+#: .\players\models.py:86
+msgid "date_of_birth"
+msgstr "Date of birth"
+
+#: .\players\models.py:88
+msgid "phone_number"
+msgstr "Phone number"
+
+#: .\players\models.py:89
+msgid "email_address"
+msgstr "Email address"
+
+#: .\players\models.py:91
+msgid "image"
+msgstr "Player image"
+
+#: .\players\models.py:98
+msgid "Player_model"
+msgstr "Players"
+
+#: .\players\models.py:111
+msgid "player"
+msgstr "Player id"
+
+#: .\players\models.py:112
+msgid "skill"
+msgstr "Skill id"
+
+#: .\players\models.py:113
+msgid "value"
+msgstr "Value"
+
+#: .\players\models.py:117
+msgid "Player_Skills_model"
+msgstr "Player's skills"
+
+#: .\players\models.py:132
+msgid "image_filed"
+msgstr "Player image"
+
+#: .\players\models.py:133
+msgid "created_at"
+msgstr "Created at"
+
+#: .\players\models.py:134
+msgid "created_by"
+msgstr "Created by"
+
+#: .\players\models.py:138
+msgid "Plans_model"
+msgstr "Plans"
+
+#: .\players\templates\plans\plan_lists.html:4
+msgid "PlanList_title"
+msgstr "Plans"
+
+#: .\players\templates\plans\plan_lists.html:16
+msgid "start_date"
+msgstr "Start date"
+
+#: .\players\templates\plans\plan_lists.html:20
+msgid "End date"
+msgstr "End date"
+
+#: .\players\templates\plans\plan_lists.html:26
+msgid "plan_placeholder"
+msgstr "Write a comment"
+
+#: .\players\templates\plans\plan_lists.html:31
+msgid "choose_user_list"
+msgstr "Choose user"
+
+#: .\players\templates\plans\plan_lists.html:40
+msgid "search_btn"
+msgstr "Search"
+
+#: .\players\templates\plans\tactic.html:9
+msgid "tacktic_title"
+msgstr "Tactics"
+
+#: .\players\templates\plans\tactic.html:33
+msgid "comment_placeholder"
+msgstr "Write a comment"
+
+#: .\players\templates\plans\tactic.html:40
+msgid "save_image"
+msgstr "Save"
+
+#: .\players\templates\players\model.html:10
+msgid "confirm_delete"
+msgstr "Delete a player"
+
+#: .\players\templates\players\model.html:21
+msgid "close"
+msgstr "Close"
+
+#: .\players\templates\players\model.html:23
+msgid "save_changes"
+msgstr "Confirm"
+
+#: .\players\templates\players\navbar.html:10
+msgid "player_nav"
+msgstr "Players"
+
+#: .\players\templates\players\navbar.html:12
+msgid "tactics_nav"
+msgstr "Create a tactic"
+
+#: .\players\templates\players\navbar.html:15
+msgid "plan_nav"
+msgstr "Plans"
+
+#: .\players\templates\players\navbar.html:19
+msgid "admin_page"
+msgstr "Management"
+
+#: .\players\templates\players\navbar.html:23
+msgid "logout_nav"
+msgstr "Logout"
+
+#: .\players\templates\players\player_form.html:7
+msgid "register_players_title"
+msgstr "Register a player"
+
+#: .\players\templates\players\player_form.html:15
+msgid "register_player_header"
+msgstr "Register new player"
+
+#: .\players\templates\players\player_form.html:72
+msgid "add_player"
+msgstr "Add"
+
+#: .\players\templates\players\player_list.html:7
+msgid "player_info_title"
+msgstr "Player Information"
+
+#: .\players\templates\players\player_list.html:12
+msgid "player_info_header"
+msgstr "Player Information"
+
+#: .\players\templates\players\player_list.html:25
+msgid "update_player_info"
+msgstr "Update Information"
+
+#: .\players\templates\players\player_list.html:34
+msgid "delete_player_message"
+msgstr "Are you sure you want to delete this player?"
+
+#: .\players\templates\players\player_list.html:34
+msgid "delete_player_record"
+msgstr "Delete"
+
+#: .\players\templates\players\player_update.html:7
+msgid "Update_players_title"
+msgstr "Update Player Information"
+
+#: .\players\templates\players\player_update.html:15
+msgid "update_player_header"
+msgstr "Update Player Information"
+
+#: .\players\templates\players\player_update.html:67
+msgid "save_info_btn"
+msgstr "Save"
