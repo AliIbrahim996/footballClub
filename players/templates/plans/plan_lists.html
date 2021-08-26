@@ -15,21 +15,24 @@
                 <div class="form-row">
                     <div class="form-group col-xs-2">
                         <label>{% trans 'start_date' %}</label>
-                        <input id="_start_date" class="form-control" type="datetime-local" name="_start_date">
+                        <input id="start_date" class="form-control" type="datetime-local" name="start_date"
+                                {% if 'start_date' in  request.GET %} value="{{ request.GET.start_date }}" {% endif %}>
                     </div>
                     <!--end Start date -->
                     <!-- End date -->
                     <div class="form-group col-xs-2">
                         <label>{% trans 'End date' %}</label>
-                        <input id="_end_date" class="form-control" type="datetime-local" name="_end_date">
+                        <input id="end_date" class="form-control" type="datetime-local" name="end_date"
+                                {% if 'end_date' in  request.GET %} value="{{ request.GET.end_date }}" {% endif %}>
                     </div>
                     <!--end End date -->
                     <!--Search box -->
                     <div class="form-group col-xs-4">
                         <label></label>
-                        <input style="margin-top: 3%" id="search_id" class="form-control" type="search"
+                        <input id="search_box" style="margin-top: 3%" class="form-control" type="search"
                                placeholder="{% trans 'plan_placeholder' %}"
-                               name="_search_box">
+                               name="search_box" {% if 'search_box' in request.GET %}
+                               value="{{ request.GET.search_box }}" {% endif %}>
                     </div>
                     <!--end Search box -->
                     <!--User list-->
@@ -70,6 +73,7 @@
                                 <h5 class="text-center ">{{ plan.created_by }}</h5>
                             </div>
                             <p class="card-text">{{ plan.created_at }}</p>
+                            <p class="card-text font-italic font-weight-bolder">{{ plan.comment }}</p>
                         </div>
                     </div>
                 </a>

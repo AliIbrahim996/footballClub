@@ -146,10 +146,10 @@ def search(request):
             plan = Plans.objects.all()
             if 'manager' in request.GET:
                 plan = plan.filter(created_by=request.GET['manager'])
-            if '_start_date' in request.GET and '_end_date' in request.GET:
-                plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
-            if '_search_box' in request.GET:
-                plan = plan.filter(comment__contains=request.GET['_search_box'])
+            if 'start_date' in request.GET and 'end_date' in request.GET:
+                plan = plan.filter(created_at__gt=request.GET['start_date'], created_at__lt=request.GET['end_date'])
+            if 'search_box' in request.GET:
+                plan = plan.filter(comment__contains=request.GET['search_box'])
             paginator = Paginator(plan, 12)
             page_number = request.GET.get('page')
             context = {'plan_list': paginator.get_page(page_number), 'users': users}

@@ -24,17 +24,15 @@ $(function () {
 
 $(document).ready(function () {
     $("#search_form").submit(function () {
-        if ($("#search_id").val() === "") {
-            $("#search_id").remove();
+        if ($("#search_box").val() === "") {
+            $("#search_box").remove();
         }
         if ($("#manager").val() === "" || $("#manager").val() === "--------") {
             $("#manager").remove();
         }
-        if ($("#_start_date").val() === "") {
-            $("#_start_date").remove();
-        }
-        if ($("#_end_date").val() === "") {
-            $("#_end_date").remove();
+        if ($("#start_date").val() === "" || $("#end_date").val() === "" ) {
+            $("#start_date").remove();
+            $("#end_date").remove();
         }
     });
 });
