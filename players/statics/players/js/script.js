@@ -27,8 +27,8 @@ $(document).ready(function () {
         if ($("#search_id").val() === "") {
             $("#search_id").remove();
         }
-        if ($("#_user").val() === "") {
-            $("#_user").remove();
+        if ($("#manager").val() === "" || $("#manager").val() === "--------") {
+            $("#manager").remove();
         }
         if ($("#_start_date").val() === "") {
             $("#_start_date").remove();

@@ -174,10 +174,14 @@ class PlanForm(forms.ModelForm):
 
 class PlayerSkillsForm(forms.ModelForm):
     value = forms.IntegerField(required=False, widget=Stars, min_value=1, max_value=5)
+    skill_comment = forms.CharField(required=False, widget=forms.TextInput, max_length=255, disabled=True)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['skill'].disabled = True
+        self.fields['skill'].required = False
+        if hasattr(self.instance, 'skill'):
+            self.fields['skill_comment'].initial = self.instance.skill.comment
 
     class Meta:
         model = PlayerSkills
@@ -193,3 +197,4 @@ class PlayerSkillsFormset(PrefilledExtraFormsFormsetMixin, BaseInlineFormSet):
 
     def prefill_extra_form(self, form, instance):
         form.fields['skill'].initial = instance
+        form.fields['skill_comment'].initial = instance.comment

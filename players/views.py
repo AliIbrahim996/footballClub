@@ -33,7 +33,6 @@ def player_list(request):
     :param request: POST request sent from client
     :return: an html page with list of all players in the database.
     """
-    # Todo pagination
     paginator = Paginator(Player.objects.all(), 12)
     page_number = request.GET.get('page')
     context = {'player_list': paginator.get_page(page_number)}
@@ -142,10 +141,11 @@ def search(request):
     """
     if request.method == "GET":
         users = User.objects.all()
+        print(request.GET)
         try:
             plan = Plans.objects.all()
-            if '_user' in request.GET:
-                plan = plan.filter(created_by=request.GET['_user'])
+            if 'manager' in request.GET:
+                plan = plan.filter(created_by=request.GET['manager'])
             if '_start_date' in request.GET and '_end_date' in request.GET:
                 plan = plan.filter(created_at__gt=request.GET['_start_date'], created_at__lt=request.GET['_end_date'])
             if '_search_box' in request.GET:

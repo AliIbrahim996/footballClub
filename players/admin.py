@@ -35,6 +35,7 @@ class CategoryAdmin(admin.ModelAdmin):
     a model class to register Category model with the ModelAdmin
     """
     list_display = ['name']
+    actions = ["silent_delete"]
 
     class Meta:
         """

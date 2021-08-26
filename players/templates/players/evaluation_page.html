@@ -7,8 +7,22 @@
 {% block title %}
 {% endblock %}
 {% block content %}
-    <form method="POST" action="{% url 'save_evaluation' %}">
-        <input type="hidden" name="p_id" value="{{ p_id }}">
-        {% crispy form_set %}
-    </form>
+    <div class="card ">
+        <div class="card-body">
+            <form method="POST" action="{% url 'save_evaluation' %}">
+                <input type="hidden" name="p_id" value="{{ p_id }}">
+                {% crispy form_set %}
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        let input = document.getElementsByClassName("textinput textInput form-control")
+        for (let i = 0; i < input.length; i++) {
+            if (input.item(i).getAttribute('value') != null) {
+                input.item(i).setAttribute('maxLength', input.item(i).getAttribute('value').length)
+            }
+        }
+        document.getElementsByTagName('table').item(0).style.width = "fit-content"
+    </script>
 {% endblock %}

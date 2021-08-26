@@ -9,7 +9,7 @@
 {% block content %}
     <h1 class="player_page_header text-center"> {% trans 'player_info_header' %}</h1>
     <hr class="my-4">
-    <div class=" list_class d-flex justify-content-center">
+    <div class="list_class d-flex justify-content-center">
         {% for player in player_list %}
             <div id="list_page_card" class="card">
                 <img class="card-img-top rounded-circle" height="135rem" src="{{ player.image.url }}"/>
