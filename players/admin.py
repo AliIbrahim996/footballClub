@@ -8,6 +8,11 @@ from django.utils.translation import ugettext_lazy as tran
 from datetime import datetime
 
 
+admin.site.site_header = tran('site_management_header')
+admin.site.site_title = tran('site_management_title')
+admin.site.index_title = tran('site_management_index_title')
+
+
 class PlayerSkillsInlineAdmin(admin.TabularInline):
     model = PlayerSkills
     readonly_fields = ['modified_by', 'modified_at']

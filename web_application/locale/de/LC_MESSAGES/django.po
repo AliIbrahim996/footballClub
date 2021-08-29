@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-25 10:51+0300\n"
+"POT-Creation-Date: 2021-08-29 15:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,22 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\web_application\settings.py:139
+#: .\web_application\settings.py:140
 msgid "English"
 msgstr ""
 
-#: .\web_application\settings.py:140
+#: .\web_application\settings.py:141
 msgid "Germany"
 msgstr ""
 
-#: .\web_application\templates\language_list.html:19
+#: .\web_application\templates\language_list.html:20
 msgid "Go"
 msgstr "Ändern"
-
-#: .\web_application\templates\navbar.html:6
-#: .\web_application\templates\registration\login.html:34
-msgid "login"
-msgstr "Einloggen"
 
 #: .\web_application\templates\registration\logged_out.html:4
 msgid "logout_warning"
@@ -59,3 +54,6 @@ msgstr ""
 "Ihr Konto hat keinen Zugriff auf diese Seite.Um fortzufahren, melden Sie "
 "sich bitte mit einem Konto an, das Zugriff hat."
 
+#: .\web_application\templates\registration\login.html:37
+msgid "login"
+msgstr "Einloggen"

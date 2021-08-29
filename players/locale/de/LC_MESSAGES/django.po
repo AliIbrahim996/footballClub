@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-25 10:51+0300\n"
+"POT-Creation-Date: 2021-08-29 15:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,99 +18,99 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\players\models.py:28 .\players\models.py:78
+#: .\players\models.py:30 .\players\models.py:80
 msgid "name"
 msgstr "Name"
 
-#: .\players\models.py:34
+#: .\players\models.py:36
 msgid "Category_model"
 msgstr "Kategorie"
 
-#: .\players\models.py:48
+#: .\players\models.py:50
 msgid "skill_name"
 msgstr "Fertigkeitsname."
 
-#: .\players\models.py:49 .\players\models.py:135
+#: .\players\models.py:51 .\players\models.py:139
 msgid "comment"
 msgstr "Kommentar"
 
-#: .\players\models.py:50
+#: .\players\models.py:52
 msgid "category"
 msgstr "Kategorie"
 
-#: .\players\models.py:56
+#: .\players\models.py:58
 msgid "Skills_model"
 msgstr "Fähigkeiten."
 
-#: .\players\models.py:79
+#: .\players\models.py:81
 msgid "first_name"
 msgstr "Vorname."
 
-#: .\players\models.py:81
+#: .\players\models.py:83
 msgid "street_house number"
 msgstr "Straße / Hausnummer"
 
-#: .\players\models.py:82
+#: .\players\models.py:84
 msgid "post_code"
 msgstr "Postleitzahl"
 
-#: .\players\models.py:83
+#: .\players\models.py:85
 msgid "city"
 msgstr "Stadt"
 
-#: .\players\models.py:84
+#: .\players\models.py:86
 msgid "society"
 msgstr "Verein"
 
-#: .\players\models.py:86
+#: .\players\models.py:88
 msgid "date_of_birth"
 msgstr "Geburtstag"
 
-#: .\players\models.py:88
+#: .\players\models.py:90
 msgid "phone_number"
 msgstr "Telefonnummer"
 
-#: .\players\models.py:89
+#: .\players\models.py:91
 msgid "email_address"
 msgstr "E-Mail-Addresse"
 
-#: .\players\models.py:91
+#: .\players\models.py:93
 msgid "image"
 msgstr "Fußballspieler Bild"
 
-#: .\players\models.py:98
+#: .\players\models.py:100
 msgid "Player_model"
 msgstr "Spieler"
 
-#: .\players\models.py:111
+#: .\players\models.py:113
 msgid "player"
 msgstr "Spieler-ID"
 
-#: .\players\models.py:112
+#: .\players\models.py:114
 msgid "skill"
 msgstr "Fähigkeits-ID"
 
-#: .\players\models.py:113
+#: .\players\models.py:115
 msgid "value"
 msgstr "Schätzen"
 
-#: .\players\models.py:117
+#: .\players\models.py:121
 msgid "Player_Skills_model"
 msgstr "Fähigkeiten des Spielers"
 
-#: .\players\models.py:132
+#: .\players\models.py:136
 msgid "image_filed"
 msgstr "Fußballspieler Bild"
 
-#: .\players\models.py:133
+#: .\players\models.py:137
 msgid "created_at"
 msgstr "Erstellt bei"
 
-#: .\players\models.py:134
+#: .\players\models.py:138
 msgid "created_by"
 msgstr "Erstellt von"
 
-#: .\players\models.py:138
+#: .\players\models.py:142
 msgid "Plans_model"
 msgstr "Pläne"
 
@@ -118,23 +118,23 @@ msgstr "Pläne"
 msgid "PlanList_title"
 msgstr "Pläne"
 
-#: .\players\templates\plans\plan_lists.html:16
+#: .\players\templates\plans\plan_lists.html:17
 msgid "start_date"
 msgstr "Startdatum"
 
-#: .\players\templates\plans\plan_lists.html:20
+#: .\players\templates\plans\plan_lists.html:24
 msgid "End date"
 msgstr "Enddatum"
 
-#: .\players\templates\plans\plan_lists.html:26
+#: .\players\templates\plans\plan_lists.html:33
 msgid "plan_placeholder"
 msgstr "schreibe irgendwas"
 
-#: .\players\templates\plans\plan_lists.html:31
+#: .\players\templates\plans\plan_lists.html:41
 msgid "choose_user_list"
 msgstr "Benutzer auswählen"
 
-#: .\players\templates\plans\plan_lists.html:40
+#: .\players\templates\plans\plan_lists.html:52
 msgid "search_btn"
 msgstr "Forschung"
 
@@ -142,11 +142,11 @@ msgstr "Forschung"
 msgid "tacktic_title"
 msgstr "Taktik"
 
-#: .\players\templates\plans\tactic.html:33
+#: .\players\templates\plans\tactic.html:42
 msgid "comment_placeholder"
 msgstr "Schreibe einen Kommentar"
 
-#: .\players\templates\plans\tactic.html:40
+#: .\players\templates\plans\tactic.html:50
 msgid "save_image"
 msgstr "Sparen"
 
@@ -162,23 +162,23 @@ msgstr "Ausgang"
 msgid "save_changes"
 msgstr "Bestätigen Sie"
 
-#: .\players\templates\players\navbar.html:10
+#: .\players\templates\players\navbar.html:20
 msgid "player_nav"
 msgstr "Spieler"
 
-#: .\players\templates\players\navbar.html:12
+#: .\players\templates\players\navbar.html:22
 msgid "tactics_nav"
 msgstr "Erstellen Sie eine Taktik"
 
-#: .\players\templates\players\navbar.html:15
+#: .\players\templates\players\navbar.html:25
 msgid "plan_nav"
 msgstr "Pläne"
 
-#: .\players\templates\players\navbar.html:19
+#: .\players\templates\players\navbar.html:29
 msgid "admin_page"
 msgstr "Verwaltung"
 
-#: .\players\templates\players\navbar.html:23
+#: .\players\templates\players\navbar.html:33
 msgid "logout_nav"
 msgstr "Ausloggen"
 
@@ -186,11 +186,11 @@ msgstr "Ausloggen"
 msgid "register_players_title"
 msgstr "Registrieren Sie einen Spieler"
 
-#: .\players\templates\players\player_form.html:15
+#: .\players\templates\players\player_form.html:14
 msgid "register_player_header"
 msgstr "Neuen Spieler registrieren"
 
-#: .\players\templates\players\player_form.html:72
+#: .\players\templates\players\player_form.html:71
 msgid "add_player"
 msgstr "Addieren"
 
@@ -198,19 +198,19 @@ msgstr "Addieren"
 msgid "player_info_title"
 msgstr "Spielerinformationen"
 
-#: .\players\templates\players\player_list.html:12
+#: .\players\templates\players\player_list.html:11
 msgid "player_info_header"
 msgstr "Spielerinformationen"
 
-#: .\players\templates\players\player_list.html:25
+#: .\players\templates\players\player_list.html:27
 msgid "update_player_info"
 msgstr "Update-Informationen"
 
-#: .\players\templates\players\player_list.html:34
+#: .\players\templates\players\player_list.html:36
 msgid "delete_player_message"
 msgstr "Möchten Sie diesen Player wirklich löschen?"
 
-#: .\players\templates\players\player_list.html:34
+#: .\players\templates\players\player_list.html:36
 msgid "delete_player_record"
 msgstr "Löschen"
 
@@ -225,3 +225,15 @@ msgstr "Spielerinformationen aktualisieren"
 #: .\players\templates\players\player_update.html:67
 msgid "save_info_btn"
 msgstr "Sparen"
+
+#: .\players\admin.py:11
+msgid "site_management_header"
+msgstr "Armaturenbrett"
+
+#: .\players\admin.py:12
+msgid "site_management_title"
+msgstr "Manager des Fußballvereins"
+
+#: .\players\admin.py:13
+msgid "site_management_index_title"
+msgstr "Website-Verwaltung"
