@@ -25,6 +25,12 @@
                 input.item(i).setAttribute('maxLength', input.item(i).getAttribute('value').length)
             }
         }
-        document.getElementsByTagName('table').item(0).style.width = "fit-content"
+        document.getElementsByTagName('table').item(0).style.width = "fit-content";
+        let th_arr = document.getElementsByTagName("th");
+        for (let i = 0; i < th_arr.length; i++) {
+            console.log(th_arr[i]);
+            th_arr[i].setAttribute("class", "text-center");
+        }
+
     </script>
 {% endblock %}

@@ -174,9 +174,15 @@ class PlanForm(forms.ModelForm):
 
 class PlayerSkillsForm(forms.ModelForm):
     value = forms.IntegerField(required=False, widget=Stars, min_value=1, max_value=5)
-    skill_comment = forms.CharField(required=False, widget=forms.TextInput, max_length=255, disabled=True)
+    skill_comment = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'class': 'text-center',
+    }), max_length=255, disabled=True)
 
-    modified_by = forms.CharField(required=False, widget=forms.TextInput, max_length=255, disabled=True)
+    modified_by = forms.CharField(required=False, widget=forms.TextInput(
+        attrs={
+            'class': 'text-center',
+        }
+    ), max_length=255, disabled=True)
     modified_at = forms.CharField(required=False, widget=forms.TextInput, max_length=255, disabled=True)
 
     def __init__(self, *args, **kwargs):
