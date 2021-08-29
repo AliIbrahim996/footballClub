@@ -30,7 +30,7 @@ $(document).ready(function () {
         if ($("#manager").val() === "" || $("#manager").val() === "--------") {
             $("#manager").remove();
         }
-        if ($("#start_date").val() === "" || $("#end_date").val() === "" ) {
+        if ($("#start_date").val() === "" || $("#end_date").val() === "") {
             $("#start_date").remove();
             $("#end_date").remove();
         }

@@ -5,10 +5,12 @@ The ModelAdmin class is the representation of a model in the admin interface
 from django.contrib import admin
 from .models import *
 from django.utils.translation import ugettext_lazy as tran
+from datetime import datetime
 
 
 class PlayerSkillsInlineAdmin(admin.TabularInline):
     model = PlayerSkills
+    readonly_fields = ['modified_by', 'modified_at']
 
 
 @admin.register(Player)
@@ -19,6 +21,16 @@ class PlayerAdmin(admin.ModelAdmin):
     """
     list_display = ['name', 'first_name', 'address']
     inlines = (PlayerSkillsInlineAdmin,)
+
+    def save_formset(self, request, form, formset, change):
+        formset.save(commit=False)
+        for form in formset:
+            # set  modified_by to the current user changing the evaluation value of a player
+            form.instance.modified_by = request.user.username
+            # set  modified_at to current date-time
+            date = datetime.now()
+            form.instance.modified_at = date.strftime("%Y-%m-%d %H:%M:%S")
+        formset.save()
 
     class Meta:
         """
@@ -83,7 +95,19 @@ class PlayerSkills(admin.ModelAdmin):
     Documentation for PlayerSkills:
      a model class to register PlayerSkills model with the ModelAdmin
     """
-    list_display = ['player', 'skill', 'value','modified_by']
+    list_display = ['player', 'skill', 'value', 'modified_by']
+    readonly_fields = ['modified_by', 'modified_at']
+
+    def save_model(self, request, obj, form, change):
+        form.save(commit=False)
+        # set  modified_by to the current user changing the evaluation value of a player
+        form.instance.modified_by = request.user.username
+        # set  modified_at to current date-time
+        date = datetime.now()
+        # localized = localize(date)
+        #  shortDate = formatted_datetime = formats.date_format(date, "DATETIME_FORMAT")
+        form.instance.modified_at = date.strftime("%Y-%m-%d %H:%M:%S")
+        form.save()
 
     class Meta:
         """

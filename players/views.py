@@ -1,5 +1,3 @@
-import datetime
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.db.models import TextField
@@ -15,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.forms import modelformset_factory, inlineformset_factory
 from django.core.paginator import Paginator
+from datetime import datetime
 
 
 # Create your views here.
@@ -206,8 +205,8 @@ def save_evaluation(request):
                 # set  modified_by to the current user changing the evaluation value of a player
                 form.instance.modified_by = request.user.username
                 # set  modified_at to current date-time
-                date = django.utils.timezone.now()
-                form.instance.modified_at = django.utils.timezone.localtime(date).strftime("%Y-%m-%d %H:%M:%S")
+                date = datetime.now()
+                form.instance.modified_at = date.strftime("%Y-%m-%d %H:%M:%S")
             form_set.save()
             return redirect('players')
         else:
