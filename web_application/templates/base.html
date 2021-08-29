@@ -1,3 +1,4 @@
+<!-- base template which we will extends in each page-->
 {% load static %}
 {% load i18n %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
@@ -5,17 +6,21 @@
 <!DOCTYPE html >
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
+    <!-- load scripts and css files-->
     {% include 'linking.html' %}
     {% include 'scripts.html' %}
     <title>{% block title %}{% endblock %}</title>
 
 </head>
-
+<!-- set default navbar -->
 {% block nav %}
     {% include 'navbar.html' %}
 {% endblock %}
+<!-- demo block will be extends only in tactic.html page -->
 {% block tacktic %}
 {% endblock %}
+
+<!-- main page block -->
 <main style="margin-top: 1%">
     {% block content %}
         {% block float_button %}
@@ -24,6 +29,7 @@
 
 </main>
 
+<!-- footer block -->
 {% include 'footer.html' %}
 
 </html>

@@ -22,11 +22,19 @@
                 {{ request.session.error }}
             </div>
         {% endif %}
+        <!-- save plan form -->
         <form method="POST" action="{% url 'save' %}" enctype="multipart/form-data">
             {% csrf_token %}
+            <!-- user creating the plane -->
             <input type="hidden" name="created_by" value="{{ user }}">
+            <!-- end user creating the plan -->
+            <!-- current time and date -->
             <input type="hidden" name="created_at" value="{% now "Y-m-d h:i:s" %}">
+            <!-- end current time and date -->
+
+
             <div class="form-row" style="padding-left: 3%;">
+                 <!-- comment div -->
                 <div class="form-group col-md-4">
                     <label>
                         <input class="texting textInput form-control" id="comment" name="comment"
@@ -34,6 +42,7 @@
                                placeholder="{% trans 'comment_placeholder' %}" required>
                     </label>
                 </div>
+                 <!-- end comment div -->
                 <div class="col-md-4">
                     {{ tactic.image | as_crispy_field }}
                 </div>

@@ -62,7 +62,7 @@
         </div>
         <!--end no plans found-->
     {% else %}
-        <!---->
+        <!-- plan list -->
         <div class="list_class d-flex justify-content-center">
             {% for plan in plan_list %}
                 <a id="card_anchor" href="{{ plan.image.url }}">
@@ -78,7 +78,9 @@
                     </div>
                 </a>
             {% endfor %}
+            <!-- end plan list -->
         </div>
+        <!-- Paginator -->
         <ul class="pagination">
             {% if plan_list.has_previous %}
                 <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
@@ -92,9 +94,6 @@
                     &raquo;</a></li>
             {% endif %}
         </ul>
+        <!-- end Paginator -->
     {% endif %}
 {% endblock %}
-
-{% comment %}
-
-{% endcomment %}

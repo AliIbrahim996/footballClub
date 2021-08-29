@@ -1,3 +1,6 @@
+/**
+ * Jquery function to open a new image and show a preview
+*/
 $(".imgAdd").click(function () {
     $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" css="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
 });
@@ -21,6 +24,11 @@ $(function () {
 
     });
 });
+
+
+/**
+ * Jquery function to filter get request sent from search page
+*/
 
 $(document).ready(function () {
     $("#search_form").submit(function () {

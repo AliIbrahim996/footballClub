@@ -2,12 +2,19 @@
     {% load static %}
     {% load i18n %}
     <nav class="navbar navbar-expand-sm  myNav">
+        <!-- logo -->
         <img class="rounded-circle" src="/media/logo.png"
              alt=""/>
+        <!-- end logo -->
+
+        <!-- collapse button -->
         <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse"
                 data-target="#collapsingNavbarSm">
             <i class="fa fa-bars" style="color:#FFFFFF;"></i>
         </button>
+        <!-- end collapse button -->
+
+        <!-- nav-items -->
         <div class="navbar-collapse collapse" id="collapsingNavbarSm">
             <ul class="navbar-nav">
                 <li><a href="{% url 'players' %}">{% trans 'player_nav' %}</a></li>
@@ -28,5 +35,6 @@
                 {% include 'language_list.html' %}
             </ul>
         </div>
+        <!-- end nav-items -->
     </nav>
 {% endblock %}
