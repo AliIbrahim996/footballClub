@@ -1,6 +1,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django.db.models import TextField
+from django.http import JsonResponse
 from django.shortcuts import render
 # from django.http import JsonResponse
 from django.shortcuts import redirect
@@ -226,7 +227,9 @@ def save_plan(request):
         plan_form = PlanForm(request.POST, request.FILES)
         if plan_form.is_valid():
             plan_form.save()
-            return redirect('tactic')
+            data = dict()
+            data['message'] = 'plan saved'
+            return JsonResponse(data, status=200)
         else:
             request.session['error'] = plan_form.errors
             tactic = plan_form
