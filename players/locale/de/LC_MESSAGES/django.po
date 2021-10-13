@@ -148,7 +148,7 @@ msgstr "Schreibe einen Kommentar"
 
 #: .\players\templates\plans\tactic.html:50
 msgid "save_image"
-msgstr "Sparen"
+msgstr "Hochladen"
 
 #: .\players\templates\players\model.html:10
 msgid "confirm_delete"
