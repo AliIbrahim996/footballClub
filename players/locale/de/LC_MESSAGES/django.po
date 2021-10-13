@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 15:08+0300\n"
+"POT-Creation-Date: 2021-10-13 14:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\players\models.py:30 .\players\models.py:80
+#: .\players\models.py:30 .\players\models.py:81
 msgid "name"
 msgstr "Name"
 
@@ -26,92 +26,110 @@ msgstr "Name"
 msgid "Category_model"
 msgstr "Kategorie"
 
-#: .\players\models.py:50
+#: .\players\models.py:37
+msgid "category_plural"
+msgstr "Kategorien"
+
+#: .\players\models.py:51
 msgid "skill_name"
 msgstr "Fertigkeitsname."
 
-#: .\players\models.py:51 .\players\models.py:139
+#: .\players\models.py:52 .\players\models.py:140
 msgid "comment"
 msgstr "Kommentar"
 
-#: .\players\models.py:52
+#: .\players\models.py:53
 msgid "category"
 msgstr "Kategorie"
 
-#: .\players\models.py:58
+#: .\players\models.py:59
 msgid "Skills_model"
-msgstr "Fähigkeiten."
+msgstr "Fähigkeiten"
 
-#: .\players\models.py:81
+
+msgid "skill_plural"
+msgstr "Fähigkeiten"
+
+
+#: .\players\models.py:82
 msgid "first_name"
 msgstr "Vorname."
 
-#: .\players\models.py:83
+#: .\players\models.py:84
 msgid "street_house number"
 msgstr "Straße / Hausnummer"
 
-#: .\players\models.py:84
+#: .\players\models.py:85
 msgid "post_code"
 msgstr "Postleitzahl"
 
-#: .\players\models.py:85
+#: .\players\models.py:86
 msgid "city"
 msgstr "Stadt"
 
-#: .\players\models.py:86
+#: .\players\models.py:87
 msgid "society"
 msgstr "Verein"
 
-#: .\players\models.py:88
+#: .\players\models.py:89
 msgid "date_of_birth"
 msgstr "Geburtstag"
 
-#: .\players\models.py:90
+#: .\players\models.py:91
 msgid "phone_number"
 msgstr "Telefonnummer"
 
-#: .\players\models.py:91
+#: .\players\models.py:92
 msgid "email_address"
 msgstr "E-Mail-Addresse"
 
-#: .\players\models.py:93
+#: .\players\models.py:94
 msgid "image"
 msgstr "Fußballspieler Bild"
 
-#: .\players\models.py:100
+#: .\players\models.py:101
 msgid "Player_model"
 msgstr "Spieler"
 
-#: .\players\models.py:113
+msgid "player_plural"
+msgstr "Spielerinnen"
+
+#: .\players\models.py:114
 msgid "player"
 msgstr "Spieler-ID"
 
-#: .\players\models.py:114
+#: .\players\models.py:115
 msgid "skill"
 msgstr "Fähigkeits-ID"
 
-#: .\players\models.py:115
+#: .\players\models.py:116
 msgid "value"
 msgstr "Schätzen"
 
-#: .\players\models.py:121
+#: .\players\models.py:122
 msgid "Player_Skills_model"
 msgstr "Fähigkeiten des Spielers"
 
-#: .\players\models.py:136
+msgid "Player_Skills_plural"
+msgstr "Fähigkeiten des Spielers"
+
+#: .\players\models.py:137
 msgid "image_filed"
 msgstr "Fußballspieler Bild"
 
-#: .\players\models.py:137
+#: .\players\models.py:138
 msgid "created_at"
 msgstr "Erstellt bei"
 
-#: .\players\models.py:138
+#: .\players\models.py:139
 msgid "created_by"
 msgstr "Erstellt von"
 
-#: .\players\models.py:142
+#: .\players\models.py:143
 msgid "Plans_model"
+msgstr "Pläne"
+
+msgid "plans_plural"
 msgstr "Pläne"
 
 #: .\players\templates\plans\plan_lists.html:4
@@ -226,14 +244,11 @@ msgstr "Spielerinformationen aktualisieren"
 msgid "save_info_btn"
 msgstr "Sparen"
 
-#: .\players\admin.py:11
 msgid "site_management_header"
 msgstr "Armaturenbrett"
 
-#: .\players\admin.py:12
 msgid "site_management_title"
 msgstr "Manager des Fußballvereins"
 
-#: .\players\admin.py:13
 msgid "site_management_index_title"
 msgstr "Website-Verwaltung"

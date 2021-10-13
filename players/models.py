@@ -34,6 +34,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Category_model')
+        verbose_name_plural = ugettext_lazy('category_plural')
 
 
 class Skills(models.Model):
@@ -56,6 +57,7 @@ class Skills(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Skills_model')
+        verbose_name_plural = ugettext_lazy('skill_plural')
 
 
 class Player(models.Model):
@@ -98,7 +100,7 @@ class Player(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Player_model')
-
+        verbose_name_plural = ugettext_lazy('player_plural')
 
 class PlayerSkills(models.Model):
     """
@@ -119,6 +121,7 @@ class PlayerSkills(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Player_Skills_model')
+        verbose_name_plural = ugettext_lazy('Player_Skills_plural')
         unique_together = ['player', 'skill']
 
 
@@ -140,3 +143,4 @@ class Plans(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Plans_model')
+        verbose_name_plural = ugettext_lazy('plans_plural')
