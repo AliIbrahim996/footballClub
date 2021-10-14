@@ -11,32 +11,9 @@
     <div class="card flex justify-content-center">
         <div class="card-body">
             <form id="search_form" method="GET" action="{% url 'search' %}">
-                <!-- Start date -->
                 <div class="form-row">
-                    <div class="form-group col-xs-2">
-                        <label>{% trans 'start_date' %}</label>
-                        <input id="start_date" class="form-control" type="datetime-local" name="start_date"
-                                {% if 'start_date' in  request.GET %} value="{{ request.GET.start_date }}" {% endif %}>
-                    </div>
-                    <!--end Start date -->
-                    <!-- End date -->
-                    <div class="form-group col-xs-2">
-                        <label>{% trans 'End date' %}</label>
-                        <input id="end_date" class="form-control" type="datetime-local" name="end_date"
-                                {% if 'end_date' in  request.GET %} value="{{ request.GET.end_date }}" {% endif %}>
-                    </div>
-                    <!--end End date -->
-                    <!--Search box -->
-                    <div class="form-group col-xs-4">
-                        <label></label>
-                        <input id="search_box" style="margin-top: 3%" class="form-control" type="search"
-                               placeholder="{% trans 'plan_placeholder' %}"
-                               name="search_box" {% if 'search_box' in request.GET %}
-                               value="{{ request.GET.search_box }}" {% endif %}>
-                    </div>
-                    <!--end Search box -->
-                    <!--User list-->
-                    <div class="form-group col-xs-2">
+                    <!--User List-->
+                    <div class="form-group col-md-2">
                         <label for="manager">
                             {% trans 'choose_user_list' %}
                         </label>
@@ -48,8 +25,10 @@
                         </select>
                     </div>
                     <!--End user list-->
+                    <div class="form-group col-md-2" style="margin-top:1.8%">
+                        <input id="submit_btn" class="btn btn-outline-success" type="submit" value="{% trans 'search_btn' %}">
+                    </div>
                 </div>
-                <input id="submit_btn" class="btn btn-outline-success" type="submit" value="{% trans 'search_btn' %}">
             </form>
         </div>
     </div>

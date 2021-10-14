@@ -32,15 +32,15 @@ $(function () {
 
 $(document).ready(function () {
     $("#search_form").submit(function () {
-        if ($("#search_box").val() === "") {
+       /* if ($("#search_box").val() === "") {
             $("#search_box").remove();
-        }
+        }*/
         if ($("#manager").val() === "" || $("#manager").val() === "--------") {
             $("#manager").remove();
         }
-        if ($("#start_date").val() === "" || $("#end_date").val() === "") {
+        /*if ($("#start_date").val() === "" || $("#end_date").val() === "") {
             $("#start_date").remove();
             $("#end_date").remove();
-        }
+        }*/
     });
 });
