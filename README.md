@@ -70,7 +70,5 @@
 
 # Contact
 
-Ali ibrahim - ali.ibrahim.2@lit-co.net Project
-Link: [https://gitlab.scase.local/ali.ibrahim.2/football_club.git](https://gitlab.scase.local/ali.ibrahim.2/football_club.git)
-
+Ali Ibrahim - eng.aliibrahim.96@outlook.com
 &copy;
