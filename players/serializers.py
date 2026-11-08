@@ -1,4 +1,4 @@
-from django.core.validators import RegexValidator
+﻿from django.core.validators import RegexValidator
 from django.utils import timezone
 from rest_framework import serializers
 
@@ -6,6 +6,13 @@ from .models import Category, Player, PlayerSkills, Plans, Skills
 
 letters_only = RegexValidator(r"^[^\W\d_]+(?:[ '-][^\W\d_]+)*$", "Letters only.")
 digits_only = RegexValidator(r"^\+?[0-9 ]*$", "Digits only.")
+
+
+class MediaImageField(serializers.ImageField):
+    """Emit relative /media/... URLs so any frontend origin (or proxy) can resolve them."""
+
+    def to_representation(self, value):
+        return value.url if value else None
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -37,6 +44,7 @@ class PlayerSerializer(serializers.ModelSerializer):
     name = serializers.CharField(validators=[letters_only])
     first_name = serializers.CharField(validators=[letters_only])
     phone_number = serializers.CharField(validators=[digits_only], required=False, allow_blank=True)
+    image = MediaImageField(required=False, allow_null=True)
     average_rating = serializers.SerializerMethodField()
 
     class Meta:
@@ -79,7 +87,10 @@ class EvaluationSerializer(serializers.Serializer):
 
 
 class PlanSerializer(serializers.ModelSerializer):
+    image = MediaImageField()
+
     class Meta:
         model = Plans
         fields = ["id", "title", "image", "board", "created_at", "created_by", "comment"]
         read_only_fields = ["created_at", "created_by"]
+

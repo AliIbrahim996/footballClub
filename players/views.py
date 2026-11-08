@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate
+﻿from django.contrib.auth import authenticate
 from django.db.models import Avg, Count
 from rest_framework import status, viewsets
 from rest_framework.authtoken.models import Token
@@ -52,7 +52,7 @@ def dashboard(request):
         "plans": Plans.objects.count(),
         "evaluations": PlayerSkills.objects.count(),
         "top_players": [
-            {"id": p.id, "name": f"{p.first_name} {p.name}", "image": request.build_absolute_uri(p.image.url) if p.image else None,
+            {"id": p.id, "name": f"{p.first_name} {p.name}", "image": p.image.url if p.image else None,
              "average": round(p.avg, 2)} for p in top
         ],
         "category_averages": [
@@ -109,3 +109,4 @@ class PlanViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=["get"])
     def managers(self, request):
         return Response(sorted(set(Plans.objects.values_list("created_by", flat=True))))
+
