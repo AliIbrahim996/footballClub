@@ -61,3 +61,6 @@ The API localizes its own messages from the `Accept-Language` header (en/de/ar; 
 
 ## Closed beta switch
 `SIGNUPS_OPEN` (default off) gates `/api/auth/register/` (HTTP 403 when closed) so the free trial cannot be started by calling the API directly. The public `POST /api/contact/` form stores `ContactMessage` rows (see Django admin) and e-mails `CONTACT_EMAIL`; it is throttled and has a honeypot field. Keep `NEXT_PUBLIC_SIGNUPS_OPEN` in the frontend build in sync.
+
+## Legal
+Sign-up requires `accept_terms` and stores `terms_accepted_at` / `terms_version` on the club (the version string comes from the frontend's `LEGAL_VERSION`). The legal texts and DPA templates live in the frontend repo (`src/content/legal`, `docs/legal`). Club data is processed as *processor*: keep new fields minimal and never add health data.

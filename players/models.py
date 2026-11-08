@@ -33,6 +33,9 @@ class Club(models.Model):
     # Normalized owner email (lowercase, +tag and Gmail dots removed). Unique, so one free trial per person even
     # under concurrent sign-ups; NULL for clubs created before this existed.
     trial_key = models.CharField(max_length=254, null=True, blank=True, unique=True)
+    # Proof that the owner accepted the terms of use / privacy policy at sign-up (and which version).
+    terms_accepted_at = models.DateTimeField(null=True, blank=True)
+    terms_version = models.CharField(max_length=20, blank=True, default="")
     stripe_customer_id = models.CharField(max_length=255, blank=True, default="")
     stripe_subscription_id = models.CharField(max_length=255, blank=True, default="")
 

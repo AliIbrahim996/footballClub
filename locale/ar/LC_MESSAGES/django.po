@@ -67,3 +67,6 @@ msgstr "هذا الحساب غير مرتبط بأي نادٍ."
 
 msgid "Sign-ups are currently closed. Please contact us."
 msgstr "التسجيل مغلق حالياً. يرجى التواصل معنا."
+
+msgid "You must accept the terms of use and the privacy policy."
+msgstr "يجب قبول شروط الاستخدام وسياسة الخصوصية."

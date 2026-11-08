@@ -67,3 +67,6 @@ msgstr "Dieses Konto ist keinem Verein zugeordnet."
 
 msgid "Sign-ups are currently closed. Please contact us."
 msgstr "Die Registrierung ist derzeit geschlossen. Bitte kontaktieren Sie uns."
+
+msgid "You must accept the terms of use and the privacy policy."
+msgstr "Sie müssen die Nutzungsbedingungen und die Datenschutzerklärung akzeptieren."

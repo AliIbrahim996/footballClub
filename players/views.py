@@ -60,6 +60,13 @@ class RegisterSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
     club_name = serializers.CharField(max_length=255)
+    accept_terms = serializers.BooleanField()
+    terms_version = serializers.CharField(max_length=20, required=False, allow_blank=True)
+
+    def validate_accept_terms(self, value):
+        if not value:
+            raise serializers.ValidationError(_("You must accept the terms of use and the privacy policy."))
+        return value
 
     def validate_username(self, value):
         if User.objects.filter(username__iexact=value).exists():
@@ -94,6 +101,7 @@ def register(request):
             user = User.objects.create_user(d["username"], d["email"], d["password"])
             club = Club.objects.create(
                 name=d["club_name"], status=Club.TRIALING, trial_key=trial_key(d["email"]),
+                terms_accepted_at=timezone.now(), terms_version=d.get("terms_version", ""),
                 trial_ends_at=timezone.now() + timedelta(days=settings.TRIAL_DAYS),
             )
             Membership.objects.create(user=user, club=club, role=Membership.OWNER)

@@ -80,7 +80,7 @@ class TenancyTests(Base):
 
 class RegistrationTrialTests(Base):
     def payload(self, **kw):
-        return {"username": "newcoach", "email": "new@example.com", "password": "S3cure-pass-77", "club_name": "FC New", **kw}
+        return {"username": "newcoach", "email": "new@example.com", "password": "S3cure-pass-77", "club_name": "FC New", "accept_terms": True, "terms_version": "2026-11-09", **kw}
 
     def test_register_creates_club_on_trial_with_starter_skills(self):
         r = self.client.post("/api/auth/register/", self.payload())
@@ -207,7 +207,7 @@ class I18nTests(APITestCase):
     def test_registration_errors_are_localized(self):
         User.objects.create_user("taken", "taken@example.com", "pw-12345-x")
         r = self.client.post(
-            "/api/auth/register/", {"username": "new", "email": "taken@example.com", "password": "S3cure-pass-77", "club_name": "X"},
+            "/api/auth/register/", {"username": "new", "email": "taken@example.com", "password": "S3cure-pass-77", "club_name": "X", "accept_terms": True},
             headers={"Accept-Language": "de"},
         )
         self.assertEqual(r.status_code, 400)
@@ -216,7 +216,7 @@ class I18nTests(APITestCase):
 
 class TrialKeyTests(Base):
     def payload(self, email, username):
-        return {"username": username, "email": email, "password": "S3cure-pass-77", "club_name": "X"}
+        return {"username": username, "email": email, "password": "S3cure-pass-77", "club_name": "X", "accept_terms": True}
 
     def test_aliases_share_one_trial(self):
         self.assertEqual(self.client.post("/api/auth/register/", self.payload("jo.hn@gmail.com", "a1")).status_code, 201)
@@ -319,9 +319,27 @@ class ContactTests(APITestCase):
 
 class SignupSwitchTests(APITestCase):
     def test_closed_signups_refuse_registration_with_a_translated_message(self):
-        payload = {"username": "n", "email": "n@example.com", "password": "S3cure-pass-77", "club_name": "X"}
+        payload = {"username": "n", "email": "n@example.com", "password": "S3cure-pass-77", "club_name": "X", "accept_terms": True}
         with override_settings(SIGNUPS_OPEN=False):
             r = self.client.post("/api/auth/register/", payload, headers={"Accept-Language": "de"})
         self.assertEqual(r.status_code, 403)
         self.assertEqual(r.data["detail"], "Die Registrierung ist derzeit geschlossen. Bitte kontaktieren Sie uns.")
         self.assertFalse(User.objects.filter(username="n").exists())
+
+
+class TermsAcceptanceTests(APITestCase):
+    base = {"username": "t1", "email": "t1@example.com", "password": "S3cure-pass-77", "club_name": "X"}
+
+    def test_registration_requires_accepting_the_terms(self):
+        for extra in ({}, {"accept_terms": False}):
+            r = self.client.post("/api/auth/register/", {**self.base, **extra}, headers={"Accept-Language": "de"})
+            self.assertEqual(r.status_code, 400, extra)
+            self.assertIn("accept_terms", r.data)
+        self.assertFalse(User.objects.filter(username="t1").exists())
+
+    def test_acceptance_and_version_are_recorded(self):
+        r = self.client.post("/api/auth/register/", {**self.base, "accept_terms": True, "terms_version": "2026-11-09"})
+        self.assertEqual(r.status_code, 201)
+        club = Club.objects.get(memberships__user__username="t1")
+        self.assertEqual(club.terms_version, "2026-11-09")
+        self.assertIsNotNone(club.terms_accepted_at)
