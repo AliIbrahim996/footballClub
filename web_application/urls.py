@@ -16,6 +16,7 @@ urlpatterns = [
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema")),
     path("api/", include("players.urls")),
-    # Uploaded media is served by Django itself (small deployment, no separate CDN).
-    re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
 ]
+if settings.MEDIA_IS_LOCAL:
+    # Local storage is served by Django itself (single machine); cloud storage serves its own public URLs.
+    urlpatterns.append(re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}))
