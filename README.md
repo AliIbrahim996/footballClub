@@ -38,7 +38,7 @@ Interactive API docs: http://localhost:8000/api/docs/ · Admin: http://localhost
 | POST/DELETE | `/api/plans/{id}/share/` · GET `/api/shared/{token}/` | public read-only plan link |
 | POST | `/api/billing/checkout/` · `/portal/` · `/webhook/` | Stripe (inert until configured) |
 
-All club data is scoped to the caller's club. An expired trial/subscription returns **HTTP 402**. Messages follow `Accept-Language` (en/de/ar).
+All club data is scoped to the caller's club. An expired trial/subscription returns **HTTP 402**. Messages follow `Accept-Language` (en/ar).
 
 ## Docker Compose (API + PostgreSQL)
 ```bash

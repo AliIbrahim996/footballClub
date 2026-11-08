@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from .access import IsClubMember
 from .models import Club, Membership
 
-LOCALES = {"en", "de", "ar"}
+LOCALES = {"en", "ar"}
 STATUS_MAP = {
     "active": Club.ACTIVE, "trialing": Club.ACTIVE, "past_due": Club.PAST_DUE, "unpaid": Club.PAST_DUE,
     "canceled": Club.CANCELED, "incomplete_expired": Club.CANCELED,

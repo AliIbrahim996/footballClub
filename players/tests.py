@@ -199,7 +199,7 @@ class ShareTests(Base):
 
 class I18nTests(APITestCase):
     def test_login_error_follows_accept_language(self):
-        for lang, expected in [("de", "Benutzername oder Passwort ist falsch."), ("en", "Invalid username or password.")]:
+        for lang, expected in [("ar", "اسم المستخدم أو كلمة المرور غير صحيحة."), ("en", "Invalid username or password.")]:
             r = self.client.post("/api/auth/login/", {"username": "x", "password": "y"}, headers={"Accept-Language": lang})
             self.assertEqual(r.status_code, 400)
             self.assertEqual(r.data["detail"], expected)
@@ -208,10 +208,10 @@ class I18nTests(APITestCase):
         User.objects.create_user("taken", "taken@example.com", "pw-12345-x")
         r = self.client.post(
             "/api/auth/register/", {"username": "new", "email": "taken@example.com", "password": "S3cure-pass-77", "club_name": "X", "accept_terms": True},
-            headers={"Accept-Language": "de"},
+            headers={"Accept-Language": "ar"},
         )
         self.assertEqual(r.status_code, 400)
-        self.assertEqual(str(r.data["email"][0]), "Ein Konto mit dieser E-Mail-Adresse existiert bereits.")
+        self.assertEqual(str(r.data["email"][0]), "يوجد حساب بهذا البريد الإلكتروني بالفعل.")
 
 
 class TrialKeyTests(Base):
@@ -293,7 +293,7 @@ class MediaStorageTests(APITestCase):
 
 class ContactTests(APITestCase):
     def payload(self, **kw):
-        return {"name": "Sam Coach", "email": "sam@example.com", "club": "FC Test", "message": "We would like the full version.", "locale": "de", **kw}
+        return {"name": "Sam Coach", "email": "sam@example.com", "club": "FC Test", "message": "We would like the full version.", "locale": "ar", **kw}
 
     def test_message_is_stored_and_emailed_without_login(self):
         from django.core import mail
@@ -301,7 +301,7 @@ class ContactTests(APITestCase):
         r = self.client.post("/api/contact/", self.payload())
         self.assertEqual(r.status_code, 201)
         saved = ContactMessage.objects.get()
-        self.assertEqual((saved.email, saved.club, saved.locale), ("sam@example.com", "FC Test", "de"))
+        self.assertEqual((saved.email, saved.club, saved.locale), ("sam@example.com", "FC Test", "ar"))
         self.assertEqual(len(mail.outbox), 1)
         self.assertIn("full version", mail.outbox[0].body)
 
@@ -321,9 +321,9 @@ class SignupSwitchTests(APITestCase):
     def test_closed_signups_refuse_registration_with_a_translated_message(self):
         payload = {"username": "n", "email": "n@example.com", "password": "S3cure-pass-77", "club_name": "X", "accept_terms": True}
         with override_settings(SIGNUPS_OPEN=False):
-            r = self.client.post("/api/auth/register/", payload, headers={"Accept-Language": "de"})
+            r = self.client.post("/api/auth/register/", payload, headers={"Accept-Language": "ar"})
         self.assertEqual(r.status_code, 403)
-        self.assertEqual(r.data["detail"], "Die Registrierung ist derzeit geschlossen. Bitte kontaktieren Sie uns.")
+        self.assertEqual(r.data["detail"], "التسجيل مغلق حالياً. يرجى التواصل معنا.")
         self.assertFalse(User.objects.filter(username="n").exists())
 
 
@@ -332,7 +332,7 @@ class TermsAcceptanceTests(APITestCase):
 
     def test_registration_requires_accepting_the_terms(self):
         for extra in ({}, {"accept_terms": False}):
-            r = self.client.post("/api/auth/register/", {**self.base, **extra}, headers={"Accept-Language": "de"})
+            r = self.client.post("/api/auth/register/", {**self.base, **extra}, headers={"Accept-Language": "ar"})
             self.assertEqual(r.status_code, 400, extra)
             self.assertIn("accept_terms", r.data)
         self.assertFalse(User.objects.filter(username="t1").exists())

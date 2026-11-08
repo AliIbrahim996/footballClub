@@ -82,7 +82,7 @@ def invite(request):
         club=club, email=email, role=s.validated_data["role"], token=secrets.token_urlsafe(24), invited_by=request.user,
     )
     lang = (request.headers.get("Accept-Language") or "en")[:2].lower()
-    link = f"{settings.FRONTEND_URL}/{lang if lang in ('en', 'de', 'ar') else 'en'}/join?token={inv.token}"
+    link = f"{settings.FRONTEND_URL}/{lang if lang in ('en', 'ar') else 'en'}/join?token={inv.token}"
     # Best effort: the owner also gets the link back and can share it manually.
     send_mail(
         _("You're invited to %(club)s on Pitchside") % {"club": club.name},
