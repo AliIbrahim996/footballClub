@@ -51,6 +51,24 @@ class Club(models.Model):
         return bool(self.current_period_end and self.current_period_end > now)
 
 
+class ContactMessage(models.Model):
+    """A "contact us" enquiry from the public site (e.g. interest in the full version)."""
+
+    name = models.CharField(max_length=120)
+    email = models.EmailField()
+    club = models.CharField(max_length=255, blank=True, default="")
+    message = models.TextField(max_length=4000)
+    locale = models.CharField(max_length=8, blank=True, default="")
+    created_at = models.DateTimeField(default=django.utils.timezone.now)
+    handled = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.name} <{self.email}>"
+
+
 class Membership(models.Model):
     OWNER, COACH, VIEWER = "owner", "coach", "viewer"
     ROLE_CHOICES = [(r, r) for r in (OWNER, COACH, VIEWER)]

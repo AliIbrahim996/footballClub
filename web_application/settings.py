@@ -144,7 +144,7 @@ REST_FRAMEWORK = {
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
-    "DEFAULT_THROTTLE_RATES": {"login": "30/min", "register": "10/hour"},
+    "DEFAULT_THROTTLE_RATES": {"login": "30/min", "register": "10/hour", "contact": "5/hour"},
     # Number of trusted reverse proxies in front of Django (the Next.js server counts as one; add your load balancer).
     # DRF then reads the real client IP from X-Forwarded-For instead of throttling everyone as one address.
     "NUM_PROXIES": int(os.environ.get("NUM_PROXIES", "1")),
@@ -160,6 +160,10 @@ SPECTACULAR_SETTINGS = {
 }
 
 # --- Billing / SaaS -------------------------------------------------------------
+# Self-service sign-up (and the free trial) is closed until you opt in; the public "contact us" form is the way in meanwhile.
+# Keep NEXT_PUBLIC_SIGNUPS_OPEN in the frontend build in sync with this.
+SIGNUPS_OPEN = env_bool("SIGNUPS_OPEN", False)
+CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "")  # where "contact us" messages are e-mailed (they are always stored)
 TRIAL_DAYS = int(os.environ.get("TRIAL_DAYS", "14"))
 FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:3000").rstrip("/")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")

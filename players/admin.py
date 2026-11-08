@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils import timezone
 
-from .models import Category, Club, Invitation, Membership, Player, PlayerSkills, Plans, Skills
+from .models import Category, Club, ContactMessage, Invitation, Membership, Player, PlayerSkills, Plans, Skills
 
 admin.site.site_header = "Football Club management"
 admin.site.site_title = "Football Club"
@@ -71,3 +71,10 @@ class MembershipAdmin(admin.ModelAdmin):
 @admin.register(Invitation)
 class InvitationAdmin(admin.ModelAdmin):
     list_display = ["email", "club", "role", "created_at", "accepted_at"]
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "club", "created_at", "handled"]
+    list_filter = ["handled"]
+    search_fields = ["name", "email", "club", "message"]
+    readonly_fields = ["created_at"]

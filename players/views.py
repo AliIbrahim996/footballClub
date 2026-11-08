@@ -84,6 +84,8 @@ class RegisterSerializer(serializers.Serializer):
 @throttle_classes([ScopedRateThrottle])
 def register(request):
     """Create a user, their club (on a free trial) and a starter skill set; sign them in."""
+    if not settings.SIGNUPS_OPEN:
+        return Response({"detail": _("Sign-ups are currently closed. Please contact us.")}, status=status.HTTP_403_FORBIDDEN)
     s = RegisterSerializer(data=request.data)
     s.is_valid(raise_exception=True)
     d = s.validated_data

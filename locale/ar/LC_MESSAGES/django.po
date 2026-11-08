@@ -64,3 +64,6 @@ msgstr "انضم إلى %(club)s: %(link)s"
 
 msgid "This account is not linked to a club."
 msgstr "هذا الحساب غير مرتبط بأي نادٍ."
+
+msgid "Sign-ups are currently closed. Please contact us."
+msgstr "التسجيل مغلق حالياً. يرجى التواصل معنا."

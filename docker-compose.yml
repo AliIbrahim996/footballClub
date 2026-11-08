@@ -50,6 +50,9 @@ services:
       SEED_DEMO_DATA: ${SEED_DEMO_DATA:-0}
       SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
       FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      # Self-service sign-up is closed by default; the public contact form still works (messages are stored, and e-mailed to CONTACT_EMAIL).
+      SIGNUPS_OPEN: ${SIGNUPS_OPEN:-0}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-}
       # Billing (optional): leave empty to run without Stripe.
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
       STRIPE_PRICE_ID: ${STRIPE_PRICE_ID:-}

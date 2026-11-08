@@ -58,3 +58,6 @@ The API localizes its own messages from the `Accept-Language` header (en/de/ar; 
 - `settings.py` is safe by default: `DJANGO_DEBUG` off, `DJANGO_SECRET_KEY` and `POSTGRES_HOST` required (SQLite only with `DJANGO_DEBUG=1`).
 - **Tests never touch real services.** `manage.py test` switches to `settings_test.py`, which clears all production variables, uses in-memory SQLite (or a local `TEST_POSTGRES_*` database whose name starts with `test`), local media, locmem email and no Stripe. Do not weaken this; new external integrations must be disabled there too.
 - Media storage is pluggable (`MEDIA_STORAGE=local|s3|gcs|azure`, `web_application/storage.py`); add providers there, not in views.
+
+## Closed beta switch
+`SIGNUPS_OPEN` (default off) gates `/api/auth/register/` (HTTP 403 when closed) so the free trial cannot be started by calling the API directly. The public `POST /api/contact/` form stores `ContactMessage` rows (see Django admin) and e-mails `CONTACT_EMAIL`; it is throttled and has a honeypot field. Keep `NEXT_PUBLIC_SIGNUPS_OPEN` in the frontend build in sync.

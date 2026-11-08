@@ -13,7 +13,7 @@ import tempfile
 
 _PRODUCTION_VARS = (
     "POSTGRES_", "STRIPE_", "EMAIL_", "MEDIA_STORAGE", "MEDIA_PUBLIC", "MEDIA_ROOT", "AWS_", "GS_", "GOOGLE_APPLICATION",
-    "AZURE_", "DJANGO_SECRET_KEY", "DJANGO_ALLOWED_HOSTS", "FRONTEND_URL",
+    "AZURE_", "SIGNUPS_", "CONTACT_", "DJANGO_SECRET_KEY", "DJANGO_ALLOWED_HOSTS", "FRONTEND_URL",
 )
 for _name in list(os.environ):
     if _name.startswith(_PRODUCTION_VARS):
@@ -53,6 +53,8 @@ STORAGES = {  # noqa: F405
 MEDIA_ROOT = tempfile.mkdtemp(prefix="pitchside-test-media-")
 MEDIA_IS_LOCAL = True
 STRIPE_SECRET_KEY = STRIPE_PRICE_ID = STRIPE_WEBHOOK_SECRET = ""
+SIGNUPS_OPEN = True
+CONTACT_EMAIL = "owner@example.test"
 EMAIL_BACKEND = "django.core.mail.backends.locmem.EmailBackend"
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]  # fast; never used outside tests
-REST_FRAMEWORK = {**REST_FRAMEWORK, "DEFAULT_THROTTLE_RATES": {"login": "1000/min", "register": "1000/min"}}  # noqa: F405
+REST_FRAMEWORK = {**REST_FRAMEWORK, "DEFAULT_THROTTLE_RATES": {"login": "1000/min", "register": "1000/min", "contact": "1000/min"}}  # noqa: F405

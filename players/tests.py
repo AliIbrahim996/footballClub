@@ -289,3 +289,39 @@ class MediaStorageTests(APITestCase):
         from django.utils.module_loading import import_string
         for path in ("storages.backends.s3.S3Storage", "storages.backends.gcloud.GoogleCloudStorage", "storages.backends.azure_storage.AzureStorage"):
             import_string(path)
+
+
+class ContactTests(APITestCase):
+    def payload(self, **kw):
+        return {"name": "Sam Coach", "email": "sam@example.com", "club": "FC Test", "message": "We would like the full version.", "locale": "de", **kw}
+
+    def test_message_is_stored_and_emailed_without_login(self):
+        from django.core import mail
+        from .models import ContactMessage
+        r = self.client.post("/api/contact/", self.payload())
+        self.assertEqual(r.status_code, 201)
+        saved = ContactMessage.objects.get()
+        self.assertEqual((saved.email, saved.club, saved.locale), ("sam@example.com", "FC Test", "de"))
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertIn("full version", mail.outbox[0].body)
+
+    def test_honeypot_stores_nothing(self):
+        from .models import ContactMessage
+        r = self.client.post("/api/contact/", self.payload(website="http://spam.example"))
+        self.assertEqual(r.status_code, 201)
+        self.assertEqual(ContactMessage.objects.count(), 0)
+
+    def test_validation(self):
+        self.assertEqual(self.client.post("/api/contact/", self.payload(email="not-an-email")).status_code, 400)
+        self.assertEqual(self.client.post("/api/contact/", self.payload(message="")).status_code, 400)
+        self.assertEqual(self.client.post("/api/contact/", self.payload(message="x" * 5000)).status_code, 400)
+
+
+class SignupSwitchTests(APITestCase):
+    def test_closed_signups_refuse_registration_with_a_translated_message(self):
+        payload = {"username": "n", "email": "n@example.com", "password": "S3cure-pass-77", "club_name": "X"}
+        with override_settings(SIGNUPS_OPEN=False):
+            r = self.client.post("/api/auth/register/", payload, headers={"Accept-Language": "de"})
+        self.assertEqual(r.status_code, 403)
+        self.assertEqual(r.data["detail"], "Die Registrierung ist derzeit geschlossen. Bitte kontaktieren Sie uns.")
+        self.assertFalse(User.objects.filter(username="n").exists())

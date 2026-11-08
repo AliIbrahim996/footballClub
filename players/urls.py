@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from . import billing, team, views
+from . import billing, contact, team, views
 
 router = DefaultRouter()
 router.register("players", views.PlayerViewSet, basename="player")
@@ -15,6 +15,7 @@ urlpatterns = [
     path("auth/logout/", views.logout),
     path("auth/me/", views.me),
     path("dashboard/", views.dashboard),
+    path("contact/", contact.contact),
     path("auth/invite/", team.invite_info),
     path("auth/accept-invite/", team.accept_invite),
     path("team/", team.team),

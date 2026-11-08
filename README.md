@@ -26,7 +26,8 @@ Interactive API docs: http://localhost:8000/api/docs/ · Admin: http://localhost
 ## Main endpoints (`Authorization: Token <key>`)
 | Method | Path | Purpose |
 |---|---|---|
-| POST | `/api/auth/register/` | create club (14-day trial) + owner, returns token |
+| POST | `/api/contact/` | public "contact us" form (stored + e-mailed); the way in while sign-ups are closed |
+| POST | `/api/auth/register/` | create club (14-day trial) + owner, returns token; **403 unless `SIGNUPS_OPEN=1`** |
 | POST | `/api/auth/login/` · `/api/auth/accept-invite/` | sign in · join a club by invite |
 | GET | `/api/auth/me/` | user + club status (trial / active / past_due / canceled) |
 | GET | `/api/dashboard/` | totals, top players, category averages |
