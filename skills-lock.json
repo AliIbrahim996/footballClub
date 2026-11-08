@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "api-designer": {
+      "source": "Jeffallan/claude-skills",
+      "sourceType": "github",
+      "skillPath": "skills/api-designer/SKILL.md",
+      "computedHash": "b9d0ef61ede97ff8b78bed7c97c98fd4461c39cfa80d544813e6790c18db1fc3"
+    },
+    "django-admin-forms": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-admin-forms/SKILL.md",
+      "computedHash": "b8e1d7c039ab50e15eed544f3c0484fc1a0724975c5c069c989af00662b3e69b"
+    },
+    "django-core-architecture": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-core-architecture/SKILL.md",
+      "computedHash": "ffeab33db1563b8fe4d01bd5b814e107ef3893874cbb30a7b76c82b3b53de893"
+    },
+    "django-migrations": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-migrations/SKILL.md",
+      "computedHash": "6622f9471b3a3bfa66182b33c403b1cf8f980003429eae4bb1e5c32712f2db38"
+    },
+    "django-models-orm": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-models-orm/SKILL.md",
+      "computedHash": "c43185835ea69ceb7ba9ea5e491ca2857d9ccea22744b53e374b4173b058c8a2"
+    },
+    "django-production-ops": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-production-ops/SKILL.md",
+      "computedHash": "f7afded3a1b80bcbc9577f0a92a4aba778eceb2c5707c8dbc37c6c25d33b762d"
+    },
+    "django-testing-layout": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-testing-layout/SKILL.md",
+      "computedHash": "344636b03715ea0261ccc3e8d805989da9c1d23e335f371b68ea3d136578b2f6"
+    },
+    "django-views-apis": {
+      "source": "MohamedMandour10/agentic-django",
+      "sourceType": "github",
+      "skillPath": "skills/django-views-apis/SKILL.md",
+      "computedHash": "8fdd6cd1f65c21e27d26504a70d29e1fce6ea2727f34f830b2ae4786d1c49e96"
+    }
+  }
+}
