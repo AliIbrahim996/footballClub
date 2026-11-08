@@ -62,3 +62,5 @@ msgstr "تمت دعوتك إلى %(club)s على Pitchside"
 msgid "Join %(club)s: %(link)s"
 msgstr "انضم إلى %(club)s: %(link)s"
 
+msgid "This account is not linked to a club."
+msgstr "هذا الحساب غير مرتبط بأي نادٍ."

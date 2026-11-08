@@ -1,8 +1,13 @@
 name: Deploy API to Cloud Run
-# UNTESTED TEMPLATE. Manual trigger. Uses Workload Identity Federation (no JSON keys stored in GitHub).
-# One-time setup is described in the frontend repo's docs/DEPLOY.md. Required repository variables:
-#   GCP_PROJECT, GCP_REGION, GCP_ARTIFACT_REPO, GCP_WIF_PROVIDER, GCP_DEPLOY_SA, GS_BUCKET_NAME, FRONTEND_URL, API_HOST
-# Secrets (in Secret Manager, referenced below): django-secret-key, postgres-password, stripe-secret-key, stripe-webhook-secret
+# UNTESTED TEMPLATE. Manual trigger. Contains no secrets and no secret values:
+#   * authentication is Workload Identity Federation (short-lived, no JSON key stored in GitHub);
+#   * configuration comes from repository *variables* (non-sensitive: hosts, names, bucket);
+#   * sensitive values live only in Google Secret Manager and are mounted by reference below.
+# One-time setup is described in the frontend repo's docs/DEPLOY.md.
+#
+# Repository variables: GCP_PROJECT, GCP_REGION, GCP_ARTIFACT_REPO, GCP_WIF_PROVIDER, GCP_DEPLOY_SA,
+#   API_HOST, FRONTEND_URL, POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, GS_BUCKET_NAME
+# Secret Manager secrets: django-secret-key, postgres-password, stripe-secret-key, stripe-webhook-secret
 on:
   workflow_dispatch:
 
@@ -36,8 +41,13 @@ jobs:
             DJANGO_DEBUG=0
             DJANGO_ALLOWED_HOSTS=${{ vars.API_HOST }}
             FRONTEND_URL=${{ vars.FRONTEND_URL }}
-            GS_BUCKET_NAME=${{ vars.GS_BUCKET_NAME }}
+            POSTGRES_HOST=${{ vars.POSTGRES_HOST }}
+            POSTGRES_DB=${{ vars.POSTGRES_DB }}
+            POSTGRES_USER=${{ vars.POSTGRES_USER }}
             POSTGRES_SSLMODE=require
+            MEDIA_STORAGE=gcs
+            GS_BUCKET_NAME=${{ vars.GS_BUCKET_NAME }}
+            NUM_PROXIES=2
           secrets: |
             DJANGO_SECRET_KEY=django-secret-key:latest
             POSTGRES_PASSWORD=postgres-password:latest

@@ -4,6 +4,9 @@ on:
     branches: [master, main]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -11,17 +14,20 @@ jobs:
       postgres:
         image: postgres:17-alpine
         env:
-          POSTGRES_DB: footballclub
+          POSTGRES_DB: test_footballclub
           POSTGRES_USER: footballclub
-          POSTGRES_PASSWORD: ci
+          # Throwaway container that only lives for this job: no password, so no credential to store or leak.
+          POSTGRES_HOST_AUTH_METHOD: trust
         ports: ["5432:5432"]
         options: >-
           --health-cmd "pg_isready -U footballclub"
           --health-interval 5s
           --health-retries 10
     env:
-      POSTGRES_HOST: localhost
-      POSTGRES_PASSWORD: ci
+      # Tests run on settings_test, which ignores every production variable and only accepts a local test database.
+      TEST_POSTGRES_HOST: localhost
+      TEST_POSTGRES_DB: test_footballclub
+      TEST_POSTGRES_USER: footballclub
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -32,7 +38,11 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python manage.py compilemessages
       - run: python manage.py check
+        env:
+          DJANGO_DEBUG: "1"
       - run: python manage.py makemigrations --check --dry-run
+        env:
+          DJANGO_DEBUG: "1"
       - run: python manage.py test
 
   docker:

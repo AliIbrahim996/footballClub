@@ -14,10 +14,13 @@ Django REST API behind **Pitchside**: multi-tenant clubs, players, skill evaluat
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
+set DJANGO_DEBUG=1              # local development only: SQLite + throw-away secret key (PowerShell: $env:DJANGO_DEBUG="1")
 python manage.py migrate
-python manage.py seed --admin   # demo club + admin / admin12345 (dev only)
+python manage.py seed --admin   # fictional demo club; prints a generated admin password once (or set SEED_ADMIN_PASSWORD)
 python manage.py runserver
+python manage.py test           # always runs on isolated settings: in-memory DB, no Stripe/mail/bucket
 ```
+Without `DJANGO_DEBUG=1` the app refuses to start unless `DJANGO_SECRET_KEY` and `POSTGRES_HOST` are configured.
 Interactive API docs: http://localhost:8000/api/docs/ · Admin: http://localhost:8000/admin/
 
 ## Main endpoints (`Authorization: Token <key>`)
@@ -40,8 +43,20 @@ All club data is scoped to the caller's club. An expired trial/subscription retu
 ```bash
 docker compose up --build
 ```
-Copy `.env.example` to `.env` and set real secrets for anything beyond local dev. Demo data (admin / admin12345) is seeded when `SEED_DEMO_DATA=1` — disable it in production.
+Copy `.env.example` to `.env` and fill in `DJANGO_SECRET_KEY` and `POSTGRES_PASSWORD`; compose refuses to start without them (no default credentials are shipped). Demo data is off by default (`SEED_DEMO_DATA=1` enables it; the admin password is `SEED_ADMIN_PASSWORD` or generated and printed once).
 Standalone image: `docker build -t footballclub-api .`. For Google Cloud Run (Cloud Storage uploads, `POSTGRES_SSLMODE`), Stripe and email setup see `docs/DEPLOY.md` in the frontend repo.
+
+## Media storage
+Uploads go to local disk by default. Set `MEDIA_STORAGE` to switch without code changes:
+
+| `MEDIA_STORAGE` | Needs | Notes |
+|---|---|---|
+| `local` | `MEDIA_ROOT` | served by Django; use a volume |
+| `s3` | `AWS_STORAGE_BUCKET_NAME` (+ optional region / `AWS_S3_ENDPOINT_URL` for R2, MinIO, Spaces) | AWS IAM role or standard AWS variables |
+| `gcs` | `GS_BUCKET_NAME` | Google Cloud service account (Cloud Run default identity) |
+| `azure` | `AZURE_ACCOUNT_NAME`, `AZURE_CONTAINER` (+ key or connection string) | Azure Blob Storage |
+
+`MEDIA_PUBLIC=0` uses private buckets with signed URLs. Details in `web_application/storage.py`.
 
 ## What changed in v2
 Server-rendered templates and the embedded iframe were removed; Django is now API-only, packages were upgraded (Django 6.1, DRF 3.18), the app became multi-tenant with billing, and the tactics board is rebuilt natively in the frontend.

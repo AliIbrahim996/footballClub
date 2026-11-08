@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
-from django.db import transaction
+from django.db import IntegrityError, transaction
 from django.db.models import Avg, Count
 from django.utils import timezone
 from django.utils.translation import gettext as _
@@ -18,7 +18,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 
-from .access import ClubScopedMixin, IsClubMember, seed_default_skills
+from .access import ClubScopedMixin, IsClubMember, get_membership, seed_default_skills, trial_key
 from .models import Category, Club, Membership, Player, PlayerSkills, Plans, Skills
 from .serializers import (
     CategorySerializer, EvaluationSerializer, PlanSerializer, PlayerDetailSerializer,
@@ -45,6 +45,9 @@ def login(request):
     user = authenticate(username=request.data.get("username"), password=request.data.get("password"))
     if user is None:
         return Response({"detail": _("Invalid username or password.")}, status=status.HTTP_400_BAD_REQUEST)
+    if get_membership(user) is None:
+        # e.g. a Django-admin superuser: valid credentials, but nothing in the app to show.
+        return Response({"detail": _("This account is not linked to a club.")}, status=status.HTTP_403_FORBIDDEN)
     token, _created = Token.objects.get_or_create(user=user)
     return Response({"token": token.key, "username": user.username})
 
@@ -64,7 +67,7 @@ class RegisterSerializer(serializers.Serializer):
         return value
 
     def validate_email(self, value):
-        if User.objects.filter(email__iexact=value).exists():
+        if User.objects.filter(email__iexact=value).exists() or Club.objects.filter(trial_key=trial_key(value)).exists():
             raise serializers.ValidationError(_("An account with this email already exists."))
         return value
 
@@ -84,14 +87,18 @@ def register(request):
     s = RegisterSerializer(data=request.data)
     s.is_valid(raise_exception=True)
     d = s.validated_data
-    with transaction.atomic():
-        user = User.objects.create_user(d["username"], d["email"], d["password"])
-        club = Club.objects.create(
-            name=d["club_name"], status=Club.TRIALING, trial_ends_at=timezone.now() + timedelta(days=settings.TRIAL_DAYS),
-        )
-        Membership.objects.create(user=user, club=club, role=Membership.OWNER)
-        seed_default_skills(club)
-        token = Token.objects.create(user=user)
+    try:
+        with transaction.atomic():
+            user = User.objects.create_user(d["username"], d["email"], d["password"])
+            club = Club.objects.create(
+                name=d["club_name"], status=Club.TRIALING, trial_key=trial_key(d["email"]),
+                trial_ends_at=timezone.now() + timedelta(days=settings.TRIAL_DAYS),
+            )
+            Membership.objects.create(user=user, club=club, role=Membership.OWNER)
+            seed_default_skills(club)
+            token = Token.objects.create(user=user)
+    except IntegrityError:  # a concurrent sign-up with the same email/trial key won the race
+        raise serializers.ValidationError({"email": [_("An account with this email already exists.")]})
     return Response({"token": token.key, "username": user.username}, status=status.HTTP_201_CREATED)
 
 

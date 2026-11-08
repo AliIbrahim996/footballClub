@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN chmod +x docker-entrypoint.sh \
     && python manage.py compilemessages \
-    && DJANGO_SECRET_KEY=build DJANGO_DEBUG=0 python manage.py collectstatic --noinput
+    && DJANGO_SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(50))')" DJANGO_ALLOW_SQLITE=1 python manage.py collectstatic --noinput
 
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=3s --retries=5 \

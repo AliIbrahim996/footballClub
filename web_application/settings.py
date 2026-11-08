@@ -4,7 +4,12 @@ All deployment-specific values come from environment variables so the same
 image runs locally and in Docker Compose.
 """
 import os
+import secrets
 from pathlib import Path
+
+from django.core.exceptions import ImproperlyConfigured
+
+from .storage import build_media_storage, is_local
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -17,10 +22,13 @@ def env_list(name: str, default: str = "") -> list[str]:
     return [v.strip() for v in os.environ.get(name, default).split(",") if v.strip()]
 
 
-DEBUG = env_bool("DJANGO_DEBUG", True)
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-insecure-key-change-me")
-if not DEBUG and SECRET_KEY.startswith("dev-only"):
-    raise RuntimeError("Set DJANGO_SECRET_KEY when DJANGO_DEBUG is off.")
+# Safe by default: debug is OFF unless explicitly enabled (DJANGO_DEBUG=1 for local development).
+DEBUG = env_bool("DJANGO_DEBUG", False)
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
+if not SECRET_KEY:
+    if not DEBUG:
+        raise ImproperlyConfigured("Set DJANGO_SECRET_KEY (DJANGO_DEBUG is off).")
+    SECRET_KEY = secrets.token_urlsafe(50)  # development only: random per process, so sessions reset on restart
 
 ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,backend")
 CORS_ALLOWED_ORIGINS = env_list("CORS_ALLOWED_ORIGINS", "http://localhost:3000")
@@ -73,8 +81,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "web_application.wsgi.application"
 
-# PostgreSQL when POSTGRES_HOST is set (Docker / production); SQLite fallback for quick local runs.
+# PostgreSQL when POSTGRES_HOST is set (Docker / production). SQLite is only for local development
+# (DJANGO_DEBUG=1) or when explicitly allowed; a production process without a database host refuses to start
+# instead of silently using throw-away local storage.
 if os.environ.get("POSTGRES_HOST"):
+    if not os.environ.get("POSTGRES_PASSWORD"):
+        raise ImproperlyConfigured("POSTGRES_PASSWORD must be set (and non-empty) when POSTGRES_HOST is set.")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -87,6 +99,8 @@ if os.environ.get("POSTGRES_HOST"):
         }
     }
 else:
+    if not (DEBUG or env_bool("DJANGO_ALLOW_SQLITE", False)):
+        raise ImproperlyConfigured("POSTGRES_HOST is not set. Configure PostgreSQL, or set DJANGO_DEBUG=1 for local SQLite.")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -115,17 +129,12 @@ MEDIA_ROOT = Path(os.environ.get("MEDIA_ROOT", BASE_DIR / "media"))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Uploaded images: local disk by default; Google Cloud Storage when GS_BUCKET_NAME is set (needed on Cloud Run,
-# whose filesystem is ephemeral). Credentials come from the runtime service account.
+# Uploaded images: local disk, or S3 / Google Cloud Storage / Azure Blob chosen by MEDIA_STORAGE (see storage.py).
 STORAGES = {
-    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "default": build_media_storage(os.environ),
     "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
 }
-if os.environ.get("GS_BUCKET_NAME"):
-    STORAGES["default"] = {
-        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
-        "OPTIONS": {"bucket_name": os.environ["GS_BUCKET_NAME"], "default_acl": None, "querystring_auth": False},
-    }
+MEDIA_IS_LOCAL = is_local(STORAGES["default"])
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.TokenAuthentication"],
@@ -136,6 +145,9 @@ REST_FRAMEWORK = {
         "rest_framework.filters.OrderingFilter",
     ],
     "DEFAULT_THROTTLE_RATES": {"login": "30/min", "register": "10/hour"},
+    # Number of trusted reverse proxies in front of Django (the Next.js server counts as one; add your load balancer).
+    # DRF then reads the real client IP from X-Forwarded-For instead of throttling everyone as one address.
+    "NUM_PROXIES": int(os.environ.get("NUM_PROXIES", "1")),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 12,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",

@@ -6,6 +6,9 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    if len(sys.argv) > 1 and sys.argv[1] == 'test':
+        # Tests always run on isolated settings (never the real database, Stripe, mail or bucket).
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'web_application.settings_test'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'web_application.settings')
     try:
         from django.core.management import execute_from_command_line

@@ -1,4 +1,4 @@
-﻿# AGENTS.md â€” footballClub backend
+# AGENTS.md â€” footballClub backend
 
 Headless Django REST API for a football club management app (players, skill
 evaluations, tactical plans). The UI lives in the sibling repo
@@ -22,9 +22,10 @@ evaluations, tactical plans). The UI lives in the sibling repo
 python -m venv .venv && .venv/Scripts/activate   # Windows; use bin/activate elsewhere
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py seed --admin      # demo data + admin/admin12345 (dev only)
+export DJANGO_DEBUG=1                # local dev only (PowerShell: $env:DJANGO_DEBUG="1"); production refuses to start without secrets
+python manage.py seed --admin      # fictional demo club; admin password from SEED_ADMIN_PASSWORD or printed once
 python manage.py runserver         # http://localhost:8000/api/docs/
-python manage.py test              # must pass before finishing a task
+python manage.py test              # must pass before finishing a task; auto-uses web_application.settings_test
 ```
 
 ## Conventions
@@ -51,3 +52,9 @@ The API localizes its own messages from the `Accept-Language` header (en/de/ar; 
 - Access: `HasEntitlement` allows an active subscription or an unexpired trial (one trial per club, created at `/api/auth/register/`, never restarted); otherwise HTTP 402. Viewers are read-only; only owners manage team/billing.
 - Billing: Stripe Checkout + webhook in `players/billing.py` (inert until `STRIPE_*` env vars are set). Team invites and public plan sharing live in `players/team.py`; seats capped by `MAX_SEATS`.
 - Storage: set `GS_BUCKET_NAME` to use Google Cloud Storage for uploads (required on Cloud Run).
+
+## Secrets, environments and tests (rules)
+- **No credentials in the repo**: not in code, compose files, workflows or docs. Config comes from env vars; deploy secrets are referenced from the cloud secret manager, CI uses throwaway containers without passwords.
+- `settings.py` is safe by default: `DJANGO_DEBUG` off, `DJANGO_SECRET_KEY` and `POSTGRES_HOST` required (SQLite only with `DJANGO_DEBUG=1`).
+- **Tests never touch real services.** `manage.py test` switches to `settings_test.py`, which clears all production variables, uses in-memory SQLite (or a local `TEST_POSTGRES_*` database whose name starts with `test`), local media, locmem email and no Stripe. Do not weaken this; new external integrations must be disabled there too.
+- Media storage is pluggable (`MEDIA_STORAGE=local|s3|gcs|azure`, `web_application/storage.py`); add providers there, not in views.

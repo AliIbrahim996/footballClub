@@ -30,6 +30,9 @@ class Club(models.Model):
     status = models.CharField(max_length=16, choices=STATUS_CHOICES, default=TRIALING)
     trial_ends_at = models.DateTimeField(null=True, blank=True)
     current_period_end = models.DateTimeField(null=True, blank=True)
+    # Normalized owner email (lowercase, +tag and Gmail dots removed). Unique, so one free trial per person even
+    # under concurrent sign-ups; NULL for clubs created before this existed.
+    trial_key = models.CharField(max_length=254, null=True, blank=True, unique=True)
     stripe_customer_id = models.CharField(max_length=255, blank=True, default="")
     stripe_subscription_id = models.CharField(max_length=255, blank=True, default="")
 

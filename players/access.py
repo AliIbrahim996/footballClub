@@ -12,6 +12,15 @@ class SubscriptionRequired(APIException):
     default_code = "subscription_required"
 
 
+def trial_key(email: str) -> str:
+    """Canonical form of an email for the one-free-trial rule (alias tricks map to the same key)."""
+    local, _sep, domain = email.strip().lower().partition("@")
+    local = local.split("+", 1)[0]
+    if domain in ("gmail.com", "googlemail.com"):
+        local, domain = local.replace(".", ""), "gmail.com"
+    return f"{local}@{domain}"
+
+
 def get_membership(user) -> Membership | None:
     if not user or not user.is_authenticated:
         return None

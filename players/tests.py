@@ -212,3 +212,80 @@ class I18nTests(APITestCase):
         )
         self.assertEqual(r.status_code, 400)
         self.assertEqual(str(r.data["email"][0]), "Ein Konto mit dieser E-Mail-Adresse existiert bereits.")
+
+
+class TrialKeyTests(Base):
+    def payload(self, email, username):
+        return {"username": username, "email": email, "password": "S3cure-pass-77", "club_name": "X"}
+
+    def test_aliases_share_one_trial(self):
+        self.assertEqual(self.client.post("/api/auth/register/", self.payload("jo.hn@gmail.com", "a1")).status_code, 201)
+        for alias in ("john+promo@gmail.com", "J.O.H.N@googlemail.com", "JOHN@gmail.com"):
+            r = self.client.post("/api/auth/register/", self.payload(alias, "u" + alias[:3]))
+            self.assertEqual(r.status_code, 400, alias)
+
+    def test_trial_key_is_unique_in_the_database(self):
+        from django.db import IntegrityError, transaction
+        Club.objects.create(name="A", trial_key="x@example.com")
+        with self.assertRaises(IntegrityError), transaction.atomic():
+            Club.objects.create(name="B", trial_key="x@example.com")
+
+
+class AccessTests(Base):
+    def test_login_without_a_club_is_refused(self):
+        User.objects.create_user("staff", "s@example.com", "pw-12345-x", is_staff=True)
+        r = self.client.post("/api/auth/login/", {"username": "staff", "password": "pw-12345-x"})
+        self.assertEqual(r.status_code, 403)
+
+    def test_only_the_owner_sees_invite_tokens(self):
+        club, owner, *_ = make_club()
+        Invitation.objects.create(club=club, email="new@example.com", token="secret-token")
+        coach = User.objects.create_user("c", "c@example.com", "pw-12345-x")
+        Membership.objects.create(user=coach, club=club, role=Membership.COACH)
+        self.login("coach")
+        self.assertIn("token", self.client.get("/api/team/").data["invites"][0])
+        self.login("c")
+        invite = self.client.get("/api/team/").data["invites"][0]
+        self.assertNotIn("token", invite)
+        self.assertEqual(invite["email"], "new@example.com")
+
+
+class TestEnvironmentIsolationTests(APITestCase):
+    def test_tests_never_use_real_services(self):
+        from django.conf import settings
+        self.assertEqual(settings.SETTINGS_MODULE, "web_application.settings_test")
+        self.assertIn(settings.DATABASES["default"]["ENGINE"], ("django.db.backends.sqlite3", "django.db.backends.postgresql"))
+        if settings.DATABASES["default"]["ENGINE"].endswith("postgresql"):
+            self.assertTrue(settings.DATABASES["default"]["NAME"].startswith("test"))
+        self.assertEqual((settings.STRIPE_SECRET_KEY, settings.EMAIL_BACKEND), ("", "django.core.mail.backends.locmem.EmailBackend"))
+        self.assertTrue(settings.MEDIA_IS_LOCAL)
+
+
+class MediaStorageTests(APITestCase):
+    def build(self, **env):
+        from web_application.storage import build_media_storage
+        return build_media_storage(env)
+
+    def test_local_is_the_default(self):
+        self.assertEqual(self.build()["BACKEND"], "django.core.files.storage.FileSystemStorage")
+
+    def test_s3_gcs_and_azure(self):
+        s3 = self.build(MEDIA_STORAGE="s3", AWS_STORAGE_BUCKET_NAME="b", AWS_S3_ENDPOINT_URL="https://r2.example", MEDIA_PUBLIC="0")
+        self.assertEqual(s3["BACKEND"], "storages.backends.s3.S3Storage")
+        self.assertEqual((s3["OPTIONS"]["bucket_name"], s3["OPTIONS"]["endpoint_url"], s3["OPTIONS"]["querystring_auth"]), ("b", "https://r2.example", True))
+        gcs = self.build(MEDIA_STORAGE="gcs", GS_BUCKET_NAME="g")
+        self.assertEqual((gcs["BACKEND"], gcs["OPTIONS"]["querystring_auth"]), ("storages.backends.gcloud.GoogleCloudStorage", False))
+        az = self.build(MEDIA_STORAGE="azure", AZURE_ACCOUNT_NAME="acct", AZURE_CONTAINER="media")
+        self.assertEqual(az["BACKEND"], "storages.backends.azure_storage.AzureStorage")
+        self.assertNotIn("account_key", az["OPTIONS"])
+
+    def test_missing_or_unknown_configuration_fails_loudly(self):
+        from django.core.exceptions import ImproperlyConfigured
+        for env in ({"MEDIA_STORAGE": "s3"}, {"MEDIA_STORAGE": "gcs"}, {"MEDIA_STORAGE": "azure", "AZURE_ACCOUNT_NAME": "a"}, {"MEDIA_STORAGE": "ftp"}):
+            with self.assertRaises(ImproperlyConfigured, msg=str(env)):
+                self.build(**env)
+
+    def test_every_backend_class_is_importable(self):
+        from django.utils.module_loading import import_string
+        for path in ("storages.backends.s3.S3Storage", "storages.backends.gcloud.GoogleCloudStorage", "storages.backends.azure_storage.AzureStorage"):
+            import_string(path)

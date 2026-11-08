@@ -38,8 +38,11 @@ def _member(m: Membership) -> dict:
     return {"id": m.id, "username": m.user.username, "email": m.user.email, "role": m.role}
 
 
-def _invite(i: Invitation) -> dict:
-    return {"id": i.id, "email": i.email, "role": i.role, "token": i.token, "created_at": i.created_at}
+def _invite(i: Invitation, include_token: bool = False) -> dict:
+    data = {"id": i.id, "email": i.email, "role": i.role, "created_at": i.created_at}
+    if include_token:  # the token is a credential for joining the club: only the owner may see it
+        data["token"] = i.token
+    return data
 
 
 @api_view(["GET"])
@@ -50,7 +53,10 @@ def team(request):
         "seats_limit": settings.MAX_SEATS,
         "seats_used": _seats_used(club),
         "members": [_member(m) for m in club.memberships.select_related("user").order_by("id")],
-        "invites": [_invite(i) for i in club.invitations.filter(accepted_at__isnull=True).order_by("-created_at")],
+        "invites": [
+            _invite(i, include_token=request.membership.role == Membership.OWNER)
+            for i in club.invitations.filter(accepted_at__isnull=True).order_by("-created_at")
+        ],
     })
 
 
@@ -83,7 +89,7 @@ def invite(request):
         _("Join %(club)s: %(link)s") % {"club": club.name, "link": link},
         None, [email], fail_silently=True,
     )
-    return Response({**_invite(inv), "link": link}, status=status.HTTP_201_CREATED)
+    return Response({**_invite(inv, include_token=True), "link": link}, status=status.HTTP_201_CREATED)
 
 
 @api_view(["DELETE"])

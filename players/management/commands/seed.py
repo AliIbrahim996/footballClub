@@ -1,8 +1,12 @@
+import os
 import random
+import secrets
 from datetime import date
 
+from django.conf import settings
+
 from django.contrib.auth.models import User
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 
 from players.models import Category, Club, Membership, Player, PlayerSkills, Skills
@@ -27,9 +31,12 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("--mode", default="refresh", choices=["refresh", "clear"])
-        parser.add_argument("--admin", action="store_true", help="Also create the admin/admin12345 demo owner")
+        parser.add_argument("--admin", action="store_true", help="Also create the demo owner user 'admin'")
+        parser.add_argument("--force", action="store_true", help="Allow seeding when DJANGO_DEBUG is off")
 
     def handle(self, *args, **opts):
+        if not settings.DEBUG and not opts["force"]:
+            raise CommandError("Refusing to seed demo data while DJANGO_DEBUG is off. Pass --force if you really mean it.")
         Club.objects.filter(name=DEMO_CLUB).delete()  # cascades to its players, skills and plans
         if opts["mode"] == "clear":
             return
@@ -51,8 +58,11 @@ class Command(BaseCommand):
         if opts["admin"]:
             user, created = User.objects.get_or_create(username="admin", defaults={"email": "admin@example.com", "is_staff": True, "is_superuser": True})
             if created:
-                user.set_password("admin12345")
+                # Never a fixed password: take it from SEED_ADMIN_PASSWORD, or generate one and show it once.
+                password = os.environ.get("SEED_ADMIN_PASSWORD") or secrets.token_urlsafe(12)
+                user.set_password(password)
                 user.save()
-                self.stdout.write("Created demo user admin / admin12345 (change it!)")
+                shown = "the value of SEED_ADMIN_PASSWORD" if os.environ.get("SEED_ADMIN_PASSWORD") else password
+                self.stdout.write(f"Created demo user 'admin' with password: {shown}  (shown once; change it)")
             Membership.objects.update_or_create(user=user, defaults={"club": club, "role": Membership.OWNER})
         self.stdout.write(self.style.SUCCESS("Seed complete."))
