@@ -203,3 +203,12 @@ class I18nTests(APITestCase):
             r = self.client.post("/api/auth/login/", {"username": "x", "password": "y"}, headers={"Accept-Language": lang})
             self.assertEqual(r.status_code, 400)
             self.assertEqual(r.data["detail"], expected)
+
+    def test_registration_errors_are_localized(self):
+        User.objects.create_user("taken", "taken@example.com", "pw-12345-x")
+        r = self.client.post(
+            "/api/auth/register/", {"username": "new", "email": "taken@example.com", "password": "S3cure-pass-77", "club_name": "X"},
+            headers={"Accept-Language": "de"},
+        )
+        self.assertEqual(r.status_code, 400)
+        self.assertEqual(str(r.data["email"][0]), "Ein Konto mit dieser E-Mail-Adresse existiert bereits.")

@@ -14,3 +14,51 @@ msgstr "الأحرف فقط مسموحة."
 
 msgid "Digits only."
 msgstr "الأرقام فقط مسموحة."
+
+msgid "This username is already taken."
+msgstr "اسم المستخدم هذا مستخدم بالفعل."
+
+msgid "An account with this email already exists."
+msgstr "يوجد حساب بهذا البريد الإلكتروني بالفعل."
+
+msgid "Invalid category."
+msgstr "فئة غير صالحة."
+
+msgid "Unknown skill."
+msgstr "مهارة غير معروفة."
+
+msgid "An active subscription is required."
+msgstr "يلزم اشتراك نشط."
+
+msgid "Billing is not configured on this server."
+msgstr "الفوترة غير مُعدّة على هذا الخادم."
+
+msgid "Only the club owner can manage billing."
+msgstr "مالك النادي فقط يستطيع إدارة الفوترة."
+
+msgid "No billing account to manage yet."
+msgstr "لا يوجد حساب فوترة لإدارته بعد."
+
+msgid "Only the club owner can manage the team."
+msgstr "مالك النادي فقط يستطيع إدارة الفريق."
+
+msgid "Seat limit reached for your plan."
+msgstr "تم بلوغ حد المقاعد في خطتك."
+
+msgid "The owner cannot be removed."
+msgstr "لا يمكن إزالة المالك."
+
+msgid "This invitation is invalid or has expired."
+msgstr "هذه الدعوة غير صالحة أو منتهية."
+
+msgid "Not found."
+msgstr "غير موجود."
+
+#, python-format
+msgid "You're invited to %(club)s on Pitchside"
+msgstr "تمت دعوتك إلى %(club)s على Pitchside"
+
+#, python-format
+msgid "Join %(club)s: %(link)s"
+msgstr "انضم إلى %(club)s: %(link)s"
+

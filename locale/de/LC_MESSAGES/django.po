@@ -14,3 +14,51 @@ msgstr "Nur Buchstaben erlaubt."
 
 msgid "Digits only."
 msgstr "Nur Ziffern erlaubt."
+
+msgid "This username is already taken."
+msgstr "Dieser Benutzername ist bereits vergeben."
+
+msgid "An account with this email already exists."
+msgstr "Ein Konto mit dieser E-Mail-Adresse existiert bereits."
+
+msgid "Invalid category."
+msgstr "Ungültige Kategorie."
+
+msgid "Unknown skill."
+msgstr "Unbekannte Fähigkeit."
+
+msgid "An active subscription is required."
+msgstr "Ein aktives Abonnement ist erforderlich."
+
+msgid "Billing is not configured on this server."
+msgstr "Die Abrechnung ist auf diesem Server nicht eingerichtet."
+
+msgid "Only the club owner can manage billing."
+msgstr "Nur der Vereinsinhaber kann die Abrechnung verwalten."
+
+msgid "No billing account to manage yet."
+msgstr "Es gibt noch kein Abrechnungskonto zu verwalten."
+
+msgid "Only the club owner can manage the team."
+msgstr "Nur der Vereinsinhaber kann das Team verwalten."
+
+msgid "Seat limit reached for your plan."
+msgstr "Das Platzlimit Ihres Tarifs ist erreicht."
+
+msgid "The owner cannot be removed."
+msgstr "Der Inhaber kann nicht entfernt werden."
+
+msgid "This invitation is invalid or has expired."
+msgstr "Diese Einladung ist ungültig oder abgelaufen."
+
+msgid "Not found."
+msgstr "Nicht gefunden."
+
+#, python-format
+msgid "You're invited to %(club)s on Pitchside"
+msgstr "Sie wurden zu %(club)s auf Pitchside eingeladen"
+
+#, python-format
+msgid "Join %(club)s: %(link)s"
+msgstr "%(club)s beitreten: %(link)s"
+
