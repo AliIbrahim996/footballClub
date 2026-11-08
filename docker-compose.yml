@@ -1,0 +1,44 @@
+# Backend stack: Django API + PostgreSQL.  Run: docker compose up --build
+# API: http://localhost:8000/api/docs/   Admin: http://localhost:8000/admin/
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-footballclub}
+      POSTGRES_USER: ${POSTGRES_USER:-footballclub}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-footballclub-dev}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-1}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-dev-only-insecure-key-change-me}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,backend,api}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-http://localhost:3000,http://localhost:8000}
+      POSTGRES_HOST: db
+      POSTGRES_DB: ${POSTGRES_DB:-footballclub}
+      POSTGRES_USER: ${POSTGRES_USER:-footballclub}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-footballclub-dev}
+      MEDIA_ROOT: /data/media
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-1}
+    volumes:
+      - media:/data/media
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
+  media:
