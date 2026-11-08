@@ -4,6 +4,22 @@
 
 Django REST API behind **Pitchside**: multi-tenant clubs, players, skill evaluations, tactical plans, a one-time free trial per club, Stripe billing, team invites and public plan sharing. The web UI is in the **footballClub-frontend** repo (Next.js); run both together with Docker Compose from there.
 
+## Engineering highlights
+The API behind Pitchside, upgraded from a 2021 Django 3.2 monolith to a headless **Django 6.1 / DRF** service on **PostgreSQL**:
+
+- **Multi-tenant by design**: every record belongs to a club, queries go through one scoping mixin, and cross-club access is covered by tests (a coach from club B cannot read, rate or delete club A's players).
+- **Subscription gating that is hard to bypass**: expired trials return HTTP 402; the one-free-trial rule is enforced by a unique, normalized email key in the database (so `+tag` and Gmail-dot aliases and concurrent sign-ups do not get a second trial); self-service sign-up can be closed with one switch and is then refused at the API, not only in the UI.
+- **Billing and teams**: Stripe Checkout, customer portal and webhook handlers (verified-event logic is unit tested and idempotent), owner-managed invitations with seat limits and expiry, and public read-only plan share links.
+- **Safe by default**: debug off unless asked, secrets and database host required (it refuses to start rather than silently falling back to SQLite), no credentials in code or infrastructure files, throttled login/sign-up/contact endpoints that read the real client IP behind a proxy.
+- **Tests never touch real services**: `manage.py test` switches to dedicated settings that clear every production variable (I ran the suite with a fake production database host, Stripe key and S3 setting exported to prove it). 35 automated tests, run in CI against a real PostgreSQL service.
+- **Pluggable media storage**: one setting (`MEDIA_STORAGE=local|s3|gcs|azure`) chooses where uploads live, with provider options covered by tests.
+- **Internationalized API**: messages follow `Accept-Language` (English and Arabic).
+- **Migrations with data**: existing rows were moved into a default club by a data migration, with the constraint made strict in a third step.
+
+### Honest limits
+- The Stripe integration is tested with simulated events, not against a live Stripe account.
+- No audit log of who viewed data, and no self-service "delete my club" yet (it is a manual admin task).
+- The Cloud Run deploy workflow is a template that has not been run.
 ![Dashboard](docs/screenshots/dashboard.jpg)
 ![Tactics board](docs/screenshots/tactics.jpg)
 
