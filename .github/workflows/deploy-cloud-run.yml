@@ -1,0 +1,45 @@
+name: Deploy API to Cloud Run
+# UNTESTED TEMPLATE. Manual trigger. Uses Workload Identity Federation (no JSON keys stored in GitHub).
+# One-time setup is described in the frontend repo's docs/DEPLOY.md. Required repository variables:
+#   GCP_PROJECT, GCP_REGION, GCP_ARTIFACT_REPO, GCP_WIF_PROVIDER, GCP_DEPLOY_SA, GS_BUCKET_NAME, FRONTEND_URL, API_HOST
+# Secrets (in Secret Manager, referenced below): django-secret-key, postgres-password, stripe-secret-key, stripe-webhook-secret
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT }}/${{ vars.GCP_ARTIFACT_REPO }}/pitchside-api:${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - run: gcloud auth configure-docker ${{ vars.GCP_REGION }}-docker.pkg.dev --quiet
+      - run: |
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
+      - uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: pitchside-api
+          region: ${{ vars.GCP_REGION }}
+          image: ${{ env.IMAGE }}
+          flags: --allow-unauthenticated --port=8080
+          env_vars: |
+            DJANGO_DEBUG=0
+            DJANGO_ALLOWED_HOSTS=${{ vars.API_HOST }}
+            FRONTEND_URL=${{ vars.FRONTEND_URL }}
+            GS_BUCKET_NAME=${{ vars.GS_BUCKET_NAME }}
+            POSTGRES_SSLMODE=require
+          secrets: |
+            DJANGO_SECRET_KEY=django-secret-key:latest
+            POSTGRES_PASSWORD=postgres-password:latest
+            STRIPE_SECRET_KEY=stripe-secret-key:latest
+            STRIPE_WEBHOOK_SECRET=stripe-webhook-secret:latest
