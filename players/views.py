@@ -1,3 +1,4 @@
+import math
 from datetime import timedelta
 
 from django.conf import settings
@@ -26,7 +27,11 @@ from .serializers import (
 
 
 def club_payload(club: Club, membership: Membership) -> dict:
+    days_left = 0
+    if club.status == Club.TRIALING and club.trial_ends_at:
+        days_left = max(0, math.ceil((club.trial_ends_at - timezone.now()).total_seconds() / 86400))
     return {
+        "trial_days_left": days_left,
         "name": club.name, "status": club.status, "entitled": club.is_entitled, "role": membership.role,
         "trial_ends_at": club.trial_ends_at, "current_period_end": club.current_period_end,
         "billing_configured": bool(settings.STRIPE_SECRET_KEY and settings.STRIPE_PRICE_ID),

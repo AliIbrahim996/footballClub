@@ -13,11 +13,11 @@ SKILLS = {
     "Tactical": ["Positioning", "Vision", "Pressing"],
     "Mental": ["Leadership", "Composure"],
 }
-PLAYERS = [
-    ("Mueller", "Thomas", "Munich"), ("Neuer", "Manuel", "Munich"), ("Kimmich", "Joshua", "Rottweil"),
-    ("Musiala", "Jamal", "Stuttgart"), ("Gnabry", "Serge", "Stuttgart"), ("Goretzka", "Leon", "Bochum"),
-    ("Davies", "Alphonso", "Edmonton"), ("Kane", "Harry", "London"), ("Upamecano", "Dayot", "Evreux"),
-    ("Coman", "Kingsley", "Paris"), ("Sane", "Leroy", "Essen"),
+PLAYERS = [  # fictional demo squad
+    ("Hartmann", "Lukas", "Berlin"), ("Okafor", "Daniel", "Hamburg"), ("Yilmaz", "Emre", "Cologne"),
+    ("Novak", "Marek", "Munich"), ("Rahimi", "Omar", "Stuttgart"), ("Becker", "Jonas", "Leipzig"),
+    ("Haddad", "Karim", "Dortmund"), ("Schulz", "Felix", "Bremen"), ("Costa", "Mateo", "Frankfurt"),
+    ("Weber", "Tim", "Duesseldorf"), ("Nasser", "Yusuf", "Essen"),
 ]
 DEMO_CLUB = "Demo FC"
 
