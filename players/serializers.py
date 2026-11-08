@@ -25,6 +25,11 @@ class CategorySerializer(serializers.ModelSerializer):
 class SkillSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source="category.name", read_only=True)
 
+    def validate_category(self, value):
+        if value.club_id != self.context["request"].club.id:
+            raise serializers.ValidationError(_("Invalid category."))
+        return value
+
     class Meta:
         model = Skills
         fields = ["id", "skill_name", "comment", "category", "category_name"]
@@ -76,6 +81,12 @@ class EvaluationSerializer(serializers.Serializer):
     """Bulk upsert of ratings for one player."""
     ratings = EvaluationItemSerializer(many=True)
 
+    def validate_ratings(self, items):
+        club = self.context["club"]
+        if any(item["skill"].club_id != club.id for item in items):
+            raise serializers.ValidationError(_("Unknown skill."))
+        return items
+
     def save(self, player: Player, username: str):
         now = timezone.now()
         for item in self.validated_data["ratings"]:
@@ -92,6 +103,6 @@ class PlanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Plans
-        fields = ["id", "title", "image", "board", "created_at", "created_by", "comment"]
-        read_only_fields = ["created_at", "created_by"]
+        fields = ["id", "title", "image", "board", "created_at", "created_by", "comment", "share_token"]
+        read_only_fields = ["created_at", "created_by", "share_token"]
 

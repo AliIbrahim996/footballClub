@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils import timezone
 
-from .models import Category, Player, PlayerSkills, Plans, Skills
+from .models import Category, Club, Invitation, Membership, Player, PlayerSkills, Plans, Skills
 
 admin.site.site_header = "Football Club management"
 admin.site.site_title = "Football Club"
@@ -54,3 +54,20 @@ class PlayerSkillsAdmin(admin.ModelAdmin):
         obj.modified_by = request.user.username
         obj.modified_at = timezone.now()
         super().save_model(request, obj, form, change)
+
+
+@admin.register(Club)
+class ClubAdmin(admin.ModelAdmin):
+    list_display = ["name", "status", "trial_ends_at", "current_period_end", "created_at"]
+    list_filter = ["status"]
+    search_fields = ["name", "stripe_customer_id"]
+
+
+@admin.register(Membership)
+class MembershipAdmin(admin.ModelAdmin):
+    list_display = ["user", "club", "role"]
+
+
+@admin.register(Invitation)
+class InvitationAdmin(admin.ModelAdmin):
+    list_display = ["email", "club", "role", "created_at", "accepted_at"]

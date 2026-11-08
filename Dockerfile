@@ -15,6 +15,6 @@ RUN chmod +x docker-entrypoint.sh \
 
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=3s --retries=5 \
-  CMD python -c "import urllib.request,sys; urllib.request.urlopen('http://127.0.0.1:8000/api/health/')" || exit 1
+  CMD python -c "import urllib.request,sys; urllib.request.urlopen('http://127.0.0.1:' + __import__('os').environ.get('PORT','8000') + '/api/health/')" || exit 1
 ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD ["gunicorn", "web_application.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+CMD ["sh", "-c", "gunicorn web_application.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3 --timeout 60"]

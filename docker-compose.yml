@@ -34,6 +34,17 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-footballclub-dev}
       MEDIA_ROOT: /data/media
       SEED_DEMO_DATA: ${SEED_DEMO_DATA:-1}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      # Billing (optional): leave empty to run without Stripe; the paywall then has no checkout.
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_PRICE_ID: ${STRIPE_PRICE_ID:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      TRIAL_DAYS: ${TRIAL_DAYS:-14}
+      MAX_SEATS: ${MAX_SEATS:-5}
+      # Invitation emails: set EMAIL_HOST (and creds) to send real mail; default prints to the log.
+      EMAIL_HOST: ${EMAIL_HOST:-}
+      EMAIL_HOST_USER: ${EMAIL_HOST_USER:-}
+      EMAIL_HOST_PASSWORD: ${EMAIL_HOST_PASSWORD:-}
     volumes:
       - media:/data/media
     ports:

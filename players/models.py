@@ -1,4 +1,4 @@
-﻿"""@package Players application
+"""@package Players application
 Model objects.
 A model is the single, definitive source of information about your data.
 It contains the essential fields and behaviors of the data you’re storing.
@@ -19,6 +19,62 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+class Club(models.Model):
+    """A customer account (tenant). All players, skills and plans belong to exactly one club."""
+
+    TRIALING, ACTIVE, PAST_DUE, CANCELED = "trialing", "active", "past_due", "canceled"
+    STATUS_CHOICES = [(s, s) for s in (TRIALING, ACTIVE, PAST_DUE, CANCELED)]
+
+    name = models.CharField(max_length=255)
+    created_at = models.DateTimeField(default=django.utils.timezone.now)
+    status = models.CharField(max_length=16, choices=STATUS_CHOICES, default=TRIALING)
+    trial_ends_at = models.DateTimeField(null=True, blank=True)
+    current_period_end = models.DateTimeField(null=True, blank=True)
+    stripe_customer_id = models.CharField(max_length=255, blank=True, default="")
+    stripe_subscription_id = models.CharField(max_length=255, blank=True, default="")
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def is_entitled(self) -> bool:
+        """Whether the club may use the management features right now."""
+        now = django.utils.timezone.now()
+        if self.status == self.ACTIVE:
+            return True
+        if self.status == self.TRIALING:
+            return bool(self.trial_ends_at and self.trial_ends_at > now)
+        # Cancelled/past-due clubs keep access until the period they paid for ends.
+        return bool(self.current_period_end and self.current_period_end > now)
+
+
+class Membership(models.Model):
+    OWNER, COACH, VIEWER = "owner", "coach", "viewer"
+    ROLE_CHOICES = [(r, r) for r in (OWNER, COACH, VIEWER)]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="membership")
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="memberships")
+    role = models.CharField(max_length=16, choices=ROLE_CHOICES, default=COACH)
+
+    def __str__(self):
+        return f"{self.user} @ {self.club} ({self.role})"
+
+
+class Invitation(models.Model):
+    """Owner-issued invite for another coach to join the club (counts against the seat limit)."""
+
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="invitations")
+    email = models.EmailField()
+    role = models.CharField(max_length=16, choices=Membership.ROLE_CHOICES, default=Membership.COACH)
+    token = models.CharField(max_length=64, unique=True)
+    invited_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name="+")
+    created_at = models.DateTimeField(default=django.utils.timezone.now)
+    accepted_at = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.email} -> {self.club}"
+
+
 class Category(models.Model):
     """
     Documentation for Category class
@@ -27,6 +83,7 @@ class Category(models.Model):
         1) Id which is the primary key and it is auto-generated.
         2) name refers to the name of the category
     """
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="categories")
     name = models.CharField(max_length=255, verbose_name=gettext_lazy('name'))
 
     def __str__(self):
@@ -50,6 +107,7 @@ class Skills(models.Model):
         """
     skill_name = models.CharField(max_length=255, verbose_name=gettext_lazy('skill_name'))
     comment = models.CharField(max_length=255, verbose_name=gettext_lazy('comment'))
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="skills")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name=gettext_lazy('category'))
 
     def __str__(self):
@@ -93,6 +151,7 @@ class Player(models.Model):
     email_address = models.EmailField(verbose_name=gettext_lazy("email_address"))  # email address.
     image = models.ImageField(null=True, upload_to="images/", default="images/no_image.png",
                               blank=True, verbose_name=gettext_lazy("image"))
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="players")
     skills = models.ManyToManyField(Skills, through='PlayerSkills')
 
     def __str__(self):
@@ -142,6 +201,9 @@ class Plans(models.Model):
     board = models.JSONField(blank=True, default=dict)
     created_at = models.DateTimeField(default=django.utils.timezone.now, verbose_name=gettext_lazy("created_at"))
     created_by = models.CharField(max_length=255, verbose_name=gettext_lazy("created_by"))
+    club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="plans")
+    # Set while the plan is shared via a public read-only link.
+    share_token = models.CharField(max_length=64, unique=True, null=True, blank=True)
     comment = models.CharField(max_length=255, verbose_name=gettext_lazy("comment"))
 
     class Meta:

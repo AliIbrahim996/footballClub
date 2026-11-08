@@ -45,3 +45,9 @@ python manage.py test              # must pass before finishing a task
 
 ## Translations
 The API localizes its own messages from the `Accept-Language` header (en/de/ar; the frontend forwards its UI language). Wrap user-facing strings in `gettext`/`gettext_lazy` and add them to `locale/<lang>/LC_MESSAGES/django.po`; `.mo` files are built by `python manage.py compilemessages` (needs GNU gettext; the Dockerfile does it). Seeded category/skill names are data, not translated.
+
+## SaaS model (multi-tenant)
+- Every `Category`, `Skills`, `Player`, `Plans` row belongs to a `Club`; users join via `Membership` (owner/coach/viewer). Views use `ClubScopedMixin` (`players/access.py`) so a club only ever sees its own data. **Any new club-owned model needs a `club` FK and scoped queries plus a cross-club test.**
+- Access: `HasEntitlement` allows an active subscription or an unexpired trial (one trial per club, created at `/api/auth/register/`, never restarted); otherwise HTTP 402. Viewers are read-only; only owners manage team/billing.
+- Billing: Stripe Checkout + webhook in `players/billing.py` (inert until `STRIPE_*` env vars are set). Team invites and public plan sharing live in `players/team.py`; seats capped by `MAX_SEATS`.
+- Storage: set `GS_BUCKET_NAME` to use Google Cloud Storage for uploads (required on Cloud Run).
