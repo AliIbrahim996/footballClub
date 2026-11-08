@@ -42,3 +42,6 @@ python manage.py test              # must pass before finishing a task
 - `.claude/skills/django-security/SKILL.md` (from affaan-m/ECC): follow it for auth, settings hardening and deployment changes. Before production, apply its checklist (HTTPS, secure cookies, HSTS, `DEBUG=False`).
 
 - `.claude/skills/` also holds `django-*` skills from MohamedMandour10/agentic-django (architecture, ORM, migrations, views/APIs, admin, testing, production ops) and `api-designer` (Jeffallan/claude-skills). Load the matching one before changing that layer. Note: this codebase uses DRF ViewSets for simple CRUD; prefer explicit `APIView` + services/selectors when logic grows beyond CRUD.
+
+## Translations
+The API localizes its own messages from the `Accept-Language` header (en/de/ar; the frontend forwards its UI language). Wrap user-facing strings in `gettext`/`gettext_lazy` and add them to `locale/<lang>/LC_MESSAGES/django.po`; `.mo` files are built by `python manage.py compilemessages` (needs GNU gettext; the Dockerfile does it). Seeded category/skill names are data, not translated.

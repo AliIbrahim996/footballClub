@@ -1,4 +1,5 @@
-﻿from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate
+from django.utils.translation import gettext as _
 from django.db.models import Avg, Count
 from rest_framework import status, viewsets
 from rest_framework.authtoken.models import Token
@@ -19,8 +20,8 @@ from .serializers import (
 def login(request):
     user = authenticate(username=request.data.get("username"), password=request.data.get("password"))
     if user is None:
-        return Response({"detail": "Invalid username or password."}, status=status.HTTP_400_BAD_REQUEST)
-    token, _ = Token.objects.get_or_create(user=user)
+        return Response({"detail": _("Invalid username or password.")}, status=status.HTTP_400_BAD_REQUEST)
+    token, _created = Token.objects.get_or_create(user=user)
     return Response({"token": token.key, "username": user.username})
 
 

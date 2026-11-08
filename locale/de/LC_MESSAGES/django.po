@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: footballClub API\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Invalid username or password."
+msgstr "Benutzername oder Passwort ist falsch."
+
+msgid "Letters only."
+msgstr "Nur Buchstaben erlaubt."
+
+msgid "Digits only."
+msgstr "Nur Ziffern erlaubt."

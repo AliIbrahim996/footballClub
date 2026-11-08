@@ -9,3 +9,4 @@ media/images/*
 .idea/
 .vscode/
 data/
+*.mo

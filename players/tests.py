@@ -48,3 +48,11 @@ class ApiTests(APITestCase):
     def test_dashboard(self):
         self.login()
         self.assertEqual(self.client.get("/api/dashboard/").data["players"], 1)
+
+
+class I18nTests(APITestCase):
+    def test_login_error_follows_accept_language(self):
+        for lang, expected in [("de", "Benutzername oder Passwort ist falsch."), ("en", "Invalid username or password.")]:
+            r = self.client.post("/api/auth/login/", {"username": "x", "password": "y"}, headers={"Accept-Language": lang})
+            self.assertEqual(r.status_code, 400)
+            self.assertEqual(r.data["detail"], expected)

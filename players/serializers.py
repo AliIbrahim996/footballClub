@@ -1,11 +1,12 @@
-﻿from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from .models import Category, Player, PlayerSkills, Plans, Skills
 
-letters_only = RegexValidator(r"^[^\W\d_]+(?:[ '-][^\W\d_]+)*$", "Letters only.")
-digits_only = RegexValidator(r"^\+?[0-9 ]*$", "Digits only.")
+letters_only = RegexValidator(r"^[^\W\d_]+(?:[ '-][^\W\d_]+)*$", _("Letters only."))
+digits_only = RegexValidator(r"^\+?[0-9 ]*$", _("Digits only."))
 
 
 class MediaImageField(serializers.ImageField):
