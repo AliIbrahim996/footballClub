@@ -1,8 +1,8 @@
 # Backend stack: Django API + PostgreSQL.  Run: cp .env.example .env  (fill in the secrets)  then  docker compose up --build
 # API: http://localhost:8000/api/docs/   Admin: http://localhost:8000/admin/
 #
-# No credentials live in this file: required secrets come from .env (or your shell) and compose refuses to start
-# without them.
+# No credentials live in this file: required secrets come from .env (or your shell). Compose stops with
+# "required variable ... is missing a value" when POSTGRES_PASSWORD or DJANGO_SECRET_KEY is not provided.
 services:
   db:
     image: postgres:17-alpine
@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-footballclub}
       POSTGRES_USER: ${POSTGRES_USER:-footballclub}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -27,14 +27,14 @@ services:
         condition: service_healthy
     environment:
       DJANGO_DEBUG: ${DJANGO_DEBUG:-0}
-      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in .env}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,backend,api}
       CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
       CSRF_TRUSTED_ORIGINS: ${CSRF_TRUSTED_ORIGINS:-http://localhost:3000,http://localhost:8000}
       POSTGRES_HOST: db
       POSTGRES_DB: ${POSTGRES_DB:-footballclub}
       POSTGRES_USER: ${POSTGRES_USER:-footballclub}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
       NUM_PROXIES: ${NUM_PROXIES:-1}
       # Uploads: local (volume below) by default, or s3 / gcs / azure; see web_application/storage.py
       MEDIA_STORAGE: ${MEDIA_STORAGE:-local}

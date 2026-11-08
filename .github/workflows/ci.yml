@@ -37,6 +37,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y gettext
       - run: pip install -r requirements.txt
       - run: python manage.py compilemessages
+        env:
+          DJANGO_DEBUG: "1"   # management commands load the settings, which require a secret key unless debug is on
       - run: python manage.py check
         env:
           DJANGO_DEBUG: "1"
