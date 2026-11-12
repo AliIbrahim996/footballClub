@@ -226,6 +226,8 @@ class Plans(models.Model):
     created_at = models.DateTimeField(default=django.utils.timezone.now, verbose_name=gettext_lazy("created_at"))
     created_by = models.CharField(max_length=255, verbose_name=gettext_lazy("created_by"))
     club = models.ForeignKey(Club, on_delete=models.CASCADE, related_name="plans")
+    # Tags such as "attack", "defense", "set-piece", stored as ",attack,set-piece," so any database can filter them.
+    tag_list = models.CharField(max_length=400, blank=True, default="")
     # Set while the plan is shared via a public read-only link.
     share_token = models.CharField(max_length=64, unique=True, null=True, blank=True)
     comment = models.CharField(max_length=255, verbose_name=gettext_lazy("comment"))

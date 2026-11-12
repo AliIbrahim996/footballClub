@@ -70,3 +70,9 @@ msgstr "التسجيل مغلق حالياً. يرجى التواصل معنا."
 
 msgid "You must accept the terms of use and the privacy policy."
 msgstr "يجب قبول شروط الاستخدام وسياسة الخصوصية."
+
+msgid "Tags must be a list of words."
+msgstr "يجب أن تكون الوسوم قائمة كلمات."
+
+msgid "Use at most 10 tags of up to 30 characters."
+msgstr "استخدم 10 وسوم كحد أقصى بطول 30 حرفاً لكل منها."

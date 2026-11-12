@@ -343,3 +343,44 @@ class TermsAcceptanceTests(APITestCase):
         club = Club.objects.get(memberships__user__username="t1")
         self.assertEqual(club.terms_version, "2026-11-09")
         self.assertIsNotNone(club.terms_accepted_at)
+
+class PlanTagTests(Base):
+    def setUp(self):
+        self.club, *_ = make_club()
+        other, *_ = make_club("Other", user="other")
+        Plans.objects.create(club=other, image="images/o.png", created_by="other", comment="o", tag_list=",attack,")
+        self.login()
+
+    def create(self, **data):
+        plan = Plans.objects.create(club=self.club, image="images/x.png", created_by="coach", comment="c")
+        return self.client.patch(f"/api/plans/{plan.id}/", data, format="json")
+
+    def test_tags_are_normalized_and_filterable(self):
+        r = self.create(tags=["Attack", "Set piece", "attack", "  Counter  "])
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.data["tags"], ["attack", "set-piece", "counter"])
+        self.create(tags=["defense"])
+        self.assertEqual([p["tags"] for p in self.client.get("/api/plans/?tag=SET-PIECE").data["results"]], [["attack", "set-piece", "counter"]])
+        self.assertEqual(self.client.get("/api/plans/tags/").data, ["attack", "counter", "defense", "set-piece"])  # not the other club's
+
+    def test_tag_filter_does_not_match_partial_words(self):
+        self.create(tags=["counter-press"])
+        self.assertEqual(self.client.get("/api/plans/?tag=counter").data["count"], 0)
+
+    def test_tags_can_be_cleared_and_are_validated(self):
+        plan_id = self.create(tags=["attack"]).data["id"]
+        self.assertEqual(self.client.patch(f"/api/plans/{plan_id}/", {"tags": []}, format="json").data["tags"], [])
+        self.assertEqual(self.client.patch(f"/api/plans/{plan_id}/", {"tags": "attack"}, format="json").status_code, 400)
+        self.assertEqual(self.client.patch(f"/api/plans/{plan_id}/", {"tags": [f"t{i}" for i in range(11)]}, format="json").status_code, 400)
+
+    def test_tags_and_simulation_steps_in_multipart_upload(self):
+        import base64
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        png = base64.b64decode("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==")
+        r = self.client.post("/api/plans/", {
+            "image": SimpleUploadedFile("t.png", png, content_type="image/png"), "comment": "c",
+            "board": '{"pitch": "full", "items": [], "steps": [{"id": "s1", "pos": {}}]}', "tags": '["Defense"]',
+        }, format="multipart")
+        self.assertEqual(r.status_code, 201, r.data)
+        self.assertEqual(r.data["tags"], ["defense"])
+        self.assertEqual(len(r.data["board"]["steps"]), 1)

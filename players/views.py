@@ -197,8 +197,21 @@ class PlanViewSet(ClubScopedMixin, viewsets.ModelViewSet):
     search_fields = ["comment", "title", "created_by"]
     filterset_fields = {"created_by": ["exact"], "created_at": ["gte", "lte"]}
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        tag = self.request.query_params.get("tag", "").strip().lower()
+        return qs.filter(tag_list__contains=f",{tag},") if tag else qs
+
     def perform_create(self, serializer):
         serializer.save(club=self.request.club, created_by=self.request.user.username)
+
+    @action(detail=False, methods=["get"])
+    def tags(self, request):
+        """All tags used in this club's plans (for the filter)."""
+        found = set()
+        for tag_list in Plans.objects.filter(club=request.club).values_list("tag_list", flat=True):
+            found.update(t for t in tag_list.split(",") if t)
+        return Response(sorted(found))
 
     @action(detail=False, methods=["get"])
     def managers(self, request):

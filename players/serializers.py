@@ -98,11 +98,45 @@ class EvaluationSerializer(serializers.Serializer):
         return player
 
 
+MAX_TAGS, MAX_TAG_LEN = 10, 30
+
+
+def normalize_tag(tag: str) -> str:
+    return "-".join(str(tag).strip().lower().replace(",", " ").split())
+
+
 class PlanSerializer(serializers.ModelSerializer):
     image = MediaImageField()
+    # A JSON list (also accepted as a JSON string in multipart uploads, like `board`).
+    tags = serializers.JSONField(required=False)
 
     class Meta:
         model = Plans
-        fields = ["id", "title", "image", "board", "created_at", "created_by", "comment", "share_token"]
+        fields = ["id", "title", "image", "board", "tags", "created_at", "created_by", "comment", "share_token"]
         read_only_fields = ["created_at", "created_by", "share_token"]
+
+    def validate_tags(self, value):
+        if not isinstance(value, list) or not all(isinstance(t, str) for t in value):
+            raise serializers.ValidationError(_("Tags must be a list of words."))
+        tags = list(dict.fromkeys(t for t in (normalize_tag(v) for v in value) if t))  # unique, in order
+        if len(tags) > MAX_TAGS or any(len(t) > MAX_TAG_LEN for t in tags):
+            raise serializers.ValidationError(_("Use at most 10 tags of up to 30 characters."))
+        return tags
+
+    def _apply_tags(self, validated_data):
+        tags = validated_data.pop("tags", None)
+        if tags is not None:
+            validated_data["tag_list"] = "," + ",".join(tags) + "," if tags else ""
+        return validated_data
+
+    def create(self, validated_data):
+        return super().create(self._apply_tags(validated_data))
+
+    def update(self, instance, validated_data):
+        return super().update(instance, self._apply_tags(validated_data))
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data["tags"] = [t for t in instance.tag_list.split(",") if t]
+        return data
 
