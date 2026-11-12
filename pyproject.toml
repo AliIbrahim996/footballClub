@@ -1,0 +1,18 @@
+# Project metadata only: dependencies are pinned in requirements.txt and installed from there.
+[project]
+name = "footballclub-backend"
+version = "2.0.0"
+description = "Headless Django REST API for football club management: players, skill evaluations and tactical plans."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Ali Ibrahim" }]
+requires-python = ">=3.12"
+classifiers = [
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Repository = "https://github.com/AliIbrahim996/footballClub"

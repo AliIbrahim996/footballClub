@@ -157,6 +157,7 @@ SPECTACULAR_SETTINGS = {
     "TITLE": "footballClub API",
     "DESCRIPTION": "Players, skills evaluation and tactical plans.",
     "VERSION": "2.0.0",
+    "LICENSE": {"name": "MIT", "url": "https://opensource.org/license/mit"},
 }
 
 # --- Billing / SaaS -------------------------------------------------------------
