@@ -81,3 +81,6 @@ Server-rendered templates and the embedded iframe were removed; Django is now AP
 
 ## Support the project
 If this is useful to you, you can support its development on **[Patreon](https://patreon.com/AliIbrahim870)**.
+
+## License
+[MIT](LICENSE) © 2026 Ali Ibrahim
