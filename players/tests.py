@@ -362,6 +362,9 @@ class PlanTagTests(Base):
         self.create(tags=["defense"])
         self.assertEqual([p["tags"] for p in self.client.get("/api/plans/?tag=SET-PIECE").data["results"]], [["attack", "set-piece", "counter"]])
         self.assertEqual(self.client.get("/api/plans/tags/").data, ["attack", "counter", "defense", "set-piece"])  # not the other club's
+        # The filter accepts the tag as typed, and the tag list ignores the active filter.
+        self.assertEqual(self.client.get("/api/plans/?tag=Set Piece").data["count"], 1)
+        self.assertEqual(self.client.get("/api/plans/tags/?tag=defense").data, ["attack", "counter", "defense", "set-piece"])
 
     def test_tag_filter_does_not_match_partial_words(self):
         self.create(tags=["counter-press"])

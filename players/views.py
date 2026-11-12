@@ -22,7 +22,7 @@ from .access import ClubScopedMixin, IsClubMember, get_membership, seed_default_
 from .models import Category, Club, Membership, Player, PlayerSkills, Plans, Skills
 from .serializers import (
     CategorySerializer, EvaluationSerializer, PlanSerializer, PlayerDetailSerializer,
-    PlayerSerializer, SkillSerializer,
+    PlayerSerializer, SkillSerializer, normalize_tag,
 )
 
 
@@ -199,7 +199,7 @@ class PlanViewSet(ClubScopedMixin, viewsets.ModelViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        tag = self.request.query_params.get("tag", "").strip().lower()
+        tag = normalize_tag(self.request.query_params.get("tag", ""))  # match the stored form ("Set Piece" -> "set-piece")
         return qs.filter(tag_list__contains=f",{tag},") if tag else qs
 
     def perform_create(self, serializer):
@@ -209,7 +209,8 @@ class PlanViewSet(ClubScopedMixin, viewsets.ModelViewSet):
     def tags(self, request):
         """All tags used in this club's plans (for the filter)."""
         found = set()
-        for tag_list in Plans.objects.filter(club=request.club).values_list("tag_list", flat=True):
+        # The club-scoped base queryset (not the ?tag= filtered one), so the filter always lists every tag.
+        for tag_list in super().get_queryset().values_list("tag_list", flat=True):
             found.update(t for t in tag_list.split(",") if t)
         return Response(sorted(found))
 
